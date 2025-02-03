@@ -8,10 +8,10 @@ import '../../core/constants/app_icons.dart';
 import '../../core/constants/app_lists.dart';
 import '../../core/constants/app_text_styles.dart';
 
-wAppbar() => PreferredSize(
-    preferredSize: const Size(double.infinity, 70),
+wAppbarMobile() => PreferredSize(
+    preferredSize: const Size(double.infinity, 100),
     child: Padding(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.only(left: 14, right: 14, top: 40),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

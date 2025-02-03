@@ -9,6 +9,7 @@ import 'package:ecommerce_woocom/presentation/widgets/w_grid_tiles.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_newsLetter.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_web_footer.dart';
 import 'package:flutter/material.dart';
+
 class WebHomePage extends StatelessWidget {
   const WebHomePage({super.key});
 
@@ -22,10 +23,10 @@ class WebHomePage extends StatelessWidget {
         physics: const ClampingScrollPhysics(),
         children: [
           wNewsLetter(),
-          wBannerSlider(AppAssets.banner_web, 25),
-          W_DynamicList("New Arrivals", AppLists.productList),
-          w_CollectionList(),
-          w_BrandsList(),
+          w_BannerSlider(AppAssets.banner_web, 25),
+          w_DynamicList("New Arrivals", AppLists.productList, true),
+          w_CollectionList(true),
+          w_BrandsList(false),
           w_GridTiles(),
           w_WebFooter()
         ],

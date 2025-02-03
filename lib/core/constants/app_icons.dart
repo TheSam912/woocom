@@ -13,4 +13,10 @@ class AppIcons {
   static const String instagram = "assets/icons/insta.png";
   static const String twitter = "assets/icons/twitter.png";
   static const String youtube = "assets/icons/youtube.png";
+
+  //mobile categories icons
+  static const String categorySkinCare = "assets/icons/skincare.png";
+  static const String categoryJewellery = "assets/icons/jewellery.png";
+  static const String categoryBags = "assets/icons/bags.png";
+  static const String categoryWatches = "assets/icons/watches.png";
 }

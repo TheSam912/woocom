@@ -25,4 +25,7 @@ class AppAssets {
   static const String grid_web_large = "assets/images/grid/web/grid_web_large.png";
   static const String grid_web_small1 = "assets/images/grid/web/grid_web_small1.png";
   static const String grid_web_small2 = "assets/images/grid/web/grid_web_small2.png";
+  static const String grid_mobile_large = "assets/images/grid/mobile/grid_mobile_large.png";
+  static const String grid_mobile_small1 = "assets/images/grid/mobile/grid_mobile_small.png";
+  static const String grid_mobile_small2 = "assets/images/grid/mobile/grid_mobile_small1.png";
 }

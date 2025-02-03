@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/utils/responsive_helper.dart';
-import 'main_mobile.dart';
-import 'main_web.dart';
+import 'presentation/pages/main_mobile.dart';
+import 'presentation/pages/main_web.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));

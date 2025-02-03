@@ -30,13 +30,13 @@ _footerLeftSize() => Flexible(
               style: AppTextStyles.dynamicStyle(
                   fontSize: 1.1.sp, fontWeight: FontWeight.w700, color: Colors.white),
             ),
-            categoryListItem("Skincare"),
-            categoryListItem("Personal Care"),
-            categoryListItem("Handbags"),
-            categoryListItem("Apparels"),
-            categoryListItem("Watches"),
-            categoryListItem("Eye Wear"),
-            categoryListItem("Jewellery"),
+            categoryListItem("Skincare", true),
+            categoryListItem("Personal Care", true),
+            categoryListItem("Handbags", true),
+            categoryListItem("Apparels", true),
+            categoryListItem("Watches", true),
+            categoryListItem("Eye Wear", true),
+            categoryListItem("Jewellery", true),
           ],
         ),
         const SizedBox(
@@ -50,10 +50,10 @@ _footerLeftSize() => Flexible(
               style: AppTextStyles.dynamicStyle(
                   fontSize: 1.1.sp, fontWeight: FontWeight.w700, color: Colors.white),
             ),
-            categoryListItem("Contact Us"),
-            categoryListItem("About Us"),
-            categoryListItem("Careers"),
-            categoryListItem("Press"),
+            categoryListItem("Contact Us", true),
+            categoryListItem("About Us", true),
+            categoryListItem("Careers", true),
+            categoryListItem("Press", true),
           ],
         ),
         const SizedBox(
@@ -67,23 +67,25 @@ _footerLeftSize() => Flexible(
               style: AppTextStyles.dynamicStyle(
                   fontSize: 1.1.sp, fontWeight: FontWeight.w700, color: Colors.white),
             ),
-            categoryListItem("Return Policy"),
-            categoryListItem("Terms of Use"),
-            categoryListItem("Sitemap"),
-            categoryListItem("Security"),
-            categoryListItem("Privacy"),
-            categoryListItem("EPR Compliance"),
+            categoryListItem("Return Policy", true),
+            categoryListItem("Terms of Use", true),
+            categoryListItem("Sitemap", true),
+            categoryListItem("Security", true),
+            categoryListItem("Privacy", true),
+            categoryListItem("EPR Compliance", true),
           ],
         )
       ],
     ));
 
-categoryListItem(title) => Padding(
+Widget categoryListItem(title, isWeb) => Padding(
       padding: const EdgeInsets.only(top: 8),
       child: Text(
         title,
         style: AppTextStyles.dynamicStyle(
-            fontSize: 1.sp, fontWeight: FontWeight.w600, color: AppColors.lightGray),
+            fontSize: isWeb ? 1.sp : 12.sp,
+            fontWeight: FontWeight.w600,
+            color: AppColors.lightGray),
       ),
     );
 

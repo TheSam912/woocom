@@ -1,7 +1,7 @@
 import 'package:ecommerce_woocom/presentation/widgets/w_appbar.dart';
 import 'package:flutter/material.dart';
 
-import 'core/constants/app_assets.dart';
+import '../../core/constants/app_assets.dart';
 
 class TabletHomePage extends StatelessWidget {
   const TabletHomePage({super.key});
@@ -9,7 +9,7 @@ class TabletHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: wAppbar(),
+      appBar: wAppbarMobile(),
       body: SingleChildScrollView(
         child: Column(
           children: [

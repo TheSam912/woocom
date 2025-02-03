@@ -1,6 +1,8 @@
 import 'package:ecommerce_woocom/core/constants/app_assets.dart';
+import 'package:ecommerce_woocom/core/constants/app_icons.dart';
 import 'package:ecommerce_woocom/core/constants/app_strings.dart';
 import 'package:ecommerce_woocom/data/models/brand_model.dart';
+import 'package:ecommerce_woocom/data/models/category_model.dart';
 import 'package:ecommerce_woocom/data/models/product_model.dart';
 import 'package:ecommerce_woocom/data/models/product_review_model.dart';
 
@@ -20,6 +22,13 @@ class AppLists {
     BrandModel("CHANEL", AppAssets.brand_chanel),
     BrandModel("Prada", AppAssets.brand_prada),
     BrandModel("BIBA", AppAssets.brand_biba)
+  ];
+
+  static List<CategoryModel> categoriesListMobile = [
+    CategoryModel("Skin Care", AppIcons.categorySkinCare),
+    CategoryModel("Jewellery", AppIcons.categoryJewellery),
+    CategoryModel("Hand Bags", AppIcons.categoryBags),
+    CategoryModel("Watches", AppIcons.categoryWatches),
   ];
 
   static List<ProductModel> productList = [

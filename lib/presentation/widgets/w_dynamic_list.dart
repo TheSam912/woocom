@@ -7,23 +7,27 @@ import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_icons.dart';
 import '../../core/constants/app_text_styles.dart';
 
-class W_DynamicList extends StatefulWidget {
+class w_DynamicList extends StatefulWidget {
   String listTitle;
   List<ProductModel> productList;
+  bool isWeb;
 
-  W_DynamicList(this.listTitle, this.productList, {super.key});
+  w_DynamicList(this.listTitle, this.productList, this.isWeb, {super.key});
 
   @override
-  State<W_DynamicList> createState() => _W_DynamicListState();
+  State<w_DynamicList> createState() => _w_DynamicListState();
 }
 
-class _W_DynamicListState extends State<W_DynamicList> {
+class _w_DynamicListState extends State<w_DynamicList> {
   @override
   Widget build(BuildContext context) {
+    bool isWeb = widget.isWeb;
     return GestureDetector(
       onTap: () {},
       child: Padding(
-        padding: const EdgeInsets.only(left: 25, top: 12, bottom: 12),
+        padding: isWeb
+            ? const EdgeInsets.only(left: 25, top: 12, bottom: 12)
+            : const EdgeInsets.only(left: 14),
         child: ListView(
           shrinkWrap: true,
           physics: const ClampingScrollPhysics(),
@@ -33,7 +37,10 @@ class _W_DynamicListState extends State<W_DynamicList> {
               children: [
                 Text(
                   widget.listTitle,
-                  style: AppTextStyles.webListHeading,
+                  style: isWeb
+                      ? AppTextStyles.webListHeading
+                      : AppTextStyles.dynamicStyle(
+                          fontSize: 14.sp, fontWeight: FontWeight.bold, color: AppColors.primary),
                 ),
                 TextButton.icon(
                   onPressed: () {},
@@ -44,16 +51,19 @@ class _W_DynamicListState extends State<W_DynamicList> {
                   ),
                   label: Text(
                     "View All",
-                    style: AppTextStyles.webListViewAll,
+                    style: isWeb
+                        ? AppTextStyles.webListViewAll
+                        : AppTextStyles.dynamicStyle(
+                            fontSize: 10.sp, fontWeight: FontWeight.bold, color: AppColors.primary),
                   ),
                 ),
               ],
             ),
             Container(
               alignment: Alignment.centerLeft,
-              margin: const EdgeInsets.only(top: 12),
+              margin: EdgeInsets.only(top: isWeb ? 12 : 0),
               child: SizedBox(
-                height: 400,
+                height: isWeb ? 400 : 220,
                 child: ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
@@ -62,8 +72,8 @@ class _W_DynamicListState extends State<W_DynamicList> {
                     var item = widget.productList[index];
                     return Container(
                       margin: index == 0
-                          ? const EdgeInsets.only(right: 8)
-                          : const EdgeInsets.symmetric(horizontal: 8),
+                          ? EdgeInsets.only(right: isWeb ? 8 : 4)
+                          : EdgeInsets.symmetric(horizontal: isWeb ? 8 : 4),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(20),
@@ -74,30 +84,30 @@ class _W_DynamicListState extends State<W_DynamicList> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min, // Important for dynamic height
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                child: Image.asset(
-                                  item.images[0],
-                                  width: 250,
-                                  height: 250,
-                                ),
+                              Image.asset(
+                                item.images[0],
+                                width: isWeb ? 250 : 150,
+                                height: isWeb ? 250 : 150,
                               ),
                               Text(
                                 item.headline,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: AppTextStyles.dynamicStyle(
-                                  fontSize: 1.5.sp,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
+                                style: isWeb
+                                    ? AppTextStyles.dynamicStyle(
+                                        fontSize: 1.5.sp,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      )
+                                    : AppTextStyles.dynamicStyle(
+                                        fontSize: 13.sp, fontWeight: FontWeight.w700),
                               ),
                               Text(
                                 item.subHeadline,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: AppTextStyles.dynamicStyle(
-                                  fontSize: 1.sp,
+                                  fontSize: isWeb ? 1.sp : 8.sp,
                                   fontWeight: FontWeight.w600,
                                   color: Colors.grey.shade500,
                                 ),
@@ -107,13 +117,21 @@ class _W_DynamicListState extends State<W_DynamicList> {
                                 children: [
                                   Text("${item.price} \$",
                                       style: item.priceSale == 0.0
-                                          ? AppTextStyles.productPriceNormal
-                                          : AppTextStyles.productPriceSale),
+                                          ? isWeb
+                                              ? AppTextStyles.productPriceNormal
+                                              : AppTextStyles.dynamicStyle(
+                                                  fontSize: 10.sp, fontWeight: FontWeight.w700)
+                                          : isWeb
+                                              ? AppTextStyles.productPriceSale
+                                              : AppTextStyles.productPriceSaleMobile),
                                   const SizedBox(width: 8),
                                   item.priceSale != 0.0
                                       ? Text(
                                           "${item.priceSale} \$",
-                                          style: AppTextStyles.productPriceNormal,
+                                          style: isWeb
+                                              ? AppTextStyles.productPriceNormal
+                                              : AppTextStyles.dynamicStyle(
+                                                  fontSize: 10.sp, fontWeight: FontWeight.w700),
                                         )
                                       : const Center(),
                                 ],
@@ -121,10 +139,11 @@ class _W_DynamicListState extends State<W_DynamicList> {
                             ],
                           ),
                           Positioned(
-                            top: 20,
-                            right: 10,
+                            top: isWeb ? 20 : 5,
+                            right: isWeb ? 10 : 5,
                             child: wIconButton(
                               iconPath: AppIcons.wishlist,
+                              size: isWeb ? 24.r : 18.r,
                               onTap: () {},
                             ),
                           ),

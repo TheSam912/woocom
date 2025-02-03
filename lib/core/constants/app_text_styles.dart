@@ -35,6 +35,8 @@ class AppTextStyles {
       fontWeight: FontWeight.bold,
       color: Colors.grey.shade500,
       decoration: TextDecoration.lineThrough);
+  static TextStyle productPriceSaleMobile = GoogleFonts.dosis(
+      fontSize: 10.sp,fontWeight: FontWeight.w700, color: Colors.grey.shade500, decoration: TextDecoration.lineThrough);
   static TextStyle hereTextNewsLetter = GoogleFonts.dosis(
       fontSize: 4.sp,
       color: Colors.blueAccent,
