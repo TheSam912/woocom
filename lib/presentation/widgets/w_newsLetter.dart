@@ -16,11 +16,7 @@ wNewsLetter() => Container(
           ),
           Text(
             "here",
-            style: AppTextStyles.dynamicStyle(
-              fontSize: 4,
-              color: Colors.blueAccent,
-              fontWeight: FontWeight.w600,
-            ),
+            style: AppTextStyles.hereTextNewsLetter,
           ),
         ],
       ),

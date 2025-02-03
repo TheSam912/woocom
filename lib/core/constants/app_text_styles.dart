@@ -15,6 +15,32 @@ class AppTextStyles {
     fontWeight: FontWeight.bold,
     color: AppColors.textLight,
   );
+  static TextStyle webListHeading = GoogleFonts.dosis(
+    fontSize: 6.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.primary,
+  );
+  static TextStyle webListViewAll = GoogleFonts.dosis(
+      fontSize: 4.sp,
+      fontWeight: FontWeight.w600,
+      color: AppColors.primary,
+      decoration: TextDecoration.underline);
+  static TextStyle productPriceNormal = GoogleFonts.dosis(
+    fontSize: 4.5.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.textLight,
+  );
+  static TextStyle productPriceSale = GoogleFonts.dosis(
+      fontSize: 4.5.sp,
+      fontWeight: FontWeight.bold,
+      color: Colors.grey.shade500,
+      decoration: TextDecoration.lineThrough);
+  static TextStyle hereTextNewsLetter = GoogleFonts.dosis(
+      fontSize: 4.sp,
+      color: Colors.blueAccent,
+      fontWeight: FontWeight.w600,
+      decoration: TextDecoration.underline,
+      decorationColor: Colors.blueAccent);
 
   // Dynamic style method
   static TextStyle dynamicStyle({

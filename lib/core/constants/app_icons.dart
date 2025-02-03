@@ -6,4 +6,11 @@ class AppIcons {
   static const String bag = "assets/icons/bag.png";
   static const String wishlist = "assets/icons/wishlist.png";
   static const String profile = "assets/icons/profile.png";
+  static const String location = "assets/icons/location.png";
+
+  //social icons
+  static const String facebook = "assets/icons/fb.png";
+  static const String instagram = "assets/icons/insta.png";
+  static const String twitter = "assets/icons/twitter.png";
+  static const String youtube = "assets/icons/youtube.png";
 }
