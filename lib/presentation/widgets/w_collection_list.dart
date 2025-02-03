@@ -16,7 +16,7 @@ w_CollectionList() => Container(
             child: Text(
               "Handpicked Collections",
               style: AppTextStyles.dynamicStyle(
-                  fontSize: 3.sp, fontWeight: FontWeight.w600, color: Colors.white),
+                  fontSize: 1.5.sp, fontWeight: FontWeight.w600, color: Colors.white),
             ),
           ),
           SizedBox(

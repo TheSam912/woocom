@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_icons.dart';
-import '../../core/constants/app_lists.dart';
 import '../../core/constants/app_text_styles.dart';
 
 class W_DynamicList extends StatefulWidget {
@@ -54,7 +53,7 @@ class _W_DynamicListState extends State<W_DynamicList> {
               alignment: Alignment.centerLeft,
               margin: const EdgeInsets.only(top: 12),
               child: SizedBox(
-                height: 350,
+                height: 400,
                 child: ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
@@ -88,7 +87,7 @@ class _W_DynamicListState extends State<W_DynamicList> {
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: AppTextStyles.dynamicStyle(
-                                  fontSize: 1.9.sp,
+                                  fontSize: 1.5.sp,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black,
                                 ),
@@ -98,7 +97,7 @@ class _W_DynamicListState extends State<W_DynamicList> {
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: AppTextStyles.dynamicStyle(
-                                  fontSize: 1.2.sp,
+                                  fontSize: 1.sp,
                                   fontWeight: FontWeight.w600,
                                   color: Colors.grey.shade500,
                                 ),

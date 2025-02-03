@@ -8,7 +8,7 @@ import '../../core/constants/app_text_styles.dart';
 
 w_WebFooter() => Container(
       color: AppColors.primary,
-      padding: const EdgeInsets.only(left: 25, right: 40, top: 30, bottom: 30),
+      padding: const EdgeInsets.only(left: 30, right: 40, top: 30, bottom: 30),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,7 +28,7 @@ _footerLeftSize() => Flexible(
             Text(
               "Shop by Category",
               style: AppTextStyles.dynamicStyle(
-                  fontSize: 1.4.sp, fontWeight: FontWeight.w700, color: Colors.white),
+                  fontSize: 1.1.sp, fontWeight: FontWeight.w700, color: Colors.white),
             ),
             categoryListItem("Skincare"),
             categoryListItem("Personal Care"),
@@ -40,7 +40,7 @@ _footerLeftSize() => Flexible(
           ],
         ),
         const SizedBox(
-          width: 40,
+          width: 70,
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +48,7 @@ _footerLeftSize() => Flexible(
             Text(
               "About",
               style: AppTextStyles.dynamicStyle(
-                  fontSize: 1.4.sp, fontWeight: FontWeight.w700, color: Colors.white),
+                  fontSize: 1.1.sp, fontWeight: FontWeight.w700, color: Colors.white),
             ),
             categoryListItem("Contact Us"),
             categoryListItem("About Us"),
@@ -57,7 +57,7 @@ _footerLeftSize() => Flexible(
           ],
         ),
         const SizedBox(
-          width: 40,
+          width: 70,
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +65,7 @@ _footerLeftSize() => Flexible(
             Text(
               "Policy",
               style: AppTextStyles.dynamicStyle(
-                  fontSize: 1.4.sp, fontWeight: FontWeight.w700, color: Colors.white),
+                  fontSize: 1.1.sp, fontWeight: FontWeight.w700, color: Colors.white),
             ),
             categoryListItem("Return Policy"),
             categoryListItem("Terms of Use"),
@@ -83,7 +83,7 @@ categoryListItem(title) => Padding(
       child: Text(
         title,
         style: AppTextStyles.dynamicStyle(
-            fontSize: 1.3.sp, fontWeight: FontWeight.w600, color: AppColors.lightGray),
+            fontSize: 1.sp, fontWeight: FontWeight.w600, color: AppColors.lightGray),
       ),
     );
 
@@ -155,7 +155,7 @@ _footerRightSide() => Flexible(
             Text(
               "United State",
               style: AppTextStyles.dynamicStyle(
-                  fontSize: 1.4.sp, fontWeight: FontWeight.w700, color: Colors.white),
+                  fontSize: 1.2.sp, fontWeight: FontWeight.w700, color: Colors.white),
             ),
           ],
         ),
@@ -165,7 +165,7 @@ _footerRightSide() => Flexible(
         Text(
           AppStrings.footerStaticText,
           style: AppTextStyles.dynamicStyle(
-              fontSize: 1.3.sp, fontWeight: FontWeight.w600, color: AppColors.lightGray),
+              fontSize: 1.sp, fontWeight: FontWeight.w600, color: AppColors.lightGray),
         )
       ],
     ));

@@ -1,5 +1,4 @@
 import 'package:ecommerce_woocom/core/constants/app_colors.dart';
-import 'package:ecommerce_woocom/core/constants/app_size.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_iconButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -108,7 +107,8 @@ wAppBarWeb() => PreferredSize(
                     ),
                     Text(
                       "Search for products or brands .....",
-                      style: AppTextStyles.dynamicStyle(color: AppColors.lightGray, fontSize: 1.3.sp),
+                      style:
+                          AppTextStyles.dynamicStyle(color: AppColors.lightGray, fontSize: 0.9.sp),
                     )
                   ],
                 ),
