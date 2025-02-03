@@ -1,5 +1,8 @@
+import 'package:ecommerce_woocom/core/constants/app_colors.dart';
+import 'package:ecommerce_woocom/core/constants/app_size.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_iconButton.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constants/app_assets.dart';
 import '../../core/constants/app_icons.dart';
@@ -93,7 +96,7 @@ wAppBarWeb() => PreferredSize(
                 margin: const EdgeInsets.only(right: 25),
                 alignment: Alignment.centerLeft,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12), color: Colors.grey.shade100),
+                    borderRadius: BorderRadius.circular(12), color: AppColors.appbarGray),
                 child: Row(
                   children: [
                     const wIconButton(
@@ -104,8 +107,8 @@ wAppBarWeb() => PreferredSize(
                       width: 5,
                     ),
                     Text(
-                      "Search for item or brand ...",
-                      style: AppTextStyles.dynamicStyle(color: Colors.grey, fontSize: 3),
+                      "Search for products or brands .....",
+                      style: AppTextStyles.dynamicStyle(color: AppColors.lightGray, fontSize: 1.3.sp),
                     )
                   ],
                 ),

@@ -1,3 +1,4 @@
+import 'package:ecommerce_woocom/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/constants/app_strings.dart';
@@ -6,7 +7,7 @@ import '../../core/constants/app_text_styles.dart';
 wNewsLetter() => Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 12),
-      color: Colors.grey.shade100,
+      color: AppColors.appbarGray,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
