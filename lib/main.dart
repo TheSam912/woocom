@@ -1,11 +1,8 @@
 import 'package:ecommerce_woocom/core/constants/app_strings.dart';
-import 'package:ecommerce_woocom/presentation/pages/main_tablet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'core/utils/responsive_helper.dart';
-import 'presentation/pages/main_mobile.dart';
-import 'presentation/pages/main_web.dart';
+import 'core/routes/routes.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -21,23 +18,16 @@ class MyApp extends ConsumerWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
-          title: AppStrings.appName,
+        return MaterialApp.router(
           debugShowCheckedModeBanner: false,
-          home: LayoutBuilder(
-            builder: (context, constraints) {
-              if (ResponsiveHelper.isDesktop(context)) {
-                return const WebHomePage();
-              }
-              else if (ResponsiveHelper.isTablet(context)) {
-                return const TabletHomePage();
-              }
-              else {
-
-                return const MobileHomePage();
-              }
-            },
-          ),
+          title: AppStrings.appName,
+          routerConfig: router,
+          builder: (context, child) {
+            return MediaQuery(
+              data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1.0)),
+              child: child!,
+            );
+          },
         );
       },
     );
