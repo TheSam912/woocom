@@ -22,18 +22,22 @@ class MobileHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: wAppbarMobile(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            W_Appbar(isTablet: false),
             w_BannerSlider(AppAssets.banner_mobile, 14.0),
             w_CategoryList(),
-            w_DynamicList("New Arrivals", AppLists.productList, false),
-            w_CollectionList(false),
-            w_BrandsList(false),
+            w_DynamicList(
+                listTitle: "New Arrivals",
+                productList: AppLists.productList,
+                isWeb: false,
+                isTablet: false),
+            W_CollectionList(isWeb: false, isTablet: false),
+            W_BrandList(isWeb: false, isTablet: false),
             w_gridTileMobile(),
-            w_MobileFooter()
+            W_FooterMobileTablet(isTablet: false)
           ],
         ),
       ),

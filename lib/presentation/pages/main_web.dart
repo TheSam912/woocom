@@ -17,16 +17,20 @@ class WebHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: wAppBarWeb(),
+      appBar: wAppBarWeb(context),
       body: ListView(
         shrinkWrap: true,
         physics: const ClampingScrollPhysics(),
         children: [
           wNewsLetter(),
-          w_BannerSlider(AppAssets.banner_web, 25),
-          w_DynamicList("New Arrivals", AppLists.productList, true),
-          w_CollectionList(true),
-          w_BrandsList(false),
+          w_BannerSlider(AppAssets.banner_web, 25.0),
+          w_DynamicList(
+              listTitle: "New Arrivals",
+              productList: AppLists.productList,
+              isWeb: true,
+              isTablet: false),
+          W_CollectionList(isWeb: true, isTablet: false),
+          W_BrandList(isWeb: true, isTablet: false),
           w_GridTiles(),
           w_WebFooter()
         ],

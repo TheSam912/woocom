@@ -1,4 +1,5 @@
 import 'package:ecommerce_woocom/core/constants/app_strings.dart';
+import 'package:ecommerce_woocom/presentation/pages/main_tablet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,9 +29,9 @@ class MyApp extends ConsumerWidget {
               if (ResponsiveHelper.isDesktop(context)) {
                 return const WebHomePage();
               }
-              // else if (ResponsiveHelper.isTablet(context)) {
-              //   return const TabletHomePage();
-              // }
+              else if (ResponsiveHelper.isTablet(context)) {
+                return const TabletHomePage();
+              }
               else {
 
                 return const MobileHomePage();

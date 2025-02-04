@@ -1,4 +1,3 @@
-import 'package:ecommerce_woocom/core/constants/app_size.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,14 +6,29 @@ import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_lists.dart';
 import '../../core/constants/app_text_styles.dart';
 
-w_BrandsList(isWeb) => Padding(
+class W_BrandList extends StatelessWidget {
+  bool isWeb;
+  bool isTablet;
+
+  W_BrandList({super.key, required this.isWeb, required this.isTablet});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
       padding: EdgeInsets.symmetric(vertical: isWeb ? 20 : 0),
       child: ListView(
         shrinkWrap: true,
         physics: isWeb ? const BouncingScrollPhysics() : const NeverScrollableScrollPhysics(),
         children: [
           Padding(
-            padding: EdgeInsets.only(left: isWeb ? 25.0 : 14.0, top: 12, bottom: isWeb ? 12 : 0),
+            padding: EdgeInsets.only(
+                left: isWeb ? 25.0 : 14.0,
+                top: isWeb
+                    ? 12
+                    : isTablet
+                        ? 12
+                        : 0,
+                bottom: isWeb ? 12 : 0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -22,8 +36,13 @@ w_BrandsList(isWeb) => Padding(
                   "Shop By Brands",
                   style: isWeb
                       ? AppTextStyles.webListHeading
-                      : AppTextStyles.dynamicStyle(
-                          fontSize: 14.sp, fontWeight: FontWeight.bold, color: AppColors.primary),
+                      : isTablet
+                          ? AppTextStyles.dynamicStyle(
+                              fontSize: 5.sp, fontWeight: FontWeight.bold, color: AppColors.primary)
+                          : AppTextStyles.dynamicStyle(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.primary),
                 ),
                 TextButton.icon(
                   onPressed: () {},
@@ -36,66 +55,79 @@ w_BrandsList(isWeb) => Padding(
                     "View All",
                     style: isWeb
                         ? AppTextStyles.webListViewAll
-                        : AppTextStyles.dynamicStyle(
-                            fontSize: 10.sp, fontWeight: FontWeight.bold, color: AppColors.primary),
+                        : isTablet
+                            ? AppTextStyles.dynamicStyle(
+                                fontSize: 3.sp,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.primary)
+                            : AppTextStyles.dynamicStyle(
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.primary),
                   ),
                 ),
               ],
             ),
           ),
-          isWeb ? _itemListWeb() : _itemListMobile()
+          isWeb
+              ? _itemListWeb(false)
+              : isTablet
+                  ? _itemListWeb(true)
+                  : _itemListMobile()
         ],
       ),
     );
+  }
 
-_itemListMobile() => Container(
-      height: 265,
-      margin: const EdgeInsets.symmetric(horizontal: 9),
-      child: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-        shrinkWrap: true,
-        itemCount: AppLists.brandList.length,
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {},
-            child: Container(
-              height: 100,
-              width: 100,
-              padding: const EdgeInsets.all(30),
-              margin: const EdgeInsets.all(5),
-              decoration: BoxDecoration(
-                color: AppColors.accent,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Image.asset(
-                AppLists.brandList[index].logo,
-              ),
-            ),
-          );
-        },
-      ),
-    );
+  _itemListWeb(isTablet) => Container(
+        alignment: Alignment.centerLeft,
+        margin: EdgeInsets.only(top: isTablet ? 8 : 12),
+        child: SizedBox(
+          height: isTablet ? 130 : 100,
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: AppLists.brandList.length,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {},
+                child: Container(
+                  height: isTablet ? 130 : 100,
+                  width: isTablet ? 130 : 100,
+                  padding: EdgeInsets.all(isTablet ? 30 : 20),
+                  margin: index == 0
+                      ? EdgeInsets.only(left: isTablet ? 14 : 25, right: 10)
+                      : EdgeInsets.symmetric(horizontal: isTablet ? 8 : 10),
+                  decoration: BoxDecoration(
+                    color: AppColors.accent,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Image.asset(
+                    AppLists.brandList[index].logo,
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      );
 
-_itemListWeb() => Container(
-      alignment: Alignment.centerLeft,
-      margin: const EdgeInsets.only(top: 12),
-      child: SizedBox(
-        height: 100,
-        child: ListView.builder(
+  _itemListMobile() => Container(
+        height: 265,
+        margin: const EdgeInsets.symmetric(horizontal: 9),
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
           shrinkWrap: true,
           itemCount: AppLists.brandList.length,
-          scrollDirection: Axis.horizontal,
+          physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {},
               child: Container(
                 height: 100,
                 width: 100,
-                padding: const EdgeInsets.all(20),
-                margin: index == 0
-                    ? const EdgeInsets.only(left: 25, right: 10)
-                    : const EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.all(25),
+                margin: const EdgeInsets.all(5),
                 decoration: BoxDecoration(
                   color: AppColors.accent,
                   borderRadius: BorderRadius.circular(20),
@@ -107,5 +139,5 @@ _itemListWeb() => Container(
             );
           },
         ),
-      ),
-    );
+      );
+}
