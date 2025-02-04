@@ -14,7 +14,8 @@ class w_DynamicList extends StatefulWidget {
   bool isTablet;
 
   w_DynamicList(
-      {required this.listTitle,
+      {super.key,
+      required this.listTitle,
       required this.productList,
       required this.isWeb,
       required this.isTablet});

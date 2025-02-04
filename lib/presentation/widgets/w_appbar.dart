@@ -90,13 +90,17 @@ wAppBarWeb(context) {
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 12),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
               children: [
-                Image.asset(
-                  AppAssets.logo,
-                  height: 70,
-                  width: 150,
+                Text(
+                  "Woocom",
+                  style: AppTextStyles.dynamicStyle(
+                    fontSize: 2.5.sp,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.textLight,
+                  ),
                 ),
                 const SizedBox(
                   width: 34,
@@ -106,12 +110,15 @@ wAppBarWeb(context) {
                   physics: const NeverScrollableScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   itemCount: AppLists.categories.length,
-                  itemBuilder: (context, index) => TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        AppLists.categories[index],
-                        style: AppTextStyles.webAppbarItems,
-                      )),
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.only(top: 12),
+                    child: TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          AppLists.categories[index],
+                          style: AppTextStyles.webAppbarItems,
+                        )),
+                  ),
                 )
               ],
             ),
