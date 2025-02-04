@@ -18,21 +18,13 @@ class W_CollectionList extends StatelessWidget {
           ? 350
           : isTablet
               ? 340
-              : 490,
+              : 460,
       color: AppColors.primary,
-      child: ListView(
-        shrinkWrap: true,
-        physics: isWeb ? const BouncingScrollPhysics() : const NeverScrollableScrollPhysics(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(
-                left: isWeb ? 25 : 14,
-                top: isWeb
-                    ? 12
-                    : isTablet
-                        ? 12
-                        : 2,
-                bottom: 12),
+            padding: EdgeInsets.only(left: isWeb ? 25 : 14, top: 12, bottom: 12),
             child: Text(
               "Handpicked Collections",
               style: isWeb
@@ -49,7 +41,7 @@ class W_CollectionList extends StatelessWidget {
               ? _itemListViewWeb(false)
               : isTablet
                   ? _itemListViewWeb(true)
-                  : _itemListViewMobile()
+                  : _itemListViewMobileSimpleView()
         ],
       ),
     );
@@ -84,8 +76,9 @@ class W_CollectionList extends StatelessWidget {
         ),
       );
 
-  _itemListViewMobile() => Container(
+  _itemListViewMobileGridView() => Container(
         height: 480,
+        color: Colors.amber,
         margin: const EdgeInsets.symmetric(horizontal: 9),
         child: GridView.builder(
           physics: const NeverScrollableScrollPhysics(),
@@ -105,6 +98,35 @@ class W_CollectionList extends StatelessWidget {
                   image: DecorationImage(image: AssetImage(images[index]), fit: BoxFit.contain)),
             );
           },
+        ),
+      );
+
+  _itemListViewMobileSimpleView() => Container(
+        margin: const EdgeInsets.symmetric(horizontal: 14),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Flexible(flex: 5, child: Image.asset(AppAssets.collectionImage1)),
+                const SizedBox(
+                  width: 12,
+                ),
+                Flexible(flex: 5, child: Image.asset(AppAssets.collectionImage2))
+              ],
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Row(
+              children: [
+                Flexible(flex: 5, child: Image.asset(AppAssets.collectionImage3)),
+                const SizedBox(
+                  width: 12,
+                ),
+                Flexible(flex: 5, child: Image.asset(AppAssets.collectionImage4))
+              ],
+            )
+          ],
         ),
       );
 }

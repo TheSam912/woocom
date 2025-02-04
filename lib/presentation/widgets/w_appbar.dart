@@ -18,7 +18,7 @@ class W_Appbar extends StatelessWidget {
     return PreferredSize(
         preferredSize: const Size(double.infinity, 100),
         child: Padding(
-          padding: EdgeInsets.only(left: 14, right: 14, top: isTablet ? 16 : 30),
+          padding: EdgeInsets.only(left: 14, right: 14, top: isTablet ? 16 : 40),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

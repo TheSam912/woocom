@@ -33,10 +33,8 @@ class _w_DynamicListState extends State<w_DynamicList> {
       child: Padding(
         padding: isWeb
             ? const EdgeInsets.only(left: 25, top: 12, bottom: 12)
-            : const EdgeInsets.only(left: 14),
-        child: ListView(
-          shrinkWrap: true,
-          physics: const ClampingScrollPhysics(),
+            : EdgeInsets.only(left: 14, bottom: isTablet ? 0 : 12),
+        child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
