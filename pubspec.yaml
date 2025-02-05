@@ -11,7 +11,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   cached_network_image:
   google_fonts:
-  go_router: 
+  go_router:
+  carousel_slider:
   flutter_riverpod:
   flutter_screenutil:
 dev_dependencies:
