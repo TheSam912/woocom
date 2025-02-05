@@ -7,16 +7,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../core/constants/app_text_styles.dart';
-import '../widgets/w_appbar.dart';
-import '../widgets/w_web_footer.dart';
+import '../../../core/constants/app_text_styles.dart';
+import '../../widgets/w_appbar.dart';
+import '../../widgets/w_web_footer.dart';
 
-class ProductDetail extends StatefulWidget {
+class ProductDetailWeb extends StatefulWidget {
   ProductModel product;
   bool isWeb;
   bool isTablet;
 
-  ProductDetail({
+  ProductDetailWeb({
     super.key,
     required this.product,
     required this.isWeb,
@@ -24,17 +24,19 @@ class ProductDetail extends StatefulWidget {
   });
 
   @override
-  State<ProductDetail> createState() => _ProductDetailState();
+  State<ProductDetailWeb> createState() => _ProductDetailWebState();
 }
 
-class _ProductDetailState extends State<ProductDetail> {
+class _ProductDetailWebState extends State<ProductDetailWeb> {
   int _quantity = 1;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: wAppBarWeb(context),
+      appBar: widget.isWeb
+          ? wAppBarWeb(context)
+          : const PreferredSize(preferredSize: Size(0, 0), child: Center()),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

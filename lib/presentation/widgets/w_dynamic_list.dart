@@ -94,14 +94,23 @@ class _w_DynamicListState extends State<w_DynamicList> {
                   var item = widget.productList[index];
                   return GestureDetector(
                     onTap: () {
-                      context.pushNamed(
-                        "product_detail",
-                        extra: {
-                          "product": item,
-                          "isWeb": isWeb,
-                          "isTablet": isTablet,
-                        },
-                      );
+                      isWeb
+                          ? context.pushNamed(
+                              "product_detail_web",
+                              extra: {
+                                "product": item,
+                                "isWeb": isWeb,
+                                "isTablet": isTablet,
+                              },
+                            )
+                          : context.pushNamed(
+                              "product_detail_mobile",
+                              extra: {
+                                "product": item,
+                                "isWeb": isWeb,
+                                "isTablet": isTablet,
+                              },
+                            );
                     },
                     child: Container(
                       margin: index == 0
@@ -147,7 +156,7 @@ class _w_DynamicListState extends State<w_DynamicList> {
                                             fontSize: 13.sp, fontWeight: FontWeight.w700),
                               ),
                               SizedBox(
-                                width: 250,
+                                width: isWeb ? 250 : 150,
                                 child: Text(
                                   item.subHeadline,
                                   maxLines: 1,
