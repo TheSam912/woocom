@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../data/models/product_model.dart';
+import '../../presentation/pages/product_detail/product_detail.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
@@ -29,36 +30,29 @@ final GoRouter router =
     },
   ),
   GoRoute(
-    path: '/product_detail_web',
-    name: 'product_detail_web',
+    path: '/product_detail',
+    name: 'product_detail',
     pageBuilder: (context, state) {
       final extra = state.extra as Map<String, dynamic>?;
+
+      if (extra == null) {
+        return const MaterialPage(
+          child: Scaffold(
+            body: Center(
+              child: Text(
+                  textAlign: TextAlign.center,
+                  "Invalid navigation! No data received.\nCome back and select product"),
+            ),
+          ),
+        );
+      }
       return CustomTransitionPage(
         key: state.pageKey,
         name: state.name,
-        child: ProductDetailWeb(
+        child: ProductDetail(
           product: extra?['product'] as ProductModel,
-          isWeb: extra?['isWeb'] as bool,
-          isTablet: extra?['isTablet'] as bool,
-        ),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          return myTransition(child, animation);
-        },
-      );
-    },
-  ),
-  GoRoute(
-    path: '/product_detail_mobile',
-    name: 'product_detail_mobile',
-    pageBuilder: (context, state) {
-      final extra = state.extra as Map<String, dynamic>?;
-      return CustomTransitionPage(
-        key: state.pageKey,
-        name: state.name,
-        child: ProductDetailMobile(
-          product: extra?['product'] as ProductModel,
-          isWeb: extra?['isWeb'] as bool,
-          isTablet: extra?['isTablet'] as bool,
+          // isWeb: extra?['isWeb'] as bool,
+          // isTablet: extra?['isTablet'] as bool,
         ),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return myTransition(child, animation);

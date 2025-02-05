@@ -1,9 +1,9 @@
+import 'package:ecommerce_woocom/app.dart';
 import 'package:ecommerce_woocom/core/constants/app_colors.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_iconButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../core/constants/app_assets.dart';
+import 'package:go_router/go_router.dart';
 import '../../core/constants/app_icons.dart';
 import '../../core/constants/app_lists.dart';
 import '../../core/constants/app_text_styles.dart';
@@ -83,7 +83,7 @@ class W_Appbar extends StatelessWidget {
   }
 }
 
-wAppBarWeb(context) {
+wAppBarWeb(context, isMain) {
   return PreferredSize(
       preferredSize: const Size(double.infinity, 80),
       child: Padding(
@@ -94,12 +94,30 @@ wAppBarWeb(context) {
           children: [
             Row(
               children: [
-                Text(
-                  "Woocom",
-                  style: AppTextStyles.dynamicStyle(
-                    fontSize: 2.5.sp,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.textLight,
+                GestureDetector(
+                  onTap: () {
+                    if (!isMain) {
+                      Navigator.of(context).push(
+                        PageRouteBuilder(
+                          pageBuilder: (context, animation, secondaryAnimation) => const App(),
+                          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                            return FadeTransition(
+                              opacity: animation,
+                              child: child,
+                            );
+                          },
+                          settings: const RouteSettings(),
+                        ),
+                      );
+                    }
+                  },
+                  child: Text(
+                    "Woocom",
+                    style: AppTextStyles.dynamicStyle(
+                      fontSize: 2.5.sp,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.textLight,
+                    ),
                   ),
                 ),
                 const SizedBox(

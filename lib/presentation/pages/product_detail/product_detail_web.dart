@@ -1,4 +1,3 @@
-import 'package:ecommerce_woocom/core/constants/app_assets.dart';
 import 'package:ecommerce_woocom/core/constants/app_colors.dart';
 import 'package:ecommerce_woocom/core/constants/app_icons.dart';
 import 'package:ecommerce_woocom/data/models/product_model.dart';
@@ -35,24 +34,24 @@ class _ProductDetailWebState extends State<ProductDetailWeb> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: widget.isWeb
-          ? wAppBarWeb(context)
+          ? wAppBarWeb(context,false)
           : const PreferredSize(preferredSize: Size(0, 0), child: Center()),
       body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
                 Flexible(
-                    flex: 4,
-                    fit: FlexFit.loose,
-                    child: Container(
-                      height: 550,
-                      alignment: Alignment.topCenter,
-                      margin: const EdgeInsets.only(left: 25),
-                      child: Image.asset(widget.product.images[0]),
-                    )),
+                  flex: 4,
+                  fit: FlexFit.loose,
+                  child: Container(
+                    height: 503,
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.only(left: 25),
+                    child: Image.asset(widget.product.images[0]),
+                  ),
+                ),
                 const SizedBox(
                   width: 30,
                 ),
@@ -60,14 +59,14 @@ class _ProductDetailWebState extends State<ProductDetailWeb> {
                     flex: 6,
                     fit: FlexFit.loose,
                     child: Container(
-                      height: 600,
+                      height: 503,
                       width: double.infinity,
                       alignment: Alignment.topCenter,
-                      padding: const EdgeInsets.only(top: 30),
+                      padding: const EdgeInsets.only(top: 0),
                       margin: const EdgeInsets.only(right: 25),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Column(
                             children: [
@@ -82,12 +81,9 @@ class _ProductDetailWebState extends State<ProductDetailWeb> {
                                 height: 12,
                               ),
                               _quantitySection(),
-                              const SizedBox(
-                                height: 12,
-                              ),
+                              _buttonsSection(),
                             ],
                           ),
-                          _buttonsSection()
                         ],
                       ),
                     )),
@@ -165,7 +161,7 @@ class _ProductDetailWebState extends State<ProductDetailWeb> {
       );
 
   _buttonsSection() => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 30),
+        padding: const EdgeInsets.only(left: 0, right: 0, top: 30),
         child: Row(
           children: [
             Flexible(
@@ -384,7 +380,7 @@ class _ProductDetailWebState extends State<ProductDetailWeb> {
                           "Apply Valid Pincode",
                           style: widget.isWeb
                               ? AppTextStyles.dynamicStyle(
-                                  fontSize: 0.8.sp,
+                                  fontSize: 1.sp,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.grey.shade600,
                                 )
@@ -398,7 +394,7 @@ class _ProductDetailWebState extends State<ProductDetailWeb> {
                           "Check",
                           style: widget.isWeb
                               ? AppTextStyles.dynamicStyle(
-                                  fontSize: 0.8.sp,
+                                  fontSize: 1.sp,
                                   fontWeight: FontWeight.w700,
                                   color: CupertinoColors.activeBlue,
                                 )

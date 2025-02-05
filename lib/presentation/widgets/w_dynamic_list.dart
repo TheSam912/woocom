@@ -1,4 +1,5 @@
 import 'package:ecommerce_woocom/core/routes/routes.dart';
+import 'package:ecommerce_woocom/core/utils/responsive_helper.dart';
 import 'package:ecommerce_woocom/data/models/product_model.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_iconButton.dart';
 import 'package:flutter/material.dart';
@@ -94,23 +95,12 @@ class _w_DynamicListState extends State<w_DynamicList> {
                   var item = widget.productList[index];
                   return GestureDetector(
                     onTap: () {
-                      isWeb
-                          ? context.pushNamed(
-                              "product_detail_web",
-                              extra: {
-                                "product": item,
-                                "isWeb": isWeb,
-                                "isTablet": isTablet,
-                              },
-                            )
-                          : context.pushNamed(
-                              "product_detail_mobile",
-                              extra: {
-                                "product": item,
-                                "isWeb": isWeb,
-                                "isTablet": isTablet,
-                              },
-                            );
+                      context.pushNamed(
+                        "product_detail",
+                        extra: {
+                          "product": item,
+                        },
+                      );
                     },
                     child: Container(
                       margin: index == 0

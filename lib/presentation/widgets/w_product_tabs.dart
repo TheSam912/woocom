@@ -57,7 +57,7 @@ class _ProductTabsState extends State<W_ProductTabs> {
                       style: AppTextStyles.dynamicStyle(
                           color: _selectedIndex == index ? Colors.white : Colors.grey.shade500,
                           fontWeight: FontWeight.w600,
-                          fontSize: 1.sp),
+                          fontSize: 1.1.sp),
                     ),
                   ),
                 );
@@ -95,7 +95,7 @@ class _ProductTabsState extends State<W_ProductTabs> {
       child: Text(
         widget.product.description,
         style: AppTextStyles.dynamicStyle(
-            fontSize: 1.1.sp, color: Colors.grey.shade800, fontWeight: FontWeight.w500),
+            fontSize: 1.2.sp, color: Colors.grey.shade800, fontWeight: FontWeight.w500),
       ),
     );
   }

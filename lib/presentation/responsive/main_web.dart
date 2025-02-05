@@ -17,7 +17,7 @@ class WebHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: wAppBarWeb(context),
+      appBar: wAppBarWeb(context, true),
       body: ListView(
         shrinkWrap: true,
         physics: const ClampingScrollPhysics(),

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_icons.dart';
 import '../../../core/constants/app_text_styles.dart';
@@ -31,12 +30,17 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
       body: Padding(
         padding: const EdgeInsets.only(top: 10),
         child: ListView(
+          physics: const ClampingScrollPhysics(),
           children: [
             Stack(
               children: [
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 14),
-                  child: Image.asset(widget.product.images[0]),
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    widget.product.images[0],
+                    height: 600,
+                  ),
                 ),
                 Positioned(
                     left: 10,
@@ -44,9 +48,9 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.keyboard_arrow_left,
-                          size: 30,
+                          size: widget.isTablet ? 40 : 30,
                         )))
               ],
             ),
@@ -67,7 +71,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                           )
                         : widget.isTablet
                             ? AppTextStyles.dynamicStyle(
-                                fontSize: 4.sp, fontWeight: FontWeight.w700)
+                                fontSize: 7.sp, fontWeight: FontWeight.w700)
                             : AppTextStyles.dynamicStyle(
                                 fontSize: 20.sp, fontWeight: FontWeight.w700),
                   ),
@@ -77,7 +81,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                       fontSize: widget.isWeb
                           ? 1.4.sp
                           : widget.isTablet
-                              ? 3.sp
+                              ? 3.2.sp
                               : 13.sp,
                       fontWeight: FontWeight.w600,
                       color: Colors.grey.shade500,
@@ -124,7 +128,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                           )
                         : widget.isTablet
                             ? AppTextStyles.dynamicStyle(
-                                fontSize: 4.sp, fontWeight: FontWeight.w700)
+                                fontSize: 6.sp, fontWeight: FontWeight.w700)
                             : AppTextStyles.dynamicStyle(
                                 fontSize: 14.sp, fontWeight: FontWeight.w700),
                   ),
@@ -134,7 +138,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                       fontSize: widget.isWeb
                           ? 1.sp
                           : widget.isTablet
-                              ? 3.sp
+                              ? 3.5.sp
                               : 14.sp,
                       fontWeight: FontWeight.w500,
                       color: Colors.grey.shade500,
@@ -163,7 +167,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                                 )
                               : widget.isTablet
                                   ? AppTextStyles.dynamicStyle(
-                                      fontSize: 4.sp,
+                                      fontSize: 3.sp,
                                       fontWeight: FontWeight.w700,
                                       color: Colors.grey.shade500)
                                   : AppTextStyles.dynamicStyle(
@@ -181,7 +185,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                                 )
                               : widget.isTablet
                                   ? AppTextStyles.dynamicStyle(
-                                      fontSize: 4.sp,
+                                      fontSize: 3.sp,
                                       fontWeight: FontWeight.w700,
                                       color: CupertinoColors.activeBlue)
                                   : AppTextStyles.dynamicStyle(
@@ -210,11 +214,11 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                               )
                             : widget.isTablet
                                 ? AppTextStyles.dynamicStyle(
-                                    fontSize: 4.sp, fontWeight: FontWeight.w700)
+                                    fontSize: 5.sp, fontWeight: FontWeight.w700)
                                 : AppTextStyles.dynamicStyle(
                                     fontSize: 14.sp, fontWeight: FontWeight.w700),
                       ),
-                      initiallyExpanded: false,
+                      initiallyExpanded: true,
                       backgroundColor: Colors.white,
                       collapsedBackgroundColor: Colors.white,
                       children: [
@@ -224,18 +228,18 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                               ? AppTextStyles.dynamicStyle(
                                   fontSize: 1.4.sp,
                                   fontWeight: FontWeight.w700,
-                                  color: Colors.grey.shade600,
+                                  color: Colors.grey.shade500,
                                 )
                               : widget.isTablet
                                   ? AppTextStyles.dynamicStyle(
-                                      fontSize: 4.sp,
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.grey.shade600,
+                                      fontSize: 3.2.sp,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.grey.shade500,
                                     )
                                   : AppTextStyles.dynamicStyle(
                                       fontSize: 12.sp,
                                       fontWeight: FontWeight.w700,
-                                      color: Colors.grey.shade600,
+                                      color: Colors.grey.shade500,
                                     ),
                         ),
                       ],
@@ -259,11 +263,11 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                               )
                             : widget.isTablet
                                 ? AppTextStyles.dynamicStyle(
-                                    fontSize: 4.sp, fontWeight: FontWeight.w700)
+                                    fontSize: 5.sp, fontWeight: FontWeight.w700)
                                 : AppTextStyles.dynamicStyle(
                                     fontSize: 14.sp, fontWeight: FontWeight.w700),
                       ),
-                      initiallyExpanded: false,
+                      initiallyExpanded: true,
                       backgroundColor: Colors.white,
                       collapsedBackgroundColor: Colors.white,
                       children: [
@@ -282,7 +286,13 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                                   tileColor: Colors.white,
                                   title: Row(
                                     children: [
-                                      Text(widget.product.reviews[index].username),
+                                      Text(
+                                        widget.product.reviews[index].username,
+                                        style: widget.isTablet
+                                            ? AppTextStyles.dynamicStyle(
+                                                fontSize: 3.5.sp, fontWeight: FontWeight.w600)
+                                            : const TextStyle(),
+                                      ),
                                       const SizedBox(width: 8),
                                       ...List.generate(
                                         widget.product.reviews[index].rate,
@@ -291,7 +301,13 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                                       ),
                                     ],
                                   ),
-                                  subtitle: Text(widget.product.reviews[index].review),
+                                  subtitle: Text(
+                                    widget.product.reviews[index].review,
+                                    style: widget.isTablet
+                                        ? AppTextStyles.dynamicStyle(
+                                            fontSize: 3.sp, fontWeight: FontWeight.w400)
+                                        : const TextStyle(),
+                                  ),
                                 ),
                               );
                             },
@@ -357,7 +373,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                             fontSize: widget.isWeb
                                 ? 1.sp
                                 : widget.isTablet
-                                    ? 3.sp
+                                    ? 3.2.sp
                                     : 14.sp,
                             fontWeight: FontWeight.w700,
                             color: Colors.white,
