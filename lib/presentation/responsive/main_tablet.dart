@@ -22,7 +22,7 @@ class TabletHomePage extends StatelessWidget {
         physics: const ClampingScrollPhysics(),
         children: [
           W_Appbar(isTablet: true),
-          w_BannerSlider(AppAssets.banner_web, 14.0),
+          w_BannerSlider_Mobile(AppAssets.banner_web, true),
           w_DynamicList(
               listTitle: "New Arrivals",
               productList: AppLists.productList,

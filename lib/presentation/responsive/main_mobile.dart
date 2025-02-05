@@ -27,7 +27,7 @@ class MobileHomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             W_Appbar(isTablet: false),
-            w_BannerSlider(AppAssets.banner_mobile, 14.0),
+            w_BannerSlider_Mobile(AppAssets.banner_mobile,false),
             w_CategoryList(),
             w_DynamicList(
                 listTitle: "New Arrivals",

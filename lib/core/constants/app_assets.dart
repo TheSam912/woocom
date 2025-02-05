@@ -2,6 +2,7 @@ class AppAssets {
   static const String logo = "assets/images/logo.png";
   static const String banner_mobile = "assets/images/banner_mobile.png";
   static const String banner_web = "assets/images/banner_web.png";
+  static const String banner1_web = "assets/images/banner1_web.png";
   static const String banner_blac_web = "assets/images/banner_black.png";
   static const String userPlaceholder = "assets/images/user_placeholder.png";
 
