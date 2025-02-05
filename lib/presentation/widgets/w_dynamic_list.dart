@@ -1,7 +1,9 @@
+import 'package:ecommerce_woocom/core/routes/routes.dart';
 import 'package:ecommerce_woocom/data/models/product_model.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_iconButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_icons.dart';
@@ -29,74 +31,79 @@ class _w_DynamicListState extends State<w_DynamicList> {
   Widget build(BuildContext context) {
     bool isWeb = widget.isWeb;
     bool isTablet = widget.isTablet;
-    return GestureDetector(
-      onTap: () {},
-      child: Padding(
-        padding: isWeb
-            ? const EdgeInsets.only(left: 25, top: 12, bottom: 12)
-            : EdgeInsets.only(left: 14, bottom: isTablet ? 0 : 12),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  widget.listTitle,
+    return Padding(
+      padding: isWeb
+          ? const EdgeInsets.only(left: 25, top: 12, bottom: 12)
+          : EdgeInsets.only(left: 14, bottom: isTablet ? 0 : 12),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                widget.listTitle,
+                style: isWeb
+                    ? AppTextStyles.webListHeading
+                    : isTablet
+                        ? AppTextStyles.dynamicStyle(
+                            fontSize: 5.sp, fontWeight: FontWeight.bold, color: AppColors.primary)
+                        : AppTextStyles.dynamicStyle(
+                            fontSize: 14.sp, fontWeight: FontWeight.bold, color: AppColors.primary),
+              ),
+              TextButton.icon(
+                onPressed: () {},
+                iconAlignment: IconAlignment.end,
+                icon: const Icon(
+                  Icons.keyboard_arrow_right,
+                  color: AppColors.primary,
+                ),
+                label: Text(
+                  "View All",
                   style: isWeb
-                      ? AppTextStyles.webListHeading
+                      ? AppTextStyles.webListViewAll
                       : isTablet
                           ? AppTextStyles.dynamicStyle(
-                              fontSize: 5.sp, fontWeight: FontWeight.bold, color: AppColors.primary)
+                              fontSize: 3.sp, fontWeight: FontWeight.bold, color: AppColors.primary)
                           : AppTextStyles.dynamicStyle(
-                              fontSize: 14.sp,
+                              fontSize: 10.sp,
                               fontWeight: FontWeight.bold,
                               color: AppColors.primary),
                 ),
-                TextButton.icon(
-                  onPressed: () {},
-                  iconAlignment: IconAlignment.end,
-                  icon: const Icon(
-                    Icons.keyboard_arrow_right,
-                    color: AppColors.primary,
-                  ),
-                  label: Text(
-                    "View All",
-                    style: isWeb
-                        ? AppTextStyles.webListViewAll
-                        : isTablet
-                            ? AppTextStyles.dynamicStyle(
-                                fontSize: 3.sp,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.primary)
-                            : AppTextStyles.dynamicStyle(
-                                fontSize: 10.sp,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.primary),
-                  ),
-                ),
-              ],
-            ),
-            Container(
-              alignment: Alignment.centerLeft,
-              margin: EdgeInsets.only(
-                  top: isWeb
-                      ? 12
-                      : isTablet
-                          ? 4
-                          : 0),
-              child: SizedBox(
-                height: isWeb
-                    ? 400
+              ),
+            ],
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            margin: EdgeInsets.only(
+                top: isWeb
+                    ? 12
                     : isTablet
-                        ? 340
-                        : 220,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: widget.productList.length,
-                  itemBuilder: (context, index) {
-                    var item = widget.productList[index];
-                    return Container(
+                        ? 4
+                        : 0),
+            child: SizedBox(
+              height: isWeb
+                  ? 400
+                  : isTablet
+                      ? 340
+                      : 220,
+              child: ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: widget.productList.length,
+                itemBuilder: (context, index) {
+                  var item = widget.productList[index];
+                  return GestureDetector(
+                    onTap: () {
+                      context.pushNamed(
+                        "product_detail",
+                        extra: {
+                          "product": item,
+                          "isWeb": isWeb,
+                          "isTablet": isTablet,
+                        },
+                      );
+                    },
+                    child: Container(
                       margin: index == 0
                           ? EdgeInsets.only(right: isWeb ? 8 : 4)
                           : EdgeInsets.symmetric(horizontal: isWeb ? 8 : 4),
@@ -139,18 +146,21 @@ class _w_DynamicListState extends State<w_DynamicList> {
                                         : AppTextStyles.dynamicStyle(
                                             fontSize: 13.sp, fontWeight: FontWeight.w700),
                               ),
-                              Text(
-                                item.subHeadline,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: AppTextStyles.dynamicStyle(
-                                  fontSize: isWeb
-                                      ? 1.sp
-                                      : isTablet
-                                          ? 3.sp
-                                          : 8.sp,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.grey.shade500,
+                              SizedBox(
+                                width: 250,
+                                child: Text(
+                                  item.subHeadline,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: AppTextStyles.dynamicStyle(
+                                    fontSize: isWeb
+                                        ? 1.sp
+                                        : isTablet
+                                            ? 3.sp
+                                            : 8.sp,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.grey.shade500,
+                                  ),
                                 ),
                               ),
                               const SizedBox(height: 5),
@@ -210,13 +220,13 @@ class _w_DynamicListState extends State<w_DynamicList> {
                           ),
                         ],
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

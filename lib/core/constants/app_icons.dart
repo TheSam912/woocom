@@ -19,4 +19,8 @@ class AppIcons {
   static const String categoryJewellery = "assets/icons/jewellery.png";
   static const String categoryBags = "assets/icons/bags.png";
   static const String categoryWatches = "assets/icons/watches.png";
+
+
+  static const String plus = "assets/icons/plus.png";
+  static const String minus = "assets/icons/minus.png";
 }

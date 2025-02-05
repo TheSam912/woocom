@@ -35,8 +35,17 @@ class AppTextStyles {
       fontWeight: FontWeight.bold,
       color: Colors.grey.shade500,
       decoration: TextDecoration.lineThrough);
+  static TextStyle productPriceSaleDetail = GoogleFonts.dosis(
+      fontSize: 7.sp,
+      fontWeight: FontWeight.bold,
+      color: Colors.grey.shade500,
+      decoration: TextDecoration.lineThrough,
+      decorationColor: Colors.grey.shade500);
   static TextStyle productPriceSaleMobile = GoogleFonts.dosis(
-      fontSize: 10.sp,fontWeight: FontWeight.w700, color: Colors.grey.shade500, decoration: TextDecoration.lineThrough);
+      fontSize: 10.sp,
+      fontWeight: FontWeight.w700,
+      color: Colors.grey.shade500,
+      decoration: TextDecoration.lineThrough);
   static TextStyle productPriceSaleTablet = GoogleFonts.dosis(
       fontSize: 7.5.sp,
       fontWeight: FontWeight.w700,
