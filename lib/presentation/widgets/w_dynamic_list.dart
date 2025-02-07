@@ -1,5 +1,3 @@
-import 'package:ecommerce_woocom/core/routes/routes.dart';
-import 'package:ecommerce_woocom/core/utils/responsive_helper.dart';
 import 'package:ecommerce_woocom/data/models/product_model.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_iconButton.dart';
 import 'package:flutter/material.dart';

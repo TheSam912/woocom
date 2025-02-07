@@ -1,9 +1,6 @@
 import 'package:ecommerce_woocom/app.dart';
-import 'package:ecommerce_woocom/presentation/pages/product_detail/product_detail_mobile.dart';
-import 'package:ecommerce_woocom/presentation/pages/product_detail/product_detail_web.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../data/models/product_model.dart';
 import '../../presentation/pages/product_detail/product_detail.dart';
 
@@ -50,7 +47,7 @@ final GoRouter router =
         key: state.pageKey,
         name: state.name,
         child: ProductDetail(
-          product: extra?['product'] as ProductModel,
+          product: extra['product'] as ProductModel,
           // isWeb: extra?['isWeb'] as bool,
           // isTablet: extra?['isTablet'] as bool,
         ),

@@ -1,4 +1,3 @@
-import 'package:ecommerce_woocom/core/constants/app_icons.dart';
 import 'package:ecommerce_woocom/core/constants/app_lists.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_appbar.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_bannerSlider.dart';
@@ -7,12 +6,8 @@ import 'package:ecommerce_woocom/presentation/widgets/w_category_list.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_collection_list.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_grid_tiles.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_mobile_footer.dart';
-import 'package:ecommerce_woocom/presentation/widgets/w_web_footer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/constants/app_assets.dart';
-import '../../core/constants/app_colors.dart';
-import '../../core/constants/app_text_styles.dart';
 import '../widgets/w_dynamic_list.dart';
 
 class MobileHomePage extends StatelessWidget {
@@ -27,7 +22,7 @@ class MobileHomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             W_Appbar(isTablet: false),
-            w_BannerSlider_Mobile(AppAssets.banner_mobile,false),
+            w_BannerSlider_Mobile(AppAssets.banner_mobile, false),
             w_CategoryList(),
             w_DynamicList(
                 listTitle: "New Arrivals",

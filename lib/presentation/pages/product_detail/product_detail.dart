@@ -1,5 +1,4 @@
 import 'package:ecommerce_woocom/presentation/pages/product_detail/product_detail_mobile.dart';
-import 'package:ecommerce_woocom/presentation/pages/product_detail/product_detail_mobile.dart';
 import 'package:ecommerce_woocom/presentation/pages/product_detail/product_detail_web.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
