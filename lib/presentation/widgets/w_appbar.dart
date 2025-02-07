@@ -17,7 +17,8 @@ class W_Appbar extends StatelessWidget {
     return PreferredSize(
         preferredSize: const Size(double.infinity, 100),
         child: Padding(
-          padding: EdgeInsets.only(left: 14, right: 14, top: isTablet ? 16 : 40),
+          padding:
+              EdgeInsets.only(left: 14, right: 14, top: isTablet ? 16 : 40),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -98,8 +99,11 @@ wAppBarWeb(context, isMain) {
                     if (!isMain) {
                       Navigator.of(context).push(
                         PageRouteBuilder(
-                          pageBuilder: (context, animation, secondaryAnimation) => const App(),
-                          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                          pageBuilder:
+                              (context, animation, secondaryAnimation) =>
+                                  const App(),
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
                             return FadeTransition(
                               opacity: animation,
                               child: child,
@@ -144,11 +148,13 @@ wAppBarWeb(context, isMain) {
                 Container(
                   width: 350,
                   height: 60,
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
                   margin: const EdgeInsets.only(right: 25),
                   alignment: Alignment.centerLeft,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12), color: AppColors.appbarGray),
+                      borderRadius: BorderRadius.circular(12),
+                      color: AppColors.appbarGray),
                   child: Row(
                     children: [
                       const wIconButton(

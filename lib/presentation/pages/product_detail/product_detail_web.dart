@@ -34,7 +34,7 @@ class _ProductDetailWebState extends State<ProductDetailWeb> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: widget.isWeb
-          ? wAppBarWeb(context,false)
+          ? wAppBarWeb(context, false)
           : const PreferredSize(preferredSize: Size(0, 0), child: Center()),
       body: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
@@ -113,14 +113,16 @@ class _ProductDetailWebState extends State<ProductDetailWeb> {
                     color: Colors.black,
                   )
                 : widget.isTablet
-                    ? AppTextStyles.dynamicStyle(fontSize: 4.sp, fontWeight: FontWeight.w700)
-                    : AppTextStyles.dynamicStyle(fontSize: 13.sp, fontWeight: FontWeight.w700),
+                    ? AppTextStyles.dynamicStyle(
+                        fontSize: 4.sp, fontWeight: FontWeight.w700)
+                    : AppTextStyles.dynamicStyle(
+                        fontSize: 13.sp, fontWeight: FontWeight.w700),
           ),
           Text(
             widget.product.subHeadline,
             style: AppTextStyles.dynamicStyle(
               fontSize: widget.isWeb
-                  ? 1.4.sp
+                  ? 1.3.sp
                   : widget.isTablet
                       ? 3.sp
                       : 8.sp,
@@ -169,7 +171,8 @@ class _ProductDetailWebState extends State<ProductDetailWeb> {
                 child: Container(
                   height: 50,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8), color: AppColors.primary),
+                      borderRadius: BorderRadius.circular(8),
+                      color: AppColors.primary),
                   alignment: Alignment.center,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -249,8 +252,10 @@ class _ProductDetailWebState extends State<ProductDetailWeb> {
                       color: Colors.black,
                     )
                   : widget.isTablet
-                      ? AppTextStyles.dynamicStyle(fontSize: 4.sp, fontWeight: FontWeight.w700)
-                      : AppTextStyles.dynamicStyle(fontSize: 13.sp, fontWeight: FontWeight.w700),
+                      ? AppTextStyles.dynamicStyle(
+                          fontSize: 4.sp, fontWeight: FontWeight.w700)
+                      : AppTextStyles.dynamicStyle(
+                          fontSize: 13.sp, fontWeight: FontWeight.w700),
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
@@ -296,10 +301,13 @@ class _ProductDetailWebState extends State<ProductDetailWeb> {
           Text("${widget.product.price} \$",
               style: widget.product.priceSale == 0.0
                   ? widget.isWeb
-                      ? AppTextStyles.dynamicStyle(fontSize: 2.sp, fontWeight: FontWeight.w700)
+                      ? AppTextStyles.dynamicStyle(
+                          fontSize: 2.sp, fontWeight: FontWeight.w700)
                       : widget.isTablet
-                          ? AppTextStyles.dynamicStyle(fontSize: 3.sp, fontWeight: FontWeight.w700)
-                          : AppTextStyles.dynamicStyle(fontSize: 10.sp, fontWeight: FontWeight.w700)
+                          ? AppTextStyles.dynamicStyle(
+                              fontSize: 3.sp, fontWeight: FontWeight.w700)
+                          : AppTextStyles.dynamicStyle(
+                              fontSize: 10.sp, fontWeight: FontWeight.w700)
                   : widget.isWeb
                       ? AppTextStyles.productPriceSaleDetail
                       : widget.isTablet
@@ -310,9 +318,11 @@ class _ProductDetailWebState extends State<ProductDetailWeb> {
               ? Text(
                   "${39.99} \$",
                   style: widget.isWeb
-                      ? AppTextStyles.dynamicStyle(fontSize: 2.sp, fontWeight: FontWeight.w700)
+                      ? AppTextStyles.dynamicStyle(
+                          fontSize: 2.sp, fontWeight: FontWeight.w700)
                       : widget.isTablet
-                          ? AppTextStyles.dynamicStyle(fontSize: 3.sp, fontWeight: FontWeight.w700)
+                          ? AppTextStyles.dynamicStyle(
+                              fontSize: 3.sp, fontWeight: FontWeight.w700)
                           : AppTextStyles.dynamicStyle(
                               fontSize: 10.sp, fontWeight: FontWeight.w700),
                 )
@@ -386,9 +396,11 @@ class _ProductDetailWebState extends State<ProductDetailWeb> {
                                 )
                               : widget.isTablet
                                   ? AppTextStyles.dynamicStyle(
-                                      fontSize: 4.sp, fontWeight: FontWeight.w700)
+                                      fontSize: 4.sp,
+                                      fontWeight: FontWeight.w700)
                                   : AppTextStyles.dynamicStyle(
-                                      fontSize: 13.sp, fontWeight: FontWeight.w700),
+                                      fontSize: 13.sp,
+                                      fontWeight: FontWeight.w700),
                         ),
                         Text(
                           "Check",
@@ -400,9 +412,11 @@ class _ProductDetailWebState extends State<ProductDetailWeb> {
                                 )
                               : widget.isTablet
                                   ? AppTextStyles.dynamicStyle(
-                                      fontSize: 4.sp, fontWeight: FontWeight.w700)
+                                      fontSize: 4.sp,
+                                      fontWeight: FontWeight.w700)
                                   : AppTextStyles.dynamicStyle(
-                                      fontSize: 13.sp, fontWeight: FontWeight.w700),
+                                      fontSize: 13.sp,
+                                      fontWeight: FontWeight.w700),
                         )
                       ],
                     ),

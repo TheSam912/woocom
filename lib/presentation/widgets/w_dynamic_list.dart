@@ -50,7 +50,9 @@ class _w_DynamicListState extends State<w_DynamicList> {
                             fontSize: 14.sp, fontWeight: FontWeight.bold, color: AppColors.primary),
               ),
               TextButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  context.pushNamed("category");
+                },
                 iconAlignment: IconAlignment.end,
                 icon: const Icon(
                   Icons.keyboard_arrow_right,
