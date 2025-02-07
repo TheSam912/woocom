@@ -37,7 +37,7 @@ class _CategoryWebState extends ConsumerState<CategoryWeb> {
         physics: const ClampingScrollPhysics(),
         child: Column(
           children: [
-            w_BannerSliderStatic(AppAssets.banner_blac_web, 25),
+            w_BannerSliderStatic(AppAssets.banner_blac_web, 25.0),
             SizedBox(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -66,7 +66,7 @@ class _CategoryWebState extends ConsumerState<CategoryWeb> {
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 4,
-                                childAspectRatio: 0.70,
+                                childAspectRatio: 0.65,
                                 crossAxisSpacing: 25),
                         itemCount: AppLists.productList.length,
                         itemBuilder: (context, index) {
@@ -86,65 +86,49 @@ class _CategoryWebState extends ConsumerState<CategoryWeb> {
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: Stack(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Image.asset(item.images[0],
-                                          width: 250, height: 250),
-                                      Text(item.headline,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: AppTextStyles.dynamicStyle(
-                                            fontSize: 1.5.sp,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black,
-                                          )),
-                                      SizedBox(
-                                        width: isWeb ? 250 : 150,
-                                        child: Text(
-                                          item.subHeadline,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: AppTextStyles.dynamicStyle(
-                                            fontSize: 1.sp,
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.grey.shade500,
-                                          ),
-                                        ),
+                                  Image.asset(item.images[0],
+                                      width: 250, height: 250),
+                                  Text(item.headline,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: AppTextStyles.dynamicStyle(
+                                        fontSize: 1.5.sp,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      )),
+                                  SizedBox(
+                                    width: isWeb ? 250 : 150,
+                                    child: Text(
+                                      item.subHeadline,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: AppTextStyles.dynamicStyle(
+                                        fontSize: 1.sp,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.grey.shade500,
                                       ),
-                                      const SizedBox(height: 5),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "${item.price} \$",
-                                            style: item.priceSale == 0.0
-                                                ? AppTextStyles
-                                                    .productPriceNormal
-                                                : AppTextStyles
-                                                    .productPriceSale,
-                                          ),
-                                          const SizedBox(width: 8),
-                                          item.priceSale != 0.0
-                                              ? Text("${item.priceSale} \$",
-                                                  style: AppTextStyles
-                                                      .productPriceNormal)
-                                              : const Center(),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Positioned(
-                                    top: 16,
-                                    right: 30,
-                                    child: wIconButton(
-                                      iconPath: AppIcons.wishlist,
-                                      size: 24.r,
-                                      onTap: () {},
                                     ),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "${item.price} \$",
+                                        style: item.priceSale == 0.0
+                                            ? AppTextStyles.productPriceNormal
+                                            : AppTextStyles.productPriceSale,
+                                      ),
+                                      const SizedBox(width: 8),
+                                      item.priceSale != 0.0
+                                          ? Text("${item.priceSale} \$",
+                                              style: AppTextStyles
+                                                  .productPriceNormal)
+                                          : const Center(),
+                                    ],
                                   ),
                                 ],
                               ),
@@ -179,7 +163,7 @@ class _CategoryWebState extends ConsumerState<CategoryWeb> {
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
         style: AppTextStyles.dynamicStyle(
-          fontSize: 0.9.sp,
+          fontSize: 1.3.sp,
           fontWeight: FontWeight.w700,
           color: Colors.black,
         ),
@@ -197,7 +181,14 @@ Widget buildCheckboxListTile(WidgetRef ref, String category, String value) {
   final isSelected = selectedFilters[category]?.contains(value) ?? false;
 
   return CheckboxListTile(
-    title: Text(value),
+    title: Text(
+      value,
+      style: AppTextStyles.dynamicStyle(
+        fontSize: 1.3.sp,
+        fontWeight: FontWeight.w700,
+        color: Colors.black,
+      ),
+    ),
     value: isSelected,
     checkColor: Colors.white,
     activeColor: AppColors.primary,

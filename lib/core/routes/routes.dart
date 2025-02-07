@@ -16,7 +16,7 @@ Widget myTransition(child, animation) {
 
 final GoRouter router = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: "/category",
+    initialLocation: "/app",
     routes: <RouteBase>[
       GoRoute(
         path: '/app',

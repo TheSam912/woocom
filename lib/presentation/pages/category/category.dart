@@ -18,11 +18,15 @@ class Category extends StatelessWidget {
         return LayoutBuilder(
           builder: (context, constraints) {
             if (ResponsiveHelper.isDesktop(context)) {
-              return  CategoryWeb();
+              return CategoryWeb();
             } else if (ResponsiveHelper.isTablet(context)) {
-              return  CategoryMobile();
+              return CategoryMobile(
+                isTablet: true,
+              );
             } else {
-              return  CategoryMobile();
+              return CategoryMobile(
+                isTablet: false,
+              );
             }
           },
         );
