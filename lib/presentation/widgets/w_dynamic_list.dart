@@ -45,9 +45,13 @@ class _w_DynamicListState extends State<w_DynamicList> {
                     ? AppTextStyles.webListHeading
                     : isTablet
                         ? AppTextStyles.dynamicStyle(
-                            fontSize: 5.sp, fontWeight: FontWeight.bold, color: AppColors.primary)
+                            fontSize: 5.sp,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.primary)
                         : AppTextStyles.dynamicStyle(
-                            fontSize: 14.sp, fontWeight: FontWeight.bold, color: AppColors.primary),
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.primary),
               ),
               TextButton.icon(
                 onPressed: () {
@@ -64,7 +68,9 @@ class _w_DynamicListState extends State<w_DynamicList> {
                       ? AppTextStyles.webListViewAll
                       : isTablet
                           ? AppTextStyles.dynamicStyle(
-                              fontSize: 3.sp, fontWeight: FontWeight.bold, color: AppColors.primary)
+                              fontSize: 3.sp,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.primary)
                           : AppTextStyles.dynamicStyle(
                               fontSize: 10.sp,
                               fontWeight: FontWeight.bold,
@@ -141,12 +147,18 @@ class _w_DynamicListState extends State<w_DynamicList> {
                                       )
                                     : isTablet
                                         ? AppTextStyles.dynamicStyle(
-                                            fontSize: 4.sp, fontWeight: FontWeight.w700)
+                                            fontSize: 4.sp,
+                                            fontWeight: FontWeight.w700)
                                         : AppTextStyles.dynamicStyle(
-                                            fontSize: 13.sp, fontWeight: FontWeight.w700),
+                                            fontSize: 13.sp,
+                                            fontWeight: FontWeight.w700),
                               ),
                               SizedBox(
-                                width: isWeb ? 250 : 150,
+                                width: isWeb
+                                    ? 250
+                                    : isTablet
+                                        ? 200
+                                        : 150,
                                 child: Text(
                                   item.subHeadline,
                                   maxLines: 1,
@@ -171,14 +183,20 @@ class _w_DynamicListState extends State<w_DynamicList> {
                                               ? AppTextStyles.productPriceNormal
                                               : isTablet
                                                   ? AppTextStyles.dynamicStyle(
-                                                      fontSize: 3.sp, fontWeight: FontWeight.w700)
+                                                      fontSize: 3.sp,
+                                                      fontWeight:
+                                                          FontWeight.w700)
                                                   : AppTextStyles.dynamicStyle(
-                                                      fontSize: 10.sp, fontWeight: FontWeight.w700)
+                                                      fontSize: 10.sp,
+                                                      fontWeight:
+                                                          FontWeight.w700)
                                           : isWeb
                                               ? AppTextStyles.productPriceSale
                                               : isTablet
-                                                  ? AppTextStyles.productPriceSaleTablet
-                                                  : AppTextStyles.productPriceSaleMobile),
+                                                  ? AppTextStyles
+                                                      .productPriceSaleTablet
+                                                  : AppTextStyles
+                                                      .productPriceSaleMobile),
                                   const SizedBox(width: 8),
                                   item.priceSale != 0.0
                                       ? Text(
@@ -187,9 +205,13 @@ class _w_DynamicListState extends State<w_DynamicList> {
                                               ? AppTextStyles.productPriceNormal
                                               : isTablet
                                                   ? AppTextStyles.dynamicStyle(
-                                                      fontSize: 3.sp, fontWeight: FontWeight.w700)
+                                                      fontSize: 3.sp,
+                                                      fontWeight:
+                                                          FontWeight.w700)
                                                   : AppTextStyles.dynamicStyle(
-                                                      fontSize: 10.sp, fontWeight: FontWeight.w700),
+                                                      fontSize: 10.sp,
+                                                      fontWeight:
+                                                          FontWeight.w700),
                                         )
                                       : const Center(),
                                 ],

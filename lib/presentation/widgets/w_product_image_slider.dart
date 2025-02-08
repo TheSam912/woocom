@@ -30,41 +30,49 @@ class _W_ProductImageSliderState extends State<W_ProductImageSlider> {
     final List<Widget> imageSliders = widget.product.images
         .map((item) => Container(
               margin: const EdgeInsets.all(5.0),
-              child: ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                  child: Image.asset(item, fit: BoxFit.contain, width: 1000.0)),
+              child: Stack(children: [
+                ClipRRect(
+                    borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+                    child:
+                        Image.asset(item, fit: BoxFit.contain, width: 1000.0)),
+                const Positioned(
+                    bottom: 14, right: 14, child: Icon(Icons.fullscreen))
+              ]),
             ))
         .toList();
 
     return Column(children: [
       GestureDetector(
-        onTap: () =>
-            context.pushNamed("image_slider", extra: widget.product.images),
-        child: CarouselSlider(
-          items: imageSliders,
-          carouselController: _controller,
-          options: CarouselOptions(
-              autoPlay: false,
-              enlargeCenterPage: false,
-              viewportFraction: widget.isWeb
-                  ? 0.7
-                  : widget.isTablet
-                      ? 0.6
-                      : 1,
-              aspectRatio: widget.isWeb
-                  ? 1.25
-                  : widget.isTablet
-                      ? 1.65
-                      : 1,
-              // viewportFraction: widget.isTablet ? 0.6 : 1,
-              // aspectRatio: widget.isTablet ? 1.5 : 1,
-              onPageChanged: (index, reason) {
-                setState(() {
-                  _current = index;
-                });
-              }),
-        ),
-      ),
+          onTap: () =>
+              context.pushNamed("image_slider", extra: widget.product.images),
+          child: Stack(
+            children: [
+              CarouselSlider(
+                items: imageSliders,
+                carouselController: _controller,
+                options: CarouselOptions(
+                    autoPlay: false,
+                    enlargeCenterPage: false,
+                    viewportFraction: widget.isWeb
+                        ? 0.7
+                        : widget.isTablet
+                            ? 0.6
+                            : 1,
+                    aspectRatio: widget.isWeb
+                        ? 1.25
+                        : widget.isTablet
+                            ? 1.65
+                            : 1,
+                    // viewportFraction: widget.isTablet ? 0.6 : 1,
+                    // aspectRatio: widget.isTablet ? 1.5 : 1,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        _current = index;
+                      });
+                    }),
+              ),
+            ],
+          )),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: widget.product.images.asMap().entries.map((entry) {
