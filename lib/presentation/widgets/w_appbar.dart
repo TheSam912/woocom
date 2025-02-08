@@ -1,4 +1,5 @@
 import 'package:ecommerce_woocom/app.dart';
+import 'package:ecommerce_woocom/core/constants/app_assets.dart';
 import 'package:ecommerce_woocom/core/constants/app_colors.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_iconButton.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/constants/app_icons.dart';
 import '../../core/constants/app_lists.dart';
 import '../../core/constants/app_text_styles.dart';
+import '../dialogs/w_basket_dialog.dart';
 
 class W_Appbar extends StatelessWidget {
   bool isTablet;
@@ -180,7 +182,15 @@ wAppBarWeb(context, isMain) {
                 const SizedBox(
                   width: 12,
                 ),
-                const wIconButton(iconPath: AppIcons.bag)
+                wIconButton(
+                  iconPath: AppIcons.bag,
+                  onTap: () => showDialog(
+                    context: context,
+                    builder: (context) {
+                      return w_BasketDialog(context);
+                    },
+                  ),
+                )
               ],
             )
           ],
