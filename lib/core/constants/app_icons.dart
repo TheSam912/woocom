@@ -5,6 +5,7 @@ class AppIcons {
   static const String search = "assets/icons/search.png";
   static const String bag = "assets/icons/bag.png";
   static const String wishlist = "assets/icons/wishlist.png";
+  static const String wishlist_true = "assets/icons/wishlist_true.png";
   static const String profile = "assets/icons/profile.png";
   static const String location = "assets/icons/location.png";
 

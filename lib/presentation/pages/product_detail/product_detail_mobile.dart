@@ -23,10 +23,13 @@ class ProductDetailMobile extends StatefulWidget {
 }
 
 class _ProductDetailMobileState extends State<ProductDetailMobile> {
+  bool fav = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: const PreferredSize(preferredSize: Size(0, 0), child: Center()),
       body: Padding(
         padding: const EdgeInsets.only(top: 10),
         child: ListView(
@@ -39,7 +42,6 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                   alignment: Alignment.center,
                   child: Image.asset(
                     widget.product.images[0],
-                    height: 600,
                   ),
                 ),
                 Positioned(
@@ -216,7 +218,8 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                                 ? AppTextStyles.dynamicStyle(
                                     fontSize: 5.sp, fontWeight: FontWeight.w700)
                                 : AppTextStyles.dynamicStyle(
-                                    fontSize: 14.sp, fontWeight: FontWeight.w700),
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w700),
                       ),
                       initiallyExpanded: true,
                       backgroundColor: Colors.white,
@@ -265,7 +268,8 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                                 ? AppTextStyles.dynamicStyle(
                                     fontSize: 5.sp, fontWeight: FontWeight.w700)
                                 : AppTextStyles.dynamicStyle(
-                                    fontSize: 14.sp, fontWeight: FontWeight.w700),
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w700),
                       ),
                       initiallyExpanded: true,
                       backgroundColor: Colors.white,
@@ -290,14 +294,15 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                                         widget.product.reviews[index].username,
                                         style: widget.isTablet
                                             ? AppTextStyles.dynamicStyle(
-                                                fontSize: 3.5.sp, fontWeight: FontWeight.w600)
+                                                fontSize: 3.5.sp,
+                                                fontWeight: FontWeight.w600)
                                             : const TextStyle(),
                                       ),
                                       const SizedBox(width: 8),
                                       ...List.generate(
                                         widget.product.reviews[index].rate,
-                                        (i) =>
-                                            const Icon(Icons.star, color: Colors.amber, size: 16),
+                                        (i) => const Icon(Icons.star,
+                                            color: Colors.amber, size: 16),
                                       ),
                                     ],
                                   ),
@@ -305,7 +310,8 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                                     widget.product.reviews[index].review,
                                     style: widget.isTablet
                                         ? AppTextStyles.dynamicStyle(
-                                            fontSize: 3.sp, fontWeight: FontWeight.w400)
+                                            fontSize: 3.sp,
+                                            fontWeight: FontWeight.w400)
                                         : const TextStyle(),
                                   ),
                                 ),
@@ -326,24 +332,32 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: _buttonsSection(),
+      floatingActionButton: _buttonsSection(
+        fav,
+      ),
     );
   }
 
-  _buttonsSection() => Container(
+  _buttonsSection(isFav) => Container(
         margin: const EdgeInsets.symmetric(horizontal: 14),
         child: Row(
           children: [
             Flexible(
                 flex: 1,
-                child: Container(
-                  height: 50,
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8), color: Colors.grey.shade200),
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    AppIcons.wishlist,
+                child: GestureDetector(
+                  onTap: () => setState(() {
+                    fav = !fav;
+                  }),
+                  child: Container(
+                    height: 50,
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.grey.shade200),
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      isFav ? AppIcons.wishlist_true : AppIcons.wishlist,
+                    ),
                   ),
                 )),
             const SizedBox(
@@ -354,7 +368,8 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                 child: Container(
                   height: 50,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8), color: AppColors.primary),
+                      borderRadius: BorderRadius.circular(8),
+                      color: AppColors.primary),
                   alignment: Alignment.center,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
