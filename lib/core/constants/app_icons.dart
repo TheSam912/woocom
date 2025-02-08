@@ -8,6 +8,7 @@ class AppIcons {
   static const String wishlist_true = "assets/icons/wishlist_true.png";
   static const String profile = "assets/icons/profile.png";
   static const String location = "assets/icons/location.png";
+  static const String fullScreen = "assets/icons/fullscreen.png";
 
   //social icons
   static const String facebook = "assets/icons/fb.png";

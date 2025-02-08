@@ -1,17 +1,37 @@
-import 'package:ecommerce_woocom/app.dart';
+import 'package:ecommerce_woocom/core/constants/app_colors.dart';
 import 'package:ecommerce_woocom/core/constants/app_icons.dart';
 import 'package:ecommerce_woocom/core/constants/app_text_styles.dart';
+import 'package:ecommerce_woocom/presentation/pages/category/provider/sort_product_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
-
 import '../../../core/constants/app_lists.dart';
 import '../../widgets/w_product.dart';
+import '../../widgets/w_product_filter_tile.dart';
 
 class CategoryMobile extends StatelessWidget {
   CategoryMobile({super.key, required this.isTablet});
 
   bool isTablet;
+
+  void _sortItems(SortOption selectedOption) {
+    print('Sorting items by: ${_getSortLabel(selectedOption)}');
+  }
+
+  String _getSortLabel(SortOption option) {
+    switch (option) {
+      case SortOption.latest:
+        return 'Latest Products';
+      case SortOption.lowToHigh:
+        return 'Price- Low to High';
+      case SortOption.highToLow:
+        return 'Price- High to Low';
+      case SortOption.popular:
+        return 'Popularity';
+      case SortOption.customerRating:
+        return 'Customer Ratings';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +43,7 @@ class CategoryMobile extends StatelessWidget {
           child: Column(
             children: [
               _customAppbarWidget(context),
-              _floatingButtons(),
+              _floatingButtons(context),
               Divider(
                 color: Colors.grey.shade300,
               ),
@@ -53,13 +73,15 @@ class CategoryMobile extends StatelessWidget {
     );
   }
 
-  _floatingButtons() => Row(
+  _floatingButtons(context) => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Flexible(
               flex: 1,
               child: GestureDetector(
-                onTap: () {},
+                onTap: () => showModalBottomSheet(
+                    context: context,
+                    builder: (context) => _sortProductBottomSheet()),
                 child: Container(
                   color: Colors.white,
                   width: double.infinity,
@@ -71,19 +93,16 @@ class CategoryMobile extends StatelessWidget {
                         width: 28,
                         height: 28,
                       ),
-                      TextButton(
-                        onPressed: () {},
-                        style: const ButtonStyle(
-                            overlayColor:
-                                WidgetStatePropertyAll(Color(0xffffffff))),
-                        child: Text(
-                          "SORT",
-                          style: isTablet
-                              ? AppTextStyles.dynamicStyle(
-                                  fontSize: 4.sp, fontWeight: FontWeight.w700)
-                              : AppTextStyles.dynamicStyle(
-                                  fontSize: 11.sp, fontWeight: FontWeight.w700),
-                        ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        "SORT",
+                        style: isTablet
+                            ? AppTextStyles.dynamicStyle(
+                                fontSize: 3.sp, fontWeight: FontWeight.w700)
+                            : AppTextStyles.dynamicStyle(
+                                fontSize: 11.sp, fontWeight: FontWeight.w700),
                       ),
                     ],
                   ),
@@ -92,7 +111,11 @@ class CategoryMobile extends StatelessWidget {
           Flexible(
               flex: 1,
               child: GestureDetector(
-                onTap: () {},
+                onTap: () => showModalBottomSheet(
+                  context: context,
+                  backgroundColor: Colors.white,
+                  builder: (context) => _filterProductBottomSheet(),
+                ),
                 child: Container(
                   color: Colors.white,
                   width: double.infinity,
@@ -104,25 +127,80 @@ class CategoryMobile extends StatelessWidget {
                         width: 28,
                         height: 28,
                       ),
-                      TextButton(
-                        onPressed: () {},
-                        style: const ButtonStyle(
-                            overlayColor:
-                                WidgetStatePropertyAll(Color(0xffffffff))),
-                        child: Text(
-                          "FILTER",
-                          style: isTablet
-                              ? AppTextStyles.dynamicStyle(
-                                  fontSize: 4.sp, fontWeight: FontWeight.w700)
-                              : AppTextStyles.dynamicStyle(
-                                  fontSize: 11.sp, fontWeight: FontWeight.w700),
-                        ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        "FILTER",
+                        style: isTablet
+                            ? AppTextStyles.dynamicStyle(
+                                fontSize: 3.sp, fontWeight: FontWeight.w700)
+                            : AppTextStyles.dynamicStyle(
+                                fontSize: 11.sp, fontWeight: FontWeight.w700),
                       ),
                     ],
                   ),
                 ),
               ))
         ],
+      );
+
+  _filterProductBottomSheet() => Consumer(
+        builder: (BuildContext context, WidgetRef ref, Widget? child) {
+          return Padding(
+            padding: const EdgeInsets.only(left: 12, right: 12, top: 12),
+            child: ListView(
+              children: [
+                W_Product_Filter_Tile(
+                    ref, "Size", AppLists.sizes, false, isTablet),
+                W_Product_Filter_Tile(
+                    ref, "Brands", AppLists.brands, false, isTablet),
+                W_Product_Filter_Tile(
+                    ref, "Colors", AppLists.colors, false, isTablet),
+              ],
+            ),
+          );
+        },
+      );
+
+  _sortProductBottomSheet() => Consumer(
+        builder: (context, ref, child) {
+          final selectedSort = ref.watch(selectedSortProvider);
+
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: SortOption.values.map((option) {
+                return ListTile(
+                  title: Text(
+                    _getSortLabel(option),
+                    style: AppTextStyles.dynamicStyle(
+                        fontSize: isTablet ? 3.5.sp : 12.sp,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  leading: Radio<SortOption>(
+                    value: option,
+                    activeColor: AppColors.primary,
+                    groupValue: selectedSort,
+                    onChanged: (value) {
+                      ref
+                          .read(selectedSortProvider.notifier)
+                          .updateSort(value!);
+                      Navigator.pop(context);
+                      _sortItems(value);
+                    },
+                  ),
+                  onTap: () {
+                    ref.read(selectedSortProvider.notifier).updateSort(option);
+                    Navigator.pop(context);
+                    _sortItems(option);
+                  },
+                );
+              }).toList(),
+            ),
+          );
+        },
       );
 
   _customAppbarWidget(context) => Container(

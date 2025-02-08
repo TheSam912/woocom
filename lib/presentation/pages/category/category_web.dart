@@ -45,11 +45,12 @@ class _CategoryWebState extends ConsumerState<CategoryWeb> {
                         padding: const EdgeInsets.symmetric(horizontal: 14),
                         child: Column(
                           children: [
-                            W_Product_Filter_Tile(ref, "Size", AppLists.sizes),
                             W_Product_Filter_Tile(
-                                ref, "Brands", AppLists.brands),
+                                ref, "Size", AppLists.sizes, true, false),
                             W_Product_Filter_Tile(
-                                ref, "Colors", AppLists.colors),
+                                ref, "Brands", AppLists.brands, true, false),
+                            W_Product_Filter_Tile(
+                                ref, "Colors", AppLists.colors, true, false),
                           ],
                         ),
                       )),

@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecommerce_woocom/core/constants/app_icons.dart';
 import 'package:ecommerce_woocom/core/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -33,10 +34,16 @@ class _W_ProductImageSliderState extends State<W_ProductImageSlider> {
               child: Stack(children: [
                 ClipRRect(
                     borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                    child:
-                        Image.asset(item, fit: BoxFit.contain, width: 1000.0)),
-                const Positioned(
-                    bottom: 14, right: 14, child: Icon(Icons.fullscreen))
+                    child: Image.asset(item, fit: BoxFit.contain)),
+                Positioned(
+                    bottom: 14,
+                    right: 14,
+                    child: Image.asset(
+                      AppIcons.fullScreen,
+                      width: 50,
+                    )),
+                widget.isWeb?Positioned(
+                    bottom: 10, left: 0, right: 0, child: _indicationWidget()):const Center()
               ]),
             ))
         .toList();
@@ -54,12 +61,12 @@ class _W_ProductImageSliderState extends State<W_ProductImageSlider> {
                     autoPlay: false,
                     enlargeCenterPage: false,
                     viewportFraction: widget.isWeb
-                        ? 0.7
+                        ? 0.85
                         : widget.isTablet
                             ? 0.6
                             : 1,
                     aspectRatio: widget.isWeb
-                        ? 1.25
+                        ? 1.15
                         : widget.isTablet
                             ? 1.65
                             : 1,
@@ -73,7 +80,15 @@ class _W_ProductImageSliderState extends State<W_ProductImageSlider> {
               ),
             ],
           )),
-      Row(
+      widget.isWeb
+          ? const Center()
+          : widget.isTablet
+              ? _indicationWidget()
+              : _indicationWidget()
+    ]);
+  }
+
+  _indicationWidget() => Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: widget.product.images.asMap().entries.map((entry) {
           return GestureDetector(
@@ -92,7 +107,5 @@ class _W_ProductImageSliderState extends State<W_ProductImageSlider> {
             ),
           );
         }).toList(),
-      ),
-    ]);
-  }
+      );
 }

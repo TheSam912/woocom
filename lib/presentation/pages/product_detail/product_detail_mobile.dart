@@ -73,9 +73,9 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                           )
                         : widget.isTablet
                             ? AppTextStyles.dynamicStyle(
-                                fontSize: 7.sp, fontWeight: FontWeight.w700)
+                                fontSize: 5.sp, fontWeight: FontWeight.w700)
                             : AppTextStyles.dynamicStyle(
-                                fontSize: 20.sp, fontWeight: FontWeight.w700),
+                                fontSize: 16.sp, fontWeight: FontWeight.w700),
                   ),
                   Text(
                     widget.product.subHeadline,
@@ -130,7 +130,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                           )
                         : widget.isTablet
                             ? AppTextStyles.dynamicStyle(
-                                fontSize: 6.sp, fontWeight: FontWeight.w700)
+                                fontSize: 5.sp, fontWeight: FontWeight.w700)
                             : AppTextStyles.dynamicStyle(
                                 fontSize: 14.sp, fontWeight: FontWeight.w700),
                   ),
