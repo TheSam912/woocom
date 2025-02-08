@@ -7,6 +7,7 @@ import 'package:ecommerce_woocom/data/models/product_model.dart';
 import 'package:ecommerce_woocom/data/models/product_review_model.dart';
 
 class AppLists {
+
   static List<String> categories = [
     "Handbags",
     "Watches",

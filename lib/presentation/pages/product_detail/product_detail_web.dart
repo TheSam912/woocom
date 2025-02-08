@@ -1,10 +1,15 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecommerce_woocom/core/constants/app_assets.dart';
 import 'package:ecommerce_woocom/core/constants/app_colors.dart';
 import 'package:ecommerce_woocom/core/constants/app_icons.dart';
+import 'package:ecommerce_woocom/core/routes/routes.dart';
 import 'package:ecommerce_woocom/data/models/product_model.dart';
+import 'package:ecommerce_woocom/presentation/widgets/w_product_image_slider.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_product_tabs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_text_styles.dart';
 import '../../widgets/w_appbar.dart';
@@ -45,11 +50,18 @@ class _ProductDetailWebState extends State<ProductDetailWeb> {
                 Flexible(
                   flex: 4,
                   fit: FlexFit.loose,
-                  child: Container(
-                    height: 503,
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.only(left: 25),
-                    child: Image.asset(widget.product.images[0]),
+                  child: GestureDetector(
+                    onTap: () => context.pushNamed("image_slider"),
+                    child: Container(
+                      height: 503,
+                      alignment: Alignment.center,
+                      margin: const EdgeInsets.only(left: 25),
+                      // child: Image.asset(widget.product.images[0]),
+                      child: W_ProductImageSlider(
+                          product: widget.product,
+                          isWeb: true,
+                          isTablet: false),
+                    ),
                   ),
                 ),
                 const SizedBox(

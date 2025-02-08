@@ -1,3 +1,6 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecommerce_woocom/presentation/pages/product_detail/product_detail_web.dart';
+import 'package:ecommerce_woocom/presentation/widgets/w_product_image_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,7 +26,7 @@ class ProductDetailMobile extends StatefulWidget {
 }
 
 class _ProductDetailMobileState extends State<ProductDetailMobile> {
-  bool fav = true;
+  bool fav = false;
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +40,10 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
           children: [
             Stack(
               children: [
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 14),
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    widget.product.images[0],
-                  ),
-                ),
+                W_ProductImageSlider(
+                    product: widget.product,
+                    isWeb: false,
+                    isTablet: widget.isTablet),
                 Positioned(
                     left: 10,
                     child: IconButton(

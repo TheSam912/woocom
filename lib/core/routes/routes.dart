@@ -1,5 +1,6 @@
 import 'package:ecommerce_woocom/app.dart';
 import 'package:ecommerce_woocom/presentation/pages/category/category.dart';
+import 'package:ecommerce_woocom/presentation/pages/image_slider/image_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../data/models/product_model.dart';
@@ -73,6 +74,24 @@ final GoRouter router = GoRouter(
             key: state.pageKey,
             name: state.name,
             child: const Category(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return myTransition(child, animation);
+            },
+          );
+        },
+      ),
+      GoRoute(
+        path: '/image_slider',
+        name: 'image_slider',
+        pageBuilder: (context, state) {
+          final extra = state.extra as List<String>?;
+          return CustomTransitionPage(
+            key: state.pageKey,
+            name: state.name,
+            child: ImageSlider(
+              images: extra as List<String>,
+            ),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
               return myTransition(child, animation);
