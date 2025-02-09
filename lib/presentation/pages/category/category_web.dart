@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/constants/app_text_styles.dart';
+import '../../../core/repository/product_respository.dart';
 import '../../widgets/w_appbar.dart';
 import '../../widgets/w_product_filter_tile.dart';
 import '../../widgets/w_web_footer.dart';
@@ -65,9 +66,9 @@ class _CategoryWebState extends ConsumerState<CategoryWeb> {
                                 crossAxisCount: 4,
                                 childAspectRatio: 0.65,
                                 crossAxisSpacing: 25),
-                        itemCount: AppLists.productList.length,
+                        itemCount: ProductRepository.productList.length,
                         itemBuilder: (context, index) {
-                          var item = AppLists.productList[index];
+                          var item = ProductRepository.productList[index];
                           return W_ProductWidget(
                               item: item, isTablet: false, isWeb: true);
                         },

@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/constants/app_lists.dart';
+import '../../../core/repository/product_respository.dart';
+import '../../../core/repository/product_respository.dart';
 import '../../widgets/w_product.dart';
 import '../../widgets/w_product_filter_tile.dart';
 
@@ -55,9 +57,9 @@ class CategoryMobile extends StatelessWidget {
                     crossAxisCount: isTablet ? 3 : 2,
                     childAspectRatio: isTablet ? 0.72 : 0.68,
                     crossAxisSpacing: isTablet ? 20 : 14),
-                itemCount: AppLists.productList.length,
+                itemCount: ProductRepository.productList.length,
                 itemBuilder: (context, index) {
-                  var item = AppLists.productList[index];
+                  var item = ProductRepository.productList[index];
                   return W_ProductWidget(
                     item: item,
                     isTablet: isTablet,

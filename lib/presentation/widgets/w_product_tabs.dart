@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constants/app_icons.dart';
+import '../../core/repository/product_respository.dart';
 
 class W_ProductTabs extends StatefulWidget {
   W_ProductTabs({super.key, required this.product});
@@ -19,7 +20,11 @@ class W_ProductTabs extends StatefulWidget {
 
 class _ProductTabsState extends State<W_ProductTabs> {
   int _selectedIndex = 0;
-  final List<String> _tabs = ["Product Detail", "Related Products", "Ratings and Reviews"];
+  final List<String> _tabs = [
+    "Product Detail",
+    "Related Products",
+    "Ratings and Reviews"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -46,16 +51,21 @@ class _ProductTabsState extends State<W_ProductTabs> {
                   },
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
-                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 5),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 40, vertical: 5),
                     margin: const EdgeInsets.symmetric(horizontal: 8),
                     decoration: BoxDecoration(
-                      color: _selectedIndex == index ? AppColors.primary : Colors.transparent,
+                      color: _selectedIndex == index
+                          ? AppColors.primary
+                          : Colors.transparent,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
                       _tabs[index],
                       style: AppTextStyles.dynamicStyle(
-                          color: _selectedIndex == index ? Colors.white : Colors.grey.shade500,
+                          color: _selectedIndex == index
+                              ? Colors.white
+                              : Colors.grey.shade500,
                           fontWeight: FontWeight.w600,
                           fontSize: 1.1.sp),
                     ),
@@ -95,7 +105,9 @@ class _ProductTabsState extends State<W_ProductTabs> {
       child: Text(
         widget.product.description,
         style: AppTextStyles.dynamicStyle(
-            fontSize: 1.2.sp, color: Colors.grey.shade800, fontWeight: FontWeight.w500),
+            fontSize: 1.2.sp,
+            color: Colors.grey.shade800,
+            fontWeight: FontWeight.w500),
       ),
     );
   }
@@ -108,7 +120,7 @@ class _ProductTabsState extends State<W_ProductTabs> {
         scrollDirection: Axis.horizontal,
         itemCount: 3,
         itemBuilder: (context, index) {
-          var item = AppLists.productList[0];
+          var item = ProductRepository.productList[0];
           return Container(
             margin: index == 0
                 ? EdgeInsets.only(right: isWeb ? 8 : 4)
@@ -178,9 +190,11 @@ class _ProductTabsState extends State<W_ProductTabs> {
                                     ? AppTextStyles.productPriceNormal
                                     : isTablet
                                         ? AppTextStyles.dynamicStyle(
-                                            fontSize: 3.sp, fontWeight: FontWeight.w700)
+                                            fontSize: 3.sp,
+                                            fontWeight: FontWeight.w700)
                                         : AppTextStyles.dynamicStyle(
-                                            fontSize: 10.sp, fontWeight: FontWeight.w700)
+                                            fontSize: 10.sp,
+                                            fontWeight: FontWeight.w700)
                                 : isWeb
                                     ? AppTextStyles.productPriceSale
                                     : isTablet
@@ -194,9 +208,11 @@ class _ProductTabsState extends State<W_ProductTabs> {
                                     ? AppTextStyles.productPriceNormal
                                     : isTablet
                                         ? AppTextStyles.dynamicStyle(
-                                            fontSize: 3.sp, fontWeight: FontWeight.w700)
+                                            fontSize: 3.sp,
+                                            fontWeight: FontWeight.w700)
                                         : AppTextStyles.dynamicStyle(
-                                            fontSize: 10.sp, fontWeight: FontWeight.w700),
+                                            fontSize: 10.sp,
+                                            fontWeight: FontWeight.w700),
                               )
                             : const Center(),
                       ],
@@ -252,7 +268,8 @@ class _ProductTabsState extends State<W_ProductTabs> {
                   const SizedBox(width: 20),
                   ...List.generate(
                     widget.product.reviews[index].rate,
-                    (i) => const Icon(Icons.star, color: Colors.amber, size: 16),
+                    (i) =>
+                        const Icon(Icons.star, color: Colors.amber, size: 16),
                   ),
                 ],
               ),

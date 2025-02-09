@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/constants/app_assets.dart';
 import '../../core/constants/app_lists.dart';
+import '../../core/repository/product_respository.dart';
 import '../widgets/w_bannerSlider.dart';
 import '../widgets/w_brands_list.dart';
 import '../widgets/w_collection_list.dart';
@@ -25,7 +26,7 @@ class TabletHomePage extends StatelessWidget {
           w_BannerSlider_Mobile(AppAssets.banner_web, true),
           w_DynamicList(
               listTitle: "New Arrivals",
-              productList: AppLists.productList,
+              productList: ProductRepository.productList,
               isWeb: false,
               isTablet: true),
           W_CollectionList(isWeb: false, isTablet: true),

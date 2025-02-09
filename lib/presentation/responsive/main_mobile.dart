@@ -1,4 +1,3 @@
-import 'package:ecommerce_woocom/core/constants/app_lists.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_appbar.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_bannerSlider.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_brands_list.dart';
@@ -8,6 +7,7 @@ import 'package:ecommerce_woocom/presentation/widgets/w_grid_tiles.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_mobile_footer.dart';
 import 'package:flutter/material.dart';
 import '../../core/constants/app_assets.dart';
+import '../../core/repository/product_respository.dart';
 import '../widgets/w_dynamic_list.dart';
 
 class MobileHomePage extends StatelessWidget {
@@ -26,7 +26,8 @@ class MobileHomePage extends StatelessWidget {
             w_CategoryList(),
             w_DynamicList(
                 listTitle: "New Arrivals",
-                productList: AppLists.productList,
+                productList:  ProductRepository
+                    .productList,
                 isWeb: false,
                 isTablet: false),
             W_CollectionList(isWeb: false, isTablet: false),

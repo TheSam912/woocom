@@ -51,7 +51,12 @@ class _ProductDetailWebState extends State<ProductDetailWeb> {
                   flex: 4,
                   fit: FlexFit.loose,
                   child: GestureDetector(
-                    onTap: () => context.pushNamed("image_slider"),
+                    onTap: () => context.pushNamed(
+                      "image_slider",
+                      queryParameters: {
+                        'images': widget.product.images,
+                      },
+                    ),
                     child: Container(
                       height: 503,
                       alignment: Alignment.center,

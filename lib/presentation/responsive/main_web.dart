@@ -10,6 +10,8 @@ import 'package:ecommerce_woocom/presentation/widgets/w_newsLetter.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_web_footer.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/repository/product_respository.dart';
+
 class WebHomePage extends StatelessWidget {
   const WebHomePage({super.key});
 
@@ -26,7 +28,7 @@ class WebHomePage extends StatelessWidget {
           w_BannerSlider(AppAssets.banner_web, 25.0),
           w_DynamicList(
               listTitle: "New Arrivals",
-              productList: AppLists.productList,
+              productList: ProductRepository.productList,
               isWeb: true,
               isTablet: false),
           W_CollectionList(isWeb: true, isTablet: false),

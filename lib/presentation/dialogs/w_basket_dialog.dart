@@ -1,3 +1,5 @@
+import 'package:ecommerce_woocom/core/repository/product_respository.dart';
+import 'package:ecommerce_woocom/core/repository/product_respository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -60,7 +62,8 @@ w_BasketDialog(context) => Container(
                                             fontSize: 1.sp,
                                             fontWeight: FontWeight.w600),
                                         child: Text(
-                                          AppLists.productList[0].headline,
+                                          ProductRepository
+                                              .productList[0].headline,
                                         ),
                                       ),
                                       IconButton(
@@ -78,7 +81,8 @@ w_BasketDialog(context) => Container(
                                       color: Colors.grey.shade500,
                                     ),
                                     child: Text(
-                                      AppLists.productList[0].subHeadline,
+                                      ProductRepository
+                                          .productList[0].subHeadline,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                     ),
