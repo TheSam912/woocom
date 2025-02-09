@@ -30,258 +30,261 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const PreferredSize(preferredSize: Size(0, 0), child: Center()),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: ListView(
-          physics: const ClampingScrollPhysics(),
-          children: [
-            Stack(
-              children: [
-                W_ProductImageSlider(
-                    product: widget.product,
-                    isWeb: false,
-                    isTablet: widget.isTablet),
-                Positioned(
-                    left: 10,
-                    child: IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: Icon(
-                          Icons.keyboard_arrow_left,
-                          size: widget.isTablet ? 40 : 30,
-                        )))
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 40),
+          child: Column(
+            children: [
+              Stack(
                 children: [
-                  Text(
-                    widget.product.headline,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: widget.isWeb
-                        ? AppTextStyles.dynamicStyle(
-                            fontSize: 2.2.sp,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          )
-                        : widget.isTablet
-                            ? AppTextStyles.dynamicStyle(
-                                fontSize: 5.sp, fontWeight: FontWeight.w700)
-                            : AppTextStyles.dynamicStyle(
-                                fontSize: 16.sp, fontWeight: FontWeight.w700),
-                  ),
-                  Text(
-                    widget.product.subHeadline,
-                    style: AppTextStyles.dynamicStyle(
-                      fontSize: widget.isWeb
-                          ? 1.4.sp
+                  W_ProductImageSlider(
+                      product: widget.product,
+                      isWeb: false,
+                      isTablet: widget.isTablet),
+                  Positioned(
+                      left: 10,
+                      top: 10,
+                      child: IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: Icon(
+                            Icons.keyboard_arrow_left,
+                            size: widget.isTablet ? 40 : 30,
+                          )))
+                ],
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 14, vertical: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.product.headline,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: widget.isWeb
+                          ? AppTextStyles.dynamicStyle(
+                              fontSize: 2.2.sp,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            )
                           : widget.isTablet
-                              ? 3.2.sp
-                              : 13.sp,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.grey.shade500,
+                              ? AppTextStyles.dynamicStyle(
+                                  fontSize: 5.sp, fontWeight: FontWeight.w700)
+                              : AppTextStyles.dynamicStyle(
+                                  fontSize: 16.sp, fontWeight: FontWeight.w700),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      Image.asset(
-                        "assets/images/Ratings.png",
-                        width: 150,
+                    Text(
+                      widget.product.subHeadline,
+                      style: AppTextStyles.dynamicStyle(
+                        fontSize: widget.isWeb
+                            ? 1.4.sp
+                            : widget.isTablet
+                                ? 3.2.sp
+                                : 13.sp,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.grey.shade500,
                       ),
-                      const SizedBox(
-                        width: 16,
-                      ),
-                      Text(
-                        "(250) rating",
-                        style: AppTextStyles.dynamicStyle(
-                          fontSize: widget.isWeb
-                              ? 1.sp
-                              : widget.isTablet
-                                  ? 3.sp
-                                  : 13.sp,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.grey.shade500,
-                        ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Delivery Detail",
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: widget.isWeb
-                        ? AppTextStyles.dynamicStyle(
-                            fontSize: 1.4.sp,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black,
-                          )
-                        : widget.isTablet
-                            ? AppTextStyles.dynamicStyle(
-                                fontSize: 5.sp, fontWeight: FontWeight.w700)
-                            : AppTextStyles.dynamicStyle(
-                                fontSize: 14.sp, fontWeight: FontWeight.w700),
-                  ),
-                  Text(
-                    "Check estimated delivery date/pickup option.",
-                    style: AppTextStyles.dynamicStyle(
-                      fontSize: widget.isWeb
-                          ? 1.sp
-                          : widget.isTablet
-                              ? 3.5.sp
-                              : 14.sp,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.grey.shade500,
                     ),
-                  ),
-                  Container(
-                    width: double.infinity,
-                    height: 60,
-                    margin: const EdgeInsets.only(top: 20),
-                    padding: const EdgeInsets.symmetric(horizontal: 14),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: Colors.grey.shade100,
+                    const SizedBox(
+                      height: 20,
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Row(
                       children: [
-                        Text(
-                          "Enter Valid Pincode",
-                          style: widget.isWeb
-                              ? AppTextStyles.dynamicStyle(
-                                  fontSize: 0.8.sp,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.grey.shade600,
-                                )
-                              : widget.isTablet
-                                  ? AppTextStyles.dynamicStyle(
-                                      fontSize: 3.sp,
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.grey.shade500)
-                                  : AppTextStyles.dynamicStyle(
-                                      fontSize: 13.sp,
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.grey.shade500),
+                        Image.asset(
+                          "assets/images/Ratings.png",
+                          width: 150,
+                        ),
+                        const SizedBox(
+                          width: 16,
                         ),
                         Text(
-                          "Check",
-                          style: widget.isWeb
-                              ? AppTextStyles.dynamicStyle(
-                                  fontSize: 0.8.sp,
-                                  fontWeight: FontWeight.w700,
-                                  color: CupertinoColors.activeBlue,
-                                )
-                              : widget.isTablet
-                                  ? AppTextStyles.dynamicStyle(
-                                      fontSize: 3.sp,
-                                      fontWeight: FontWeight.w700,
-                                      color: CupertinoColors.activeBlue)
-                                  : AppTextStyles.dynamicStyle(
-                                      fontSize: 13.sp,
-                                      fontWeight: FontWeight.w700,
-                                      color: CupertinoColors.activeBlue),
+                          "(250) rating",
+                          style: AppTextStyles.dynamicStyle(
+                            fontSize: widget.isWeb
+                                ? 1.sp
+                                : widget.isTablet
+                                    ? 3.sp
+                                    : 13.sp,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey.shade500,
+                          ),
                         )
                       ],
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: ExpansionTile(
-                      tilePadding: EdgeInsets.zero,
-                      childrenPadding: EdgeInsets.zero,
-                      shape: const Border(),
-                      title: Text(
-                        "Product Detail",
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: widget.isWeb
-                            ? AppTextStyles.dynamicStyle(
-                                fontSize: 1.4.sp,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.black,
-                              )
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Delivery Detail",
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: widget.isWeb
+                          ? AppTextStyles.dynamicStyle(
+                              fontSize: 1.4.sp,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.black,
+                            )
+                          : widget.isTablet
+                              ? AppTextStyles.dynamicStyle(
+                                  fontSize: 5.sp, fontWeight: FontWeight.w700)
+                              : AppTextStyles.dynamicStyle(
+                                  fontSize: 14.sp, fontWeight: FontWeight.w700),
+                    ),
+                    Text(
+                      "Check estimated delivery date/pickup option.",
+                      style: AppTextStyles.dynamicStyle(
+                        fontSize: widget.isWeb
+                            ? 1.sp
                             : widget.isTablet
-                                ? AppTextStyles.dynamicStyle(
-                                    fontSize: 5.sp, fontWeight: FontWeight.w700)
-                                : AppTextStyles.dynamicStyle(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w700),
+                                ? 3.5.sp
+                                : 14.sp,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey.shade500,
                       ),
-                      initiallyExpanded: true,
-                      backgroundColor: Colors.white,
-                      collapsedBackgroundColor: Colors.white,
-                      children: [
-                        Text(
-                          widget.product.description,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      height: 60,
+                      margin: const EdgeInsets.only(top: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 14),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.grey.shade100,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Enter Valid Pincode",
+                            style: widget.isWeb
+                                ? AppTextStyles.dynamicStyle(
+                                    fontSize: 0.8.sp,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.grey.shade600,
+                                  )
+                                : widget.isTablet
+                                    ? AppTextStyles.dynamicStyle(
+                                        fontSize: 3.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.grey.shade500)
+                                    : AppTextStyles.dynamicStyle(
+                                        fontSize: 13.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.grey.shade500),
+                          ),
+                          Text(
+                            "Check",
+                            style: widget.isWeb
+                                ? AppTextStyles.dynamicStyle(
+                                    fontSize: 0.8.sp,
+                                    fontWeight: FontWeight.w700,
+                                    color: CupertinoColors.activeBlue,
+                                  )
+                                : widget.isTablet
+                                    ? AppTextStyles.dynamicStyle(
+                                        fontSize: 3.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: CupertinoColors.activeBlue)
+                                    : AppTextStyles.dynamicStyle(
+                                        fontSize: 13.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: CupertinoColors.activeBlue),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: ExpansionTile(
+                        tilePadding: EdgeInsets.zero,
+                        childrenPadding: EdgeInsets.zero,
+                        shape: const Border(),
+                        title: Text(
+                          "Product Detail",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: widget.isWeb
                               ? AppTextStyles.dynamicStyle(
                                   fontSize: 1.4.sp,
                                   fontWeight: FontWeight.w700,
-                                  color: Colors.grey.shade500,
+                                  color: Colors.black,
                                 )
                               : widget.isTablet
                                   ? AppTextStyles.dynamicStyle(
-                                      fontSize: 3.2.sp,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.grey.shade500,
-                                    )
+                                      fontSize: 5.sp,
+                                      fontWeight: FontWeight.w700)
                                   : AppTextStyles.dynamicStyle(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.grey.shade500,
-                                    ),
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w700),
                         ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: ExpansionTile(
-                      tilePadding: EdgeInsets.zero,
-                      childrenPadding: EdgeInsets.zero,
-                      shape: const Border(),
-                      title: Text(
-                        "Ratings & Reviews",
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: widget.isWeb
-                            ? AppTextStyles.dynamicStyle(
-                                fontSize: 1.4.sp,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.black,
-                              )
-                            : widget.isTablet
+                        initiallyExpanded: true,
+                        backgroundColor: Colors.white,
+                        collapsedBackgroundColor: Colors.white,
+                        children: [
+                          Text(
+                            widget.product.description,
+                            style: widget.isWeb
                                 ? AppTextStyles.dynamicStyle(
-                                    fontSize: 5.sp, fontWeight: FontWeight.w700)
-                                : AppTextStyles.dynamicStyle(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w700),
+                                    fontSize: 1.4.sp,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.grey.shade500,
+                                  )
+                                : widget.isTablet
+                                    ? AppTextStyles.dynamicStyle(
+                                        fontSize: 3.2.sp,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.grey.shade500,
+                                      )
+                                    : AppTextStyles.dynamicStyle(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.grey.shade500,
+                                      ),
+                          ),
+                        ],
                       ),
-                      initiallyExpanded: true,
-                      backgroundColor: Colors.white,
-                      collapsedBackgroundColor: Colors.white,
-                      children: [
-                        SizedBox(
-                          height: 300,
-                          child: ListView.builder(
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: ExpansionTile(
+                        tilePadding: EdgeInsets.zero,
+                        childrenPadding: EdgeInsets.zero,
+                        shape: const Border(),
+                        title: Text(
+                          "Ratings & Reviews",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: widget.isWeb
+                              ? AppTextStyles.dynamicStyle(
+                                  fontSize: 1.4.sp,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.black,
+                                )
+                              : widget.isTablet
+                                  ? AppTextStyles.dynamicStyle(
+                                      fontSize: 5.sp,
+                                      fontWeight: FontWeight.w700)
+                                  : AppTextStyles.dynamicStyle(
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w700),
+                        ),
+                        initiallyExpanded: true,
+                        backgroundColor: Colors.white,
+                        collapsedBackgroundColor: Colors.white,
+                        children: [
+                          ListView.builder(
+                            shrinkWrap: true,
                             itemCount: widget.product.reviews.length,
                             physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
                               return Card(
                                 shadowColor: Colors.white,
-                                color: Colors.white,
+                                color: Colors.amber,
                                 margin: EdgeInsets.zero,
                                 elevation: 0,
                                 child: ListTile(
@@ -315,18 +318,18 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                                 ),
                               );
                             },
-                          ),
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  )
-                ],
+                    const SizedBox(
+                      height: 80,
+                    )
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
