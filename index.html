@@ -34,5 +34,30 @@
 </head>
 <body>
 <script src="flutter_bootstrap.js" async></script>
+<script>
+    // Disable right-click
+    document.addEventListener("contextmenu", event => event.preventDefault());
+
+    // Disable F12, Ctrl+Shift+I, and Ctrl+U
+    document.addEventListener("keydown", function(event) {
+      if (event.keyCode === 123 ||
+          (event.ctrlKey && event.shiftKey && event.keyCode === 73) ||
+          (event.ctrlKey && event.keyCode === 85)) {
+        event.preventDefault();
+      }
+    });
+
+    // Disable Console Open
+    (function() {
+      var element = new Image();
+      Object.defineProperty(element, 'id', {
+        get: function() {
+          window.location.replace("https://google.com"); // Redirect attacker
+        }
+      });
+      console.log('%cStop!','font-size:50px; color:red; font-weight:bold;');
+      console.log(element);
+    })();
+</script>
 </body>
 </html>
