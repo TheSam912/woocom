@@ -20,12 +20,10 @@ class W_ProductWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.pushNamed(
-          "product_detail",
-          extra: {
-            "product": item,
-          },
-        );
+        context.pushNamed("product_detail", pathParameters: {
+          "productId": item.id.toString(),
+          // Ensure ID is a string
+        });
       },
       child: Container(
         alignment: Alignment.topCenter,

@@ -101,12 +101,6 @@ class _w_DynamicListState extends State<w_DynamicList> {
                   var item = widget.productList[index];
                   return GestureDetector(
                     onTap: () {
-                      // context.pushNamed(
-                      //   "product_detail",
-                      //   extra: {
-                      //     "product": item,
-                      //   },
-                      // );
                       context.pushNamed("product_detail", pathParameters: {
                         "productId": item.id.toString(),
                         // Ensure ID is a string
