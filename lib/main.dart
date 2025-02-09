@@ -12,10 +12,15 @@ void main() {
     debugPrint = (String? message, {int? wrapWidth}) {};
   }
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: AppColors.primary,
-    systemNavigationBarColor: AppColors.primary,
-  ));
+
+  if (defaultTargetPlatform == TargetPlatform.android ||
+      defaultTargetPlatform == TargetPlatform.iOS) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: AppColors.primary,
+      systemNavigationBarColor: AppColors.primary,
+    ));
+  }
+
   runApp(const ProviderScope(child: MyApp()));
 }
 
