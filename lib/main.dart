@@ -1,4 +1,3 @@
-import 'dart:html' as html;
 import 'package:ecommerce_woocom/core/constants/app_strings.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -18,19 +17,10 @@ void main() {
   if (defaultTargetPlatform == TargetPlatform.android ||
       defaultTargetPlatform == TargetPlatform.iOS) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: AppColors.primary,
-      systemNavigationBarColor: AppColors.primary,
+      statusBarColor: Color(0xff1B4B66),
+      systemNavigationBarColor: Color(0xff1B4B66),
     ));
   }
-
-  // Apply theme color for Web PWA
-  if (kIsWeb) {
-    const String themeColor = "#0175C2"; // Your custom color
-    html.document
-        .querySelector('meta[name="theme-color"]')
-        ?.setAttribute("content", themeColor);
-  }
-
   runApp(const ProviderScope(child: MyApp()));
 }
 
