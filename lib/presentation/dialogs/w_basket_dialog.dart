@@ -1,12 +1,9 @@
 import 'package:ecommerce_woocom/core/repository/product_respository.dart';
-import 'package:ecommerce_woocom/core/repository/product_respository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../core/constants/app_assets.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_icons.dart';
-import '../../core/constants/app_lists.dart';
 import '../../core/constants/app_text_styles.dart';
 
 w_BasketDialog(context) => Container(

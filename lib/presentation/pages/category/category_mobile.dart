@@ -7,7 +7,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/constants/app_lists.dart';
 import '../../../core/repository/product_respository.dart';
-import '../../../core/repository/product_respository.dart';
 import '../../widgets/w_product.dart';
 import '../../widgets/w_product_filter_tile.dart';
 

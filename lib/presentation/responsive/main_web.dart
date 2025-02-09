@@ -1,5 +1,4 @@
 import 'package:ecommerce_woocom/core/constants/app_assets.dart';
-import 'package:ecommerce_woocom/core/constants/app_lists.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_brands_list.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_dynamic_list.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_appbar.dart';

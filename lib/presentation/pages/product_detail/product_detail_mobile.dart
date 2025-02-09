@@ -1,5 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:ecommerce_woocom/presentation/pages/product_detail/product_detail_web.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_product_image_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -1,8 +1,5 @@
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:ecommerce_woocom/core/constants/app_assets.dart';
 import 'package:ecommerce_woocom/core/constants/app_colors.dart';
 import 'package:ecommerce_woocom/core/constants/app_icons.dart';
-import 'package:ecommerce_woocom/core/routes/routes.dart';
 import 'package:ecommerce_woocom/data/models/product_model.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_product_image_slider.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_product_tabs.dart';

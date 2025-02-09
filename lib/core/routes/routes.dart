@@ -4,7 +4,6 @@ import 'package:ecommerce_woocom/presentation/pages/category/category.dart';
 import 'package:ecommerce_woocom/presentation/pages/image_slider/image_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../data/models/product_model.dart';
 import '../../presentation/pages/product_detail/product_detail.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =

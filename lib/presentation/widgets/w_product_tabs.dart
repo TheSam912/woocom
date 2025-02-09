@@ -1,5 +1,4 @@
 import 'package:ecommerce_woocom/core/constants/app_colors.dart';
-import 'package:ecommerce_woocom/core/constants/app_lists.dart';
 import 'package:ecommerce_woocom/core/constants/app_text_styles.dart';
 import 'package:ecommerce_woocom/data/models/product_model.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_iconButton.dart';
