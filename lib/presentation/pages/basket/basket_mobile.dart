@@ -6,87 +6,78 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/constants/app_icons.dart';
 import '../../../core/repository/product_respository.dart';
+import '../../../core/utils/responsive_helper.dart';
 
 class BasketMobile extends StatelessWidget {
-  const BasketMobile({super.key});
+  BasketMobile({super.key});
+
+  late bool isTablet;
 
   @override
   Widget build(BuildContext context) {
+    isTablet = ResponsiveHelper.isTablet(context);
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.grey.shade100,
-        title: Text(
-          "My Bag",
-          style: AppTextStyles.dynamicStyle(
-              fontWeight: FontWeight.w700,
-              color: AppColors.primary,
-              fontSize: 16.sp),
-        ),
-        actions: [],
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(
-            Icons.close,
-            color: AppColors.primary,
-          ),
-        ),
-      ),
-      body: ListView(
-        physics: const ClampingScrollPhysics(),
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(AppAssets.bagBg), fit: BoxFit.fill)),
-            child: Column(
-              children: [
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 2,
-                  itemBuilder: (context, index) {
-                    return _productItemWidget();
-                  },
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-              ],
+      appBar: _basketAppBar(context),
+      body: Container(
+        margin: EdgeInsets.all(isTablet ? 60 : 0),
+        padding: EdgeInsets.all(isTablet ? 8 : 0),
+        child: ListView(
+          physics: const ClampingScrollPhysics(),
+          children: [
+            Container(
+              padding: const EdgeInsets.only(top: 12),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  image: const DecorationImage(
+                      image: AssetImage(AppAssets.bagBg), fit: BoxFit.fill)),
+              child: Column(
+                children: [
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: 2,
+                    itemBuilder: (context, index) {
+                      return _productItemWidget();
+                    },
+                  ),
+                  SizedBox(
+                    height: isTablet ? 50 : 30,
+                  ),
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-                left: 24, right: 24, top: 20, bottom: 100),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _priceText("Subtotal", false),
-                    _priceText("109.38 \$", false),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _priceText("Tax", false),
-                    _priceText("2 \$", false),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _priceText("Total", true),
-                    _priceText("111.38 \$", true),
-                  ],
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 24, right: 24, top: 20, bottom: 100),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _priceText("Subtotal", false),
+                      _priceText("109.38 \$", false),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _priceText("Tax", false),
+                      _priceText("2 \$", false),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _priceText("Total", true),
+                      _priceText("111.38 \$", true),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: _placeOrderButton(),
@@ -103,7 +94,7 @@ class BasketMobile extends StatelessWidget {
             Row(
               children: [
                 Flexible(
-                  flex: 3,
+                  flex: isTablet ? 2 : 3,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 12),
                     child: ClipRRect(
@@ -111,7 +102,7 @@ class BasketMobile extends StatelessWidget {
                       child: Image.asset(
                         AppAssets.productImage1,
                         fit: BoxFit.contain,
-                        width: 100,
+                        width: isTablet ? 150 : 100,
                       ),
                     ),
                   ),
@@ -128,7 +119,8 @@ class BasketMobile extends StatelessWidget {
                           children: [
                             DefaultTextStyle(
                               style: AppTextStyles.dynamicStyle(
-                                  fontSize: 14.sp, fontWeight: FontWeight.w600),
+                                  fontSize: isTablet ? 5.sp : 14.sp,
+                                  fontWeight: FontWeight.w600),
                               child: Text(
                                 ProductRepository.productList[0].headline,
                               ),
@@ -142,11 +134,12 @@ class BasketMobile extends StatelessWidget {
                             //     onPressed: () {}, icon: const Icon(Icons.close))
                           ],
                         ),
-                        SizedBox(
-                          width: 230,
+                        Container(
+                          width: isTablet ? double.infinity : 230,
+                          margin: EdgeInsets.only(right: isTablet ? 30 : 0),
                           child: DefaultTextStyle(
                             style: AppTextStyles.dynamicStyle(
-                              fontSize: 10.sp,
+                              fontSize: isTablet ? 4.sp : 10.sp,
                               fontWeight: FontWeight.w600,
                               color: Colors.grey.shade500,
                             ),
@@ -179,7 +172,7 @@ class BasketMobile extends StatelessWidget {
                                       child: Text(
                                         "1",
                                         style: AppTextStyles.dynamicStyle(
-                                            fontSize: 14.sp),
+                                            fontSize: isTablet ? 4.sp : 14.sp),
                                       ),
                                     ),
                                     GestureDetector(
@@ -193,7 +186,7 @@ class BasketMobile extends StatelessWidget {
                                 padding: const EdgeInsets.only(right: 12.0),
                                 child: DefaultTextStyle(
                                   style: AppTextStyles.dynamicStyle(
-                                      fontSize: 12.sp,
+                                      fontSize: isTablet ? 4.sp : 12.sp,
                                       fontWeight: FontWeight.w700),
                                   child: const Text(
                                     "55.64 \$",
@@ -226,13 +219,14 @@ class BasketMobile extends StatelessWidget {
                       "Move To Wishlist",
                       textAlign: TextAlign.end,
                       style: AppTextStyles.dynamicStyle(
-                          fontSize: 12.sp, fontWeight: FontWeight.w700),
+                          fontSize: isTablet ? 4.sp : 12.sp,
+                          fontWeight: FontWeight.w700),
                     )),
                 Container(
                   width: 1,
                   height: 20,
                   color: Colors.grey.shade200,
-                  margin: const EdgeInsets.symmetric(horizontal: 30),
+                  margin: EdgeInsets.symmetric(horizontal: isTablet ? 80 : 30),
                 ),
                 TextButton(
                     onPressed: () {},
@@ -243,7 +237,8 @@ class BasketMobile extends StatelessWidget {
                       "Remove",
                       textAlign: TextAlign.end,
                       style: AppTextStyles.dynamicStyle(
-                          fontSize: 12.sp, fontWeight: FontWeight.w700),
+                          fontSize: isTablet ? 4.sp : 12.sp,
+                          fontWeight: FontWeight.w700),
                     )),
               ],
             ),
@@ -255,40 +250,13 @@ class BasketMobile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 5.0),
         child: DefaultTextStyle(
             style: AppTextStyles.dynamicStyle(
-                fontSize: 16.sp,
+                fontSize: isTablet ? 4.sp : 16.sp,
                 fontWeight: isTotal ? FontWeight.w700 : FontWeight.w500),
             child: Text(text)),
       );
 
-  _basketAppbar(context) => Container(
-        color: Colors.white,
-        child: Row(
-          children: [
-            IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(
-                Icons.close,
-                color: AppColors.primary,
-              ),
-            ),
-            const SizedBox(
-              width: 12,
-            ),
-            Text(
-              "My Bag",
-              style: AppTextStyles.dynamicStyle(
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.primary,
-                  fontSize: 16.sp),
-            ),
-          ],
-        ),
-      );
-
   _placeOrderButton() => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(horizontal: isTablet ? 90 : 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -304,14 +272,14 @@ class BasketMobile extends StatelessWidget {
                       Text(
                         "Total bag amount",
                         style: AppTextStyles.dynamicStyle(
-                            fontSize: 13.sp,
+                            fontSize: isTablet ? 3.sp : 13.sp,
                             fontWeight: FontWeight.w600,
                             color: Colors.grey.shade600),
                       ),
                       Text(
                         "111.38 \$",
                         style: AppTextStyles.dynamicStyle(
-                            fontSize: 14.sp,
+                            fontSize: isTablet ? 3.5.sp : 14.sp,
                             fontWeight: FontWeight.w800,
                             color: Colors.grey.shade600),
                       ),
@@ -330,7 +298,7 @@ class BasketMobile extends StatelessWidget {
                       color: AppColors.primary),
                   child: DefaultTextStyle(
                     style: AppTextStyles.dynamicStyle(
-                        fontSize: 16.sp,
+                        fontSize: isTablet ? 4.sp : 16.sp,
                         fontWeight: FontWeight.w700,
                         color: Colors.white),
                     child: const Text(
@@ -339,6 +307,26 @@ class BasketMobile extends StatelessWidget {
                   ),
                 )),
           ],
+        ),
+      );
+
+  _basketAppBar(context) => AppBar(
+        backgroundColor: isTablet ? Colors.white : Colors.grey.shade100,
+        title: Text(
+          "My Bag",
+          style: AppTextStyles.dynamicStyle(
+              fontWeight: FontWeight.w700,
+              color: AppColors.primary,
+              fontSize: isTablet ? 5.sp : 16.sp),
+        ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.close,
+            color: AppColors.primary,
+          ),
         ),
       );
 }

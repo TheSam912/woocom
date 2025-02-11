@@ -129,14 +129,15 @@ final GoRouter router = GoRouter(
             },
           );
         },
-      ),GoRoute(
+      ),
+      GoRoute(
         path: '/basket_mobile',
         name: 'basket_mobile',
         pageBuilder: (context, state) {
           return CustomTransitionPage(
             key: state.pageKey,
             name: state.name,
-            child: const BasketMobile(),
+            child:  BasketMobile(),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
               return myTransition(child, animation);
