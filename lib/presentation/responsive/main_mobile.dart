@@ -27,8 +27,7 @@ class MobileHomePage extends StatelessWidget {
             w_CategoryList(),
             w_DynamicList(
                 listTitle: "New Arrivals",
-                productList:  ProductRepository
-                    .productList,
+                productList: ProductRepository.productList,
                 isWeb: false,
                 isTablet: false),
             W_CollectionList(isWeb: false, isTablet: false),

@@ -50,6 +50,15 @@ class _AuthenticationMobileState extends State<AuthenticationMobile>
       backgroundColor: AppColors.primary,
       body: Stack(
         children: [
+          Positioned(
+              top: 40,
+              right: 15,
+              child: IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: const Icon(
+                    Icons.close,
+                    color: Colors.white,
+                  ))),
           Center(
             child: Container(
               height: isTablet ? 630 : 550,

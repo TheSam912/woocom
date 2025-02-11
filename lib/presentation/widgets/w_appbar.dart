@@ -61,7 +61,7 @@ class W_Appbar extends StatelessWidget {
                     onTap: () {},
                   ),
                   const SizedBox(
-                    width: 12,
+                    width: 20,
                   ),
                   wIconButton(
                     iconPath: AppIcons.bag,
@@ -70,13 +70,21 @@ class W_Appbar extends StatelessWidget {
                     onTap: () => context.pushNamed("basket_mobile"),
                   ),
                   const SizedBox(
-                    width: 12,
+                    width: 20,
                   ),
                   wIconButton(
                     iconPath: AppIcons.notification,
                     color: AppColors.primary,
                     size: isTablet ? 18.r : 24.r,
                     onTap: () {},
+                  ), const SizedBox(
+                    width: 20,
+                  ),
+                  wIconButton(
+                    iconPath: AppIcons.profile,
+                    color: AppColors.primary,
+                    size: isTablet ? 18.r : 24.r,
+                    onTap: () => context.pushNamed("signIn"),
                   ),
                 ],
               )
