@@ -1,11 +1,11 @@
 import 'package:ecommerce_woocom/core/constants/app_assets.dart';
 import 'package:ecommerce_woocom/core/constants/app_colors.dart';
+import 'package:ecommerce_woocom/core/constants/app_lists.dart';
 import 'package:ecommerce_woocom/core/constants/app_text_styles.dart';
+import 'package:ecommerce_woocom/data/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../core/constants/app_icons.dart';
-import '../../../core/repository/product_respository.dart';
 import '../../../core/utils/responsive_helper.dart';
 
 class BasketMobile extends StatelessWidget {
@@ -19,72 +19,118 @@ class BasketMobile extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: _basketAppBar(context),
-      body: Container(
-        margin: EdgeInsets.all(isTablet ? 60 : 0),
-        padding: EdgeInsets.all(isTablet ? 8 : 0),
-        child: ListView(
-          physics: const ClampingScrollPhysics(),
-          children: [
-            Container(
-              padding: const EdgeInsets.only(top: 12),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  image: const DecorationImage(
-                      image: AssetImage(AppAssets.bagBg), fit: BoxFit.fill)),
-              child: Column(
+      body: AppLists.basketItems.isNotEmpty
+          ? Container(
+              margin: EdgeInsets.all(isTablet ? 60 : 0),
+              padding: EdgeInsets.all(isTablet ? 8 : 0),
+              child: ListView(
+                physics: const ClampingScrollPhysics(),
                 children: [
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: 2,
-                    itemBuilder: (context, index) {
-                      return _productItemWidget();
-                    },
+                  Container(
+                    padding: const EdgeInsets.only(top: 12),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        image: const DecorationImage(
+                            image: AssetImage(AppAssets.bagBg),
+                            fit: BoxFit.fill)),
+                    child: Column(
+                      children: [
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: AppLists.basketItems.length,
+                          itemBuilder: (context, index) {
+                            return AppLists.basketItems.isNotEmpty
+                                ? _productItemWidget(
+                                    AppLists.basketItems[index])
+                                : Center();
+                          },
+                        ),
+                        SizedBox(
+                          height: isTablet ? 50 : 30,
+                        ),
+                      ],
+                    ),
+                  ),
+                  AppLists.basketItems.isNotEmpty
+                      ? Padding(
+                          padding: const EdgeInsets.only(
+                              left: 24, right: 24, top: 20, bottom: 100),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  _priceText("Subtotal", false),
+                                  _priceText("109.38 \$", false),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  _priceText("Tax", false),
+                                  _priceText("2 \$", false),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  _priceText("Total", true),
+                                  _priceText("111.38 \$", true),
+                                ],
+                              ),
+                            ],
+                          ),
+                        )
+                      : const Center(),
+                ],
+              ),
+            )
+          : Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    AppAssets.empty_basket,
+                    height: isTablet ? 300 : 250,
+                  ),
+                  const SizedBox(
+                    height: 18,
+                  ),
+                  Text(
+                    "Uh Oh....!",
+                    style: AppTextStyles.dynamicStyle(
+                        fontSize: isTablet ? 8.sp : 20.sp,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.primary),
                   ),
                   SizedBox(
-                    height: isTablet ? 50 : 30,
-                  ),
+                    width: MediaQuery.of(context).size.width / 1.5,
+                    child: Text(
+                      isTablet
+                          ? "You haven’t added any any items.\n Start shopping to make your bag bloom"
+                          : "You haven’t added any any items. Start shopping to make your bag bloom",
+                      textAlign: TextAlign.center,
+                      style: AppTextStyles.dynamicStyle(
+                          fontSize: isTablet ? 4.sp : 14.sp,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black),
+                    ),
+                  )
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 24, right: 24, top: 20, bottom: 100),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _priceText("Subtotal", false),
-                      _priceText("109.38 \$", false),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _priceText("Tax", false),
-                      _priceText("2 \$", false),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _priceText("Total", true),
-                      _priceText("111.38 \$", true),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: _placeOrderButton(),
+      floatingActionButton: AppLists.basketItems.isNotEmpty
+          ? _placeOrderButton()
+          : _continueShoppingButton(context),
     );
   }
 
-  Widget _productItemWidget() => Container(
+  Widget _productItemWidget(ProductModel index) => Container(
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(12)),
         margin: const EdgeInsets.only(bottom: 20, left: 14, right: 12),
@@ -100,7 +146,7 @@ class BasketMobile extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
                       child: Image.asset(
-                        AppAssets.productImage1,
+                        index.images[0],
                         fit: BoxFit.contain,
                         width: isTablet ? 150 : 100,
                       ),
@@ -122,7 +168,7 @@ class BasketMobile extends StatelessWidget {
                                   fontSize: isTablet ? 5.sp : 14.sp,
                                   fontWeight: FontWeight.w600),
                               child: Text(
-                                ProductRepository.productList[0].headline,
+                                index.headline,
                               ),
                             ),
                             Padding(
@@ -144,7 +190,7 @@ class BasketMobile extends StatelessWidget {
                               color: Colors.grey.shade500,
                             ),
                             child: Text(
-                              ProductRepository.productList[0].subHeadline,
+                              index.subHeadline,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -188,8 +234,8 @@ class BasketMobile extends StatelessWidget {
                                   style: AppTextStyles.dynamicStyle(
                                       fontSize: isTablet ? 4.sp : 12.sp,
                                       fontWeight: FontWeight.w700),
-                                  child: const Text(
-                                    "55.64 \$",
+                                  child: Text(
+                                    "${index.price} \$",
                                   ),
                                 ),
                               ),
@@ -311,7 +357,11 @@ class BasketMobile extends StatelessWidget {
       );
 
   _basketAppBar(context) => AppBar(
-        backgroundColor: isTablet ? Colors.white : Colors.grey.shade100,
+        backgroundColor: AppLists.basketItems.isNotEmpty
+            ? isTablet
+                ? Colors.white
+                : Colors.grey.shade100
+            : Colors.white,
         title: Text(
           "My Bag",
           style: AppTextStyles.dynamicStyle(
@@ -326,6 +376,32 @@ class BasketMobile extends StatelessWidget {
           icon: const Icon(
             Icons.close,
             color: AppColors.primary,
+          ),
+        ),
+      );
+
+  _continueShoppingButton(context) => GestureDetector(
+        onTap: () => Navigator.pop(context),
+        child: Container(
+          height: 60,
+          alignment: Alignment.center,
+          margin: EdgeInsets.only(
+              top: 25,
+              bottom: 8,
+              left: isTablet ? 34 : 24,
+              right: isTablet ? 34 : 24),
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: AppColors.primary),
+          child: DefaultTextStyle(
+            style: AppTextStyles.dynamicStyle(
+                fontSize: isTablet ? 4.sp : 16.sp,
+                fontWeight: FontWeight.w700,
+                color: Colors.white),
+            child: const Text(
+              "Continue Shopping",
+            ),
           ),
         ),
       );

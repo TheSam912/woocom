@@ -6,6 +6,7 @@ class AppAssets {
   static const String banner_blac_web = "assets/images/banner_black.png";
   static const String userPlaceholder = "assets/images/user_placeholder.png";
   static const String bagBg = "assets/images/bag_bg.png";
+  static const String empty_basket = "assets/images/empty_basket.png";
 
   static const String productImage1 = "assets/images/product/product1.png";
   static const String productImage2 = "assets/images/product/product2.png";
