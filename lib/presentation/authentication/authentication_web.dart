@@ -1,19 +1,21 @@
 import 'package:ecommerce_woocom/core/constants/app_assets.dart';
 import 'package:ecommerce_woocom/core/constants/app_colors.dart';
 import 'package:ecommerce_woocom/core/constants/app_icons.dart';
+import 'package:ecommerce_woocom/presentation/widgets/w_tabBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../core/constants/app_text_styles.dart';
+import '../../core/constants/app_text_styles.dart';
+import '../widgets/w_textField.dart';
 
-class SingInWeb extends StatefulWidget {
-  const SingInWeb({super.key});
+class AuthenticationWeb extends StatefulWidget {
+  const AuthenticationWeb({super.key});
 
   @override
-  State<SingInWeb> createState() => _SingInWebState();
+  State<AuthenticationWeb> createState() => _AuthenticationWebState();
 }
 
-class _SingInWebState extends State<SingInWeb>
+class _AuthenticationWebState extends State<AuthenticationWeb>
     with SingleTickerProviderStateMixin {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -28,7 +30,7 @@ class _SingInWebState extends State<SingInWeb>
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
     _tabController.addListener(() {
-      setState(() {}); // Forces rebuild when the tab changes
+      setState(() {});
     });
   }
 
@@ -115,61 +117,92 @@ class _SingInWebState extends State<SingInWeb>
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 24, vertical: 12),
                                   child: _isLogin
-                                      ? _tabBarWidget()
+                                      ? W_TabBarWidget(
+                                          controller: _tabController,
+                                          isWeb: true,
+                                          isTablet: false,
+                                        )
                                       : const Center(),
                                 ),
                                 if (_tabController.index == 1) ...[
-                                  _textFieldWidget(
-                                      "Admin Email Address ...",
-                                      TextInputType.emailAddress,
-                                      "alex@email.com",
-                                      AppIcons.mail,
-                                      _adminEmailController),
+                                  W_TextFieldWidget(
+                                    title: "Admin Email Address ...",
+                                    hint: "alex@email.com",
+                                    icon: AppIcons.mail,
+                                    inputType: TextInputType.emailAddress,
+                                    controller: _adminEmailController,
+                                    isWeb: true,
+                                    isTablet: false,
+                                  ),
                                   const SizedBox(height: 10),
-                                  _textFieldWidget(
-                                      "Admin Password ...",
-                                      TextInputType.visiblePassword,
-                                      "ABC123",
-                                      AppIcons.password,
-                                      _adminPasswordController),
+                                  W_TextFieldWidget(
+                                    title: "Admin Password ...",
+                                    inputType: TextInputType.visiblePassword,
+                                    hint: "ABC123",
+                                    icon: AppIcons.password,
+                                    controller: _adminPasswordController,
+                                    isWeb: true,
+                                    isTablet: false,
+                                  ),
                                 ] else
                                   ..._isLogin
                                       ? [
-                                          _textFieldWidget(
-                                              "Email Address ...",
-                                              TextInputType.emailAddress,
-                                              "alex@email.com",
-                                              AppIcons.mail,
-                                              _emailController),
+                                          W_TextFieldWidget(
+                                            title: "Email Address ...",
+                                            inputType:
+                                                TextInputType.emailAddress,
+                                            hint: "alex@email.com",
+                                            icon: AppIcons.mail,
+                                            controller: _emailController,
+                                            isWeb: true,
+                                            isTablet: false,
+                                          ),
                                           const SizedBox(height: 10),
-                                          _textFieldWidget(
-                                              "Password ...",
-                                              TextInputType.visiblePassword,
-                                              "ABC123",
-                                              AppIcons.password,
-                                              _passwordController),
+                                          W_TextFieldWidget(
+                                            title: "Password ...",
+                                            inputType:
+                                                TextInputType.visiblePassword,
+                                            hint: "ABC123",
+                                            icon: AppIcons.password,
+                                            controller: _passwordController,
+                                            isWeb: true,
+                                            isTablet: false,
+                                          ),
                                         ]
                                       : [
-                                          _textFieldWidget(
-                                              "Email Address ...",
-                                              TextInputType.emailAddress,
-                                              "alex@email.com",
-                                              AppIcons.mail,
-                                              _emailController),
+                                          W_TextFieldWidget(
+                                            title: "Email Address ...",
+                                            inputType:
+                                                TextInputType.emailAddress,
+                                            hint: "alex@email.com",
+                                            icon: AppIcons.mail,
+                                            controller: _emailController,
+                                            isWeb: true,
+                                            isTablet: false,
+                                          ),
                                           const SizedBox(height: 10),
-                                          _textFieldWidget(
-                                              "Password ...",
-                                              TextInputType.visiblePassword,
-                                              "ABC123",
-                                              AppIcons.password,
-                                              _passwordController),
+                                          W_TextFieldWidget(
+                                            title: "Password ...",
+                                            inputType:
+                                                TextInputType.visiblePassword,
+                                            hint: "ABC123",
+                                            icon: AppIcons.password,
+                                            controller: _passwordController,
+                                            isWeb: true,
+                                            isTablet: false,
+                                          ),
                                           const SizedBox(height: 10),
-                                          _textFieldWidget(
-                                              "Confirm Password ...",
-                                              TextInputType.visiblePassword,
-                                              "ABC123",
-                                              AppIcons.password,
-                                              _confirmPasswordController),
+                                          W_TextFieldWidget(
+                                            title: "Confirm Password ...",
+                                            inputType:
+                                                TextInputType.visiblePassword,
+                                            hint: "ABC123",
+                                            icon: AppIcons.password,
+                                            controller:
+                                                _confirmPasswordController,
+                                            isWeb: true,
+                                            isTablet: false,
+                                          ),
                                         ],
                                 _isLogin
                                     ? Container(
@@ -269,92 +302,6 @@ class _SingInWebState extends State<SingInWeb>
               ],
             )));
   }
-
-  _textFieldWidget(title, TextInputType inputType, hint, icon,
-          TextEditingController controller) =>
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 14),
-              child: Text(
-                title,
-                style: AppTextStyles.dynamicStyle(
-                  fontSize: 1.sp,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black87,
-                ),
-              ),
-            ),
-            const SizedBox(height: 8),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 12),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Colors.grey.shade100),
-              child: Row(
-                children: [
-                  Flexible(
-                    flex: 9,
-                    child: TextField(
-                        controller: controller,
-                        keyboardType: inputType,
-                        style: AppTextStyles.dynamicStyle(
-                          fontSize: 1.sp,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black87,
-                        ),
-                        cursorColor: AppColors.primary,
-                        decoration: InputDecoration(
-                            labelStyle: AppTextStyles.dynamicStyle(
-                              fontSize: 1.sp,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black87,
-                            ),
-                            hintText: hint,
-                            border: InputBorder.none,
-                            contentPadding:
-                                const EdgeInsets.symmetric(horizontal: 12))),
-                  ),
-                  Flexible(
-                    flex: 1,
-                    child: Container(
-                      width: 30,
-                      padding: const EdgeInsets.all(4),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(8),
-                              bottomRight: Radius.circular(8))),
-                      child: Image.asset(
-                        icon,
-                        color: AppColors.primary,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
-
-  _tabBarWidget() => TabBar(
-        controller: _tabController,
-        dividerColor: Colors.grey.shade300,
-        indicatorWeight: 4,
-        indicatorColor: AppColors.primary,
-        indicatorSize: TabBarIndicatorSize.tab,
-        labelColor: AppColors.primary,
-        unselectedLabelColor: AppColors.textLight,
-        labelStyle: AppTextStyles.dynamicStyle(
-            fontSize: 1.sp, fontWeight: FontWeight.w600),
-        tabs: const [
-          Tab(text: 'User'),
-          Tab(text: 'Admin'),
-        ],
-      );
 
   _buttonWidget(String text, VoidCallback onTap, isSingIn) => GestureDetector(
         onTap: onTap,
