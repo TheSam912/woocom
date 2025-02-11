@@ -4,8 +4,6 @@ import 'package:ecommerce_woocom/data/models/brand_model.dart';
 import 'package:ecommerce_woocom/data/models/category_model.dart';
 
 import '../../data/models/product_model.dart';
-import '../../data/models/product_review_model.dart';
-import 'app_strings.dart';
 
 class AppLists {
   static List<String> categories = [
