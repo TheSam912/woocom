@@ -1,12 +1,14 @@
 import 'package:ecommerce_woocom/app.dart';
 import 'package:ecommerce_woocom/core/constants/app_colors.dart';
+import 'package:ecommerce_woocom/core/routes/routes.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_iconButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import '../../core/constants/app_icons.dart';
 import '../../core/constants/app_lists.dart';
 import '../../core/constants/app_text_styles.dart';
-import '../dialogs/w_basket_dialog.dart';
+import '../pages/basket/basket_web.dart';
 
 class W_Appbar extends StatelessWidget {
   bool isTablet;
@@ -53,7 +55,7 @@ class W_Appbar extends StatelessWidget {
               Row(
                 children: [
                   wIconButton(
-                    iconPath: AppIcons.add,
+                    iconPath: AppIcons.search,
                     color: AppColors.primary,
                     size: isTablet ? 18.r : 24.r,
                     onTap: () {},
@@ -62,10 +64,10 @@ class W_Appbar extends StatelessWidget {
                     width: 12,
                   ),
                   wIconButton(
-                    iconPath: AppIcons.search,
+                    iconPath: AppIcons.bag,
                     color: AppColors.primary,
                     size: isTablet ? 18.r : 24.r,
-                    onTap: () {},
+                    onTap: () => context.pushNamed("basket_mobile"),
                   ),
                   const SizedBox(
                     width: 12,

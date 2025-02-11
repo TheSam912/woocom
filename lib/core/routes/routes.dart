@@ -1,5 +1,6 @@
 import 'package:ecommerce_woocom/app.dart';
 import 'package:ecommerce_woocom/core/repository/product_respository.dart';
+import 'package:ecommerce_woocom/presentation/pages/basket/basket_mobile.dart';
 import 'package:ecommerce_woocom/presentation/pages/category/category.dart';
 import 'package:ecommerce_woocom/presentation/pages/image_slider/image_slider.dart';
 import 'package:flutter/material.dart';
@@ -122,6 +123,20 @@ final GoRouter router = GoRouter(
             key: state.pageKey,
             name: state.name,
             child: const Category(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return myTransition(child, animation);
+            },
+          );
+        },
+      ),GoRoute(
+        path: '/basket_mobile',
+        name: 'basket_mobile',
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            name: state.name,
+            child: const BasketMobile(),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
               return myTransition(child, animation);

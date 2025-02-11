@@ -1,10 +1,11 @@
 import 'package:ecommerce_woocom/core/repository/product_respository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../core/constants/app_assets.dart';
-import '../../core/constants/app_colors.dart';
-import '../../core/constants/app_icons.dart';
-import '../../core/constants/app_text_styles.dart';
+
+import '../../../core/constants/app_assets.dart';
+import '../../../core/constants/app_colors.dart';
+import '../../../core/constants/app_icons.dart';
+import '../../../core/constants/app_text_styles.dart';
 
 w_BasketDialog(context) => Container(
       width: MediaQuery.of(context).size.width,
@@ -179,20 +180,23 @@ w_BasketDialog(context) => Container(
                 ],
               ),
             ),
-            Container(
-              alignment: Alignment.center,
-              margin: const EdgeInsets.only(left: 12, right: 12, top: 25),
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: AppColors.primary),
-              child: DefaultTextStyle(
-                style: AppTextStyles.dynamicStyle(
-                    fontSize: 0.9.sp,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white),
-                child: const Text(
-                  "Place Order",
+            GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: Container(
+                alignment: Alignment.center,
+                margin: const EdgeInsets.only(left: 12, right: 12, top: 25),
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: AppColors.primary),
+                child: DefaultTextStyle(
+                  style: AppTextStyles.dynamicStyle(
+                      fontSize: 0.9.sp,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white),
+                  child: const Text(
+                    "Place Order",
+                  ),
                 ),
               ),
             )
