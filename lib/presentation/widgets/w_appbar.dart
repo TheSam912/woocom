@@ -1,6 +1,6 @@
 import 'package:ecommerce_woocom/app.dart';
 import 'package:ecommerce_woocom/core/constants/app_colors.dart';
-import 'package:ecommerce_woocom/core/routes/routes.dart';
+import 'package:ecommerce_woocom/presentation/authentication/singIn/singIn_web.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_iconButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -179,7 +179,25 @@ wAppBarWeb(context, isMain) {
                 const SizedBox(
                   width: 12,
                 ),
-                const wIconButton(iconPath: AppIcons.profile),
+                wIconButton(
+                  iconPath: AppIcons.profile,
+                  onTap: () {
+                    Navigator.of(context).push(
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            const SingInWeb(),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: child,
+                          );
+                        },
+                        settings: const RouteSettings(),
+                      ),
+                    );
+                  },
+                ),
                 const SizedBox(
                   width: 12,
                 ),

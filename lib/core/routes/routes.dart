@@ -5,6 +5,7 @@ import 'package:ecommerce_woocom/presentation/pages/category/category.dart';
 import 'package:ecommerce_woocom/presentation/pages/image_slider/image_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../presentation/authentication/singIn/singIn_web.dart';
 import '../../presentation/pages/product_detail/product_detail.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
@@ -18,7 +19,7 @@ Widget myTransition(child, animation) {
 
 final GoRouter router = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: "/app",
+    initialLocation: "/signIn",
     routes: <RouteBase>[
       GoRoute(
         path: '/app',
@@ -137,7 +138,22 @@ final GoRouter router = GoRouter(
           return CustomTransitionPage(
             key: state.pageKey,
             name: state.name,
-            child:  BasketMobile(),
+            child: BasketMobile(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return myTransition(child, animation);
+            },
+          );
+        },
+      ),
+      GoRoute(
+        path: '/signIn',
+        name: 'signIn',
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            name: state.name,
+            child: const SingInWeb(),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
               return myTransition(child, animation);

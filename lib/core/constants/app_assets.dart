@@ -7,6 +7,7 @@ class AppAssets {
   static const String userPlaceholder = "assets/images/user_placeholder.png";
   static const String bagBg = "assets/images/bag_bg.png";
   static const String empty_basket = "assets/images/empty_basket.png";
+  static const String signIn_image = "assets/images/singin_image.png";
 
   static const String productImage1 = "assets/images/product/product1.png";
   static const String productImage2 = "assets/images/product/product2.png";

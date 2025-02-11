@@ -9,6 +9,8 @@ class AppIcons {
   static const String profile = "assets/icons/profile.png";
   static const String location = "assets/icons/location.png";
   static const String fullScreen = "assets/icons/fullscreen.png";
+  static const String mail = "assets/icons/mail.png";
+  static const String password = "assets/icons/password.png";
 
   //social icons
   static const String facebook = "assets/icons/fb.png";
