@@ -18,7 +18,10 @@ class AdminWeb extends ConsumerWidget {
               Icons.logout,
               color: Colors.black,
             ),
-            onPressed: () => ref.read(authRepositoryProvider).signOut(),
+            onPressed: () {
+              ref.read(authRepositoryProvider).signOut();
+              ref.invalidate(authStateProvider);
+            },
           )
         ],
       ),

@@ -13,8 +13,14 @@ class ProfileWeb extends ConsumerWidget {
         title: const Text("Home"),
         actions: [
           IconButton(
-            icon: const Icon(Icons.logout,color: Colors.black,),
-            onPressed: () => ref.read(authRepositoryProvider).signOut(),
+            icon: const Icon(
+              Icons.logout,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              ref.read(authRepositoryProvider).signOut();
+              ref.invalidate(authStateProvider);
+            },
           )
         ],
       ),

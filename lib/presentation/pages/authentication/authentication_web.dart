@@ -37,7 +37,7 @@ class _AuthenticationWebState extends ConsumerState<AuthenticationWeb>
     });
   }
 
-  Future<void> _login(String type) async {
+  Future<void> _login(BuildContext context, String type) async {
     final email = type == "admin"
         ? _adminEmailController.text.trim()
         : _emailController.text.trim();
@@ -46,11 +46,9 @@ class _AuthenticationWebState extends ConsumerState<AuthenticationWeb>
         : _passwordController.text.trim();
 
     try {
-      await ref.read(authRepositoryProvider).signIn(email, password);
+      await ref.read(authRepositoryProvider).signIn(email, password, context);
 
-      ref.read(loginUserType.notifier).update(
-            (state) => type,
-          );
+      ref.invalidate(authStateProvider);
     } catch (e) {
       _showSnackBar(e.toString());
     }
@@ -343,7 +341,7 @@ class _AuthenticationWebState extends ConsumerState<AuthenticationWeb>
     return _buttonWidget(
       _isLogin ? "Login Now" : "Sign Up Now",
       () => _isLogin
-          ? _login(_tabController.index == 1 ? "admin" : "user")
+          ? _login(context, _tabController.index == 1 ? "admin" : "user")
           : _register(),
       true,
     );

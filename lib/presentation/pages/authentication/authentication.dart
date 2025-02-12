@@ -15,40 +15,37 @@ class Authentication extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final authState = ref.watch(authStateProvider);
-    final type = ref.watch(loginUserType);
-    print(type);
+
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
         return authState.when(
-          data: (user) {
-            return LayoutBuilder(
-              builder: (context, constraints) {
-                if (user == null) {
-                  if (ResponsiveHelper.isDesktop(context)) {
-                    return const AuthenticationWeb();
-                  } else if (ResponsiveHelper.isTablet(context)) {
-                    return AuthenticationMobile(isTablet: true);
-                  } else {
-                    return AuthenticationMobile(isTablet: false);
-                  }
-                } else if (type == "user") {
-                  if (ResponsiveHelper.isDesktop(context)) {
-                    return const ProfileWeb();
-                  } else {
-                    return const ProfileMobile();
-                  }
+          data: (data) {
+            if (data == null) {
+              // Show authentication screen
+              if (ResponsiveHelper.isDesktop(context)) {
+                return const AuthenticationWeb();
+              } else if (ResponsiveHelper.isTablet(context)) {
+                return AuthenticationMobile(isTablet: true);
+              } else {
+                return AuthenticationMobile(isTablet: false);
+              }
+            } else {
+              // Redirect based on role
+              String role = data["role"];
+
+              if (role == "admin") {
+                return const AdminWeb();
+              } else {
+                if (ResponsiveHelper.isDesktop(context)) {
+                  return const ProfileWeb();
                 } else {
-                  if (ResponsiveHelper.isDesktop(context)) {
-                    return const AdminWeb();
-                  } else {
-                    return const AdminWeb();
-                  }
+                  return const ProfileMobile();
                 }
-              },
-            );
+              }
+            }
           },
           error: (error, stackTrace) =>
               Scaffold(body: Center(child: Text("Error: $error"))),
