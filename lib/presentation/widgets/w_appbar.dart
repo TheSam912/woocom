@@ -84,7 +84,7 @@ class W_Appbar extends StatelessWidget {
                     iconPath: AppIcons.profile,
                     color: AppColors.primary,
                     size: isTablet ? 18.r : 24.r,
-                    onTap: () => context.pushNamed("signIn"),
+                    onTap: () => context.pushNamed("authentication"),
                   ),
                 ],
               )

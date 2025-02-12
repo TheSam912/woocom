@@ -19,7 +19,7 @@ class ProfileWeb extends ConsumerWidget {
         ],
       ),
       body: const Center(
-        child: Text("Profile MOBILE"),
+        child: Text("Profile WEB"),
       ),
     );
   }
