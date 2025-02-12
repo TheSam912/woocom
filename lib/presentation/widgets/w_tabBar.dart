@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -19,9 +20,9 @@ class W_TabBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TabBar(
       controller: controller,
-      dividerColor: Colors.grey.shade300,
-      indicatorWeight: 4,
-      indicatorColor: AppColors.primary,
+      dividerColor: Colors.grey.shade200,
+      indicatorWeight: 3.5,
+      indicatorColor: Colors.blueGrey,
       indicatorSize: TabBarIndicatorSize.tab,
       labelColor: AppColors.primary,
       unselectedLabelColor: AppColors.textLight,

@@ -1,20 +1,22 @@
 import 'package:ecommerce_woocom/core/constants/app_assets.dart';
 import 'package:ecommerce_woocom/core/constants/app_colors.dart';
 import 'package:ecommerce_woocom/core/constants/app_icons.dart';
+import 'package:ecommerce_woocom/presentation/pages/authentication/provider/auth_provider.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_tabBar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/constants/app_text_styles.dart';
 import '../../widgets/w_textField.dart';
 
-class AuthenticationWeb extends StatefulWidget {
+class AuthenticationWeb extends ConsumerStatefulWidget {
   const AuthenticationWeb({super.key});
 
   @override
-  State<AuthenticationWeb> createState() => _AuthenticationWebState();
+  ConsumerState<AuthenticationWeb> createState() => _AuthenticationWebState();
 }
 
-class _AuthenticationWebState extends State<AuthenticationWeb>
+class _AuthenticationWebState extends ConsumerState<AuthenticationWeb>
     with SingleTickerProviderStateMixin {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -33,12 +35,45 @@ class _AuthenticationWebState extends State<AuthenticationWeb>
     });
   }
 
-  void _login() {
-    if (_tabController.index == 0) {
-      Navigator.pushReplacementNamed(context, '/admin');
-    } else {
-      Navigator.pushReplacementNamed(context, '/home');
+  Future<void> _login(String type) async {
+    final email = type == "admin"
+        ? _adminEmailController.text.trim()
+        : _emailController.text.trim();
+    final password = type == "admin"
+        ? _adminPasswordController.text.trim()
+        : _passwordController.text.trim();
+
+    try {
+      await ref.read(authRepositoryProvider).signIn(email, password);
+    } catch (e) {
+      _showSnackBar(e.toString());
     }
+  }
+
+  Future<void> _register() async {
+    if (_passwordController.text.trim() !=
+        _confirmPasswordController.text.trim()) {
+      _showSnackBar("Passwords do not match");
+      return;
+    }
+
+    try {
+      final user = await ref.read(authRepositoryProvider).signUp(
+            _emailController.text.trim(),
+            _passwordController.text.trim(),
+          );
+      if (user != null) {
+        _showSnackBar("Registration successful!");
+        setState(() => _isLogin = true);
+      }
+    } catch (e) {
+      _showSnackBar(e.toString());
+    }
+  }
+
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
   }
 
   @override
