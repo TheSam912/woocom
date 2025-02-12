@@ -222,7 +222,7 @@ class _AuthenticationMobileState extends State<AuthenticationMobile>
                                   ? Text(
                                       "OR",
                                       style: AppTextStyles.dynamicStyle(
-                                          fontSize: 1.sp,
+                                          fontSize: isTablet ? 3.sp : 12.sp,
                                           color: Colors.grey,
                                           fontWeight: FontWeight.w600),
                                     )
