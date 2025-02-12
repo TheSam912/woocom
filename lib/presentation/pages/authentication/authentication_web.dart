@@ -4,6 +4,7 @@ import 'package:ecommerce_woocom/core/constants/app_icons.dart';
 import 'package:ecommerce_woocom/presentation/pages/authentication/provider/auth_provider.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_tabBar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/constants/app_text_styles.dart';
@@ -46,6 +47,10 @@ class _AuthenticationWebState extends ConsumerState<AuthenticationWeb>
 
     try {
       await ref.read(authRepositoryProvider).signIn(email, password);
+
+      ref.read(loginUserType.notifier).update(
+            (state) => type,
+          );
     } catch (e) {
       _showSnackBar(e.toString());
     }
@@ -73,6 +78,7 @@ class _AuthenticationWebState extends ConsumerState<AuthenticationWeb>
   }
 
   void _showSnackBar(String message) {
+    if (!mounted) return;
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(message)));
   }
@@ -97,6 +103,15 @@ class _AuthenticationWebState extends ConsumerState<AuthenticationWeb>
             Center(
               child: _buildMainContainer(size),
             ),
+            Positioned(
+                top: 20,
+                right: 20,
+                child: IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: const Icon(
+                      Icons.close,
+                      color: Colors.white,
+                    ))),
           ],
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:ecommerce_woocom/presentation/pages/admin/admin_web.dart';
 import 'package:ecommerce_woocom/presentation/pages/authentication/provider/auth_provider.dart';
 import 'package:ecommerce_woocom/presentation/pages/profile/profile_mobile.dart';
 import 'package:ecommerce_woocom/presentation/pages/profile/profile_web.dart';
@@ -9,11 +10,13 @@ import 'authentication_mobile.dart';
 import 'authentication_web.dart';
 
 class Authentication extends ConsumerWidget {
-  const Authentication({super.key});
+  Authentication({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final authState = ref.watch(authStateProvider);
+    final type = ref.watch(loginUserType);
+    print(type);
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,
@@ -31,11 +34,17 @@ class Authentication extends ConsumerWidget {
                   } else {
                     return AuthenticationMobile(isTablet: false);
                   }
-                } else {
+                } else if (type == "user") {
                   if (ResponsiveHelper.isDesktop(context)) {
                     return const ProfileWeb();
                   } else {
                     return const ProfileMobile();
+                  }
+                } else {
+                  if (ResponsiveHelper.isDesktop(context)) {
+                    return const AdminWeb();
+                  } else {
+                    return const AdminWeb();
                   }
                 }
               },

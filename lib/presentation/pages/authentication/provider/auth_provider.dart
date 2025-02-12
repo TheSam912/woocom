@@ -10,10 +10,13 @@ final authRepositoryProvider = Provider<AuthRepository>((ref) {
   return AuthRepository(ref.read(firebaseAuthProvider));
 });
 
-// User authentication state provider
 final authStateProvider = StreamProvider<User?>((ref) {
   return ref.read(authRepositoryProvider).authStateChanges;
 });
+
+final loginUserType = StateProvider<String>(
+  (ref) => "user",
+);
 
 // Auth Repository
 class AuthRepository {

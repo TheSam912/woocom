@@ -1,5 +1,6 @@
 import 'package:ecommerce_woocom/app.dart';
 import 'package:ecommerce_woocom/core/repository/product_respository.dart';
+import 'package:ecommerce_woocom/presentation/pages/admin/admin_web.dart';
 import 'package:ecommerce_woocom/presentation/pages/basket/basket_mobile.dart';
 import 'package:ecommerce_woocom/presentation/pages/category/category.dart';
 import 'package:ecommerce_woocom/presentation/pages/image_slider/image_slider.dart';
@@ -36,38 +37,6 @@ final GoRouter router = GoRouter(
           );
         },
       ),
-      // GoRoute(
-      //   path: '/product_detail',
-      //   name: 'product_detail',
-      //   pageBuilder: (context, state) {
-      //     final extra = state.extra as Map<String, dynamic>?;
-      //
-      //     if (extra == null) {
-      //       return const MaterialPage(
-      //         child: Scaffold(
-      //           body: Center(
-      //             child: Text(
-      //                 textAlign: TextAlign.center,
-      //                 "Invalid navigation! No data received.\nCome back and select product"),
-      //           ),
-      //         ),
-      //       );
-      //     }
-      //     return CustomTransitionPage(
-      //       key: state.pageKey,
-      //       name: state.name,
-      //       child: ProductDetail(
-      //         product: extra['product'] as ProductModel,
-      //         // isWeb: extra?['isWeb'] as bool,
-      //         // isTablet: extra?['isTablet'] as bool,
-      //       ),
-      //       transitionsBuilder:
-      //           (context, animation, secondaryAnimation, child) {
-      //         return myTransition(child, animation);
-      //       },
-      //     );
-      //   },
-      // ),
       GoRoute(
         path: '/product_detail/:productId',
         name: 'product_detail',
@@ -115,7 +84,6 @@ final GoRouter router = GoRouter(
           );
         },
       ),
-
       GoRoute(
         path: '/category',
         name: 'category',
@@ -153,7 +121,22 @@ final GoRouter router = GoRouter(
           return CustomTransitionPage(
             key: state.pageKey,
             name: state.name,
-            child: const Authentication(),
+            child: Authentication(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return myTransition(child, animation);
+            },
+          );
+        },
+      ),
+      GoRoute(
+        path: '/admin',
+        name: 'admin',
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            name: state.name,
+            child: const AdminWeb(),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
               return myTransition(child, animation);
