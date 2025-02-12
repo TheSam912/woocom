@@ -4,9 +4,8 @@ import 'package:ecommerce_woocom/core/constants/app_icons.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_tabBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../core/constants/app_text_styles.dart';
-import '../widgets/w_textField.dart';
+import '../../../core/constants/app_text_styles.dart';
+import '../../widgets/w_textField.dart';
 
 class AuthenticationWeb extends StatefulWidget {
   const AuthenticationWeb({super.key});

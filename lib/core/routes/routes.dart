@@ -1,12 +1,11 @@
 import 'package:ecommerce_woocom/app.dart';
 import 'package:ecommerce_woocom/core/repository/product_respository.dart';
-import 'package:ecommerce_woocom/presentation/authentication/authentication.dart';
 import 'package:ecommerce_woocom/presentation/pages/basket/basket_mobile.dart';
 import 'package:ecommerce_woocom/presentation/pages/category/category.dart';
 import 'package:ecommerce_woocom/presentation/pages/image_slider/image_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../presentation/authentication/authentication_web.dart';
+import '../../presentation/pages/authentication/authentication.dart';
 import '../../presentation/pages/product_detail/product_detail.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =

@@ -1,9 +1,9 @@
-import 'package:ecommerce_woocom/presentation/authentication/authentication_mobile.dart';
-import 'package:ecommerce_woocom/presentation/authentication/authentication_web.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../core/utils/responsive_helper.dart';
+import 'authentication_mobile.dart';
+import 'authentication_web.dart';
 
-import '../../core/utils/responsive_helper.dart';
 
 class Authentication extends StatelessWidget {
   const Authentication({super.key});

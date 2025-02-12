@@ -2,11 +2,10 @@ import 'package:ecommerce_woocom/presentation/widgets/w_tabBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../core/constants/app_assets.dart';
-import '../../core/constants/app_colors.dart';
-import '../../core/constants/app_icons.dart';
-import '../../core/constants/app_text_styles.dart';
-import '../widgets/w_textField.dart';
+import '../../../core/constants/app_colors.dart';
+import '../../../core/constants/app_icons.dart';
+import '../../../core/constants/app_text_styles.dart';
+import '../../widgets/w_textField.dart';
 
 class AuthenticationMobile extends StatefulWidget {
   AuthenticationMobile({super.key, required this.isTablet});
@@ -35,6 +34,14 @@ class _AuthenticationMobileState extends State<AuthenticationMobile>
     _tabController.addListener(() {
       setState(() {});
     });
+  }
+
+  void _login() {
+    if (_tabController.index == 0) {
+      Navigator.pushReplacementNamed(context, '/admin');
+    } else {
+      Navigator.pushReplacementNamed(context, '/home');
+    }
   }
 
   @override
