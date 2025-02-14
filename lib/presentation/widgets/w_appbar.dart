@@ -3,11 +3,14 @@ import 'package:ecommerce_woocom/core/constants/app_colors.dart';
 import 'package:ecommerce_woocom/presentation/pages/authentication/authentication.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_iconButton.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/constants/app_icons.dart';
 import '../../core/constants/app_lists.dart';
+import '../../core/constants/app_strings.dart';
 import '../../core/constants/app_text_styles.dart';
+import '../pages/admin/admin_web.dart';
 import '../pages/basket/basket_web.dart';
 
 class W_Appbar extends StatelessWidget {
@@ -225,3 +228,37 @@ wAppBarWeb(context, isMain) {
         ),
       ));
 }
+
+wAppBarAdminPanel(WidgetRef ref) => PreferredSize(
+    preferredSize: const Size.fromHeight(75),
+    child: Container(
+      color: AppColors.primary,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              AppStrings.appName,
+              style: AppTextStyles.dynamicStyle(
+                fontSize: 2.sp,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            CircleAvatar(
+              backgroundColor: Colors.white.withOpacity(0.2),
+              child: IconButton(
+                onPressed: () {
+                  ref.read(selectedIndexProvider.notifier).state = 5;
+                },
+                icon: const Icon(
+                  Icons.person,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ));

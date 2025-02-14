@@ -1,10 +1,32 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_text_styles.dart';
 
 class CustomersScreen extends StatelessWidget {
   const CustomersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Text("Users Screen");
+    return Container(
+      color: Colors.white,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20),
+            child: Text(
+              "Customers",
+              style: AppTextStyles.dynamicStyle(
+                fontSize: 1.5.sp,
+                fontWeight: FontWeight.bold,
+                color: AppColors.primary,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

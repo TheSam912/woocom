@@ -1,16 +1,14 @@
 import 'package:ecommerce_woocom/core/constants/app_icons.dart';
-import 'package:ecommerce_woocom/core/constants/app_strings.dart';
 import 'package:ecommerce_woocom/presentation/pages/admin/pages/categories.dart';
 import 'package:ecommerce_woocom/presentation/pages/admin/pages/customrs.dart';
 import 'package:ecommerce_woocom/presentation/pages/admin/pages/dahsboard.dart';
 import 'package:ecommerce_woocom/presentation/pages/admin/pages/orders.dart';
 import 'package:ecommerce_woocom/presentation/pages/admin/pages/personal.dart';
 import 'package:ecommerce_woocom/presentation/pages/admin/pages/products.dart';
+import 'package:ecommerce_woocom/presentation/widgets/w_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../core/constants/app_colors.dart';
-import '../../../core/constants/app_text_styles.dart';
+import '../../widgets/w_panel_side_item.dart';
 
 final selectedIndexProvider = StateProvider<int>((ref) => 0);
 
@@ -24,62 +22,10 @@ class AdminWeb extends ConsumerWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(75),
-          child: Container(
-            color: AppColors.primary,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    AppStrings.appName,
-                    style: AppTextStyles.dynamicStyle(
-                      fontSize: 2.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  CircleAvatar(
-                    backgroundColor: Colors.white.withOpacity(0.2),
-                    child: IconButton(
-                      onPressed: () {
-                        ref.read(selectedIndexProvider.notifier).state = 5;
-                      },
-                      icon: const Icon(
-                        Icons.person,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )),
+      appBar: wAppBarAdminPanel(ref),
       body: Row(
         children: [
-          // Sidebar
-          Container(
-            width: 250,
-            height: size.height,
-            color: const Color(0xff1B4B66),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 8,
-                ),
-                _buildMenuItem(ref, 0, AppIcons.dashboard, "Dashboard"),
-                _buildMenuItem(ref, 1, AppIcons.orders, "Orders"),
-                _buildMenuItem(ref, 2, AppIcons.products, "Products"),
-                _buildMenuItem(ref, 3, AppIcons.categories, "Categories"),
-                _buildMenuItem(ref, 4, AppIcons.customers, "Customers"),
-                _buildMenuItem(ref, 5, AppIcons.personal, "Personal settings"),
-              ],
-            ),
-          ),
-
-          // Main Content
+          _sideBar(size, ref),
           Expanded(
             child: Container(
               color: Colors.white,
@@ -103,42 +49,24 @@ class AdminWeb extends ConsumerWidget {
     );
   }
 
-  // Sidebar Menu Item
-  Widget _buildMenuItem(WidgetRef ref, int index, String icon, String title) {
-    var selectedIndex = ref.watch(selectedIndexProvider);
-    return GestureDetector(
-      onTap: () {
-        ref.read(selectedIndexProvider.notifier).state = index;
-        selectedIndex = index;
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-        margin: const EdgeInsets.symmetric(horizontal: 8),
-        decoration: BoxDecoration(
-            color: selectedIndex == index ? Colors.white : AppColors.primary,
-            borderRadius: BorderRadius.circular(8)),
-        child: Row(
+  _sideBar(size, WidgetRef ref) => Container(
+        width: 250,
+        height: size.height,
+        color: const Color(0xff1B4B66),
+        child: Column(
           children: [
-            Image.asset(
-              icon,
-              width: 20,
-              color: selectedIndex == index ? AppColors.primary : Colors.white,
+            const SizedBox(
+              height: 8,
             ),
-            const SizedBox(width: 8),
-            Text(title,
-                style: AppTextStyles.dynamicStyle(
-                  color:
-                      selectedIndex == index ? AppColors.primary : Colors.white,
-                  fontSize: 0.9.sp,
-                  fontWeight: selectedIndex == index
-                      ? FontWeight.w700
-                      : FontWeight.w500,
-                ))
+            W_PanelSideItem(ref, 0, AppIcons.dashboard, "Dashboard"),
+            W_PanelSideItem(ref, 1, AppIcons.orders, "Orders"),
+            W_PanelSideItem(ref, 2, AppIcons.products, "Products"),
+            W_PanelSideItem(ref, 3, AppIcons.categories, "Categories"),
+            W_PanelSideItem(ref, 4, AppIcons.customers, "Customers"),
+            W_PanelSideItem(ref, 5, AppIcons.personal, "Personal settings"),
           ],
         ),
-      ),
-    );
-  }
+      );
 }
 
 // IconButton(

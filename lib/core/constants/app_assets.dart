@@ -42,4 +42,5 @@ class AppAssets {
 
   static const String ordersChart = "assets/images/orderschart.png";
   static const String last7days = "assets/images/last7days.png";
+  static const String boxes = "assets/images/boxes.png";
 }
