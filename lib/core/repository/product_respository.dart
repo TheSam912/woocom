@@ -22,7 +22,7 @@ class ProductRepository {
           "It has a perfect quality and the price is very good", 5),
     ]),
     //--------------------------------------------------------------------------------------------------------------
-    ProductModel(2, "Grande", AppStrings.product2SubHeadline,
+    ProductModel(1, "Grande", AppStrings.product2SubHeadline,
         AppStrings.product2Description, 5, 99.0, 24.99, 20, [
       AppAssets.productImage2,
       AppAssets.productImage2,
@@ -39,7 +39,7 @@ class ProductRepository {
           "It has a perfect quality and the price is very good", 5),
     ]),
     //--------------------------------------------------------------------------------------------------------------
-    ProductModel(3, "Remus", AppStrings.product3SubHeadline,
+    ProductModel(2, "Remus", AppStrings.product3SubHeadline,
         AppStrings.product3Description, 5, 89.99, 0.0, 20, [
       AppAssets.productImage3,
       AppAssets.productImage3,
@@ -56,7 +56,7 @@ class ProductRepository {
           "It has a perfect quality and the price is very good", 5),
     ]),
     //--------------------------------------------------------------------------------------------------------------
-    ProductModel(4, "Boujee", AppStrings.product4SubHeadline,
+    ProductModel(3, "Boujee", AppStrings.product4SubHeadline,
         AppStrings.product4Description, 5, 45.50, 0.0, 20, [
       AppAssets.productImage4,
       AppAssets.productImage4,
@@ -73,7 +73,7 @@ class ProductRepository {
           "It has a perfect quality and the price is very good", 5),
     ]),
     //--------------------------------------------------------------------------------------------------------------
-    ProductModel(5, "Coach", AppStrings.product1SubHeadline,
+    ProductModel(4, "Coach", AppStrings.product1SubHeadline,
         AppStrings.product1Description, 4, 50.0, 35.99, 10, [
       AppAssets.productImage1,
       AppAssets.productImage1,
@@ -90,7 +90,7 @@ class ProductRepository {
           "It has a perfect quality and the price is very good", 5),
     ]),
     //--------------------------------------------------------------------------------------------------------------
-    ProductModel(6, "Grande", AppStrings.product2SubHeadline,
+    ProductModel(5, "Grande", AppStrings.product2SubHeadline,
         AppStrings.product2Description, 5, 99.0, 24.99, 20, [
       AppAssets.productImage2,
       AppAssets.productImage2,

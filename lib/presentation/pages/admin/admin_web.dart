@@ -34,9 +34,9 @@ class AdminWeb extends ConsumerWidget {
               child: IndexedStack(
                 index: selectedIndex,
                 children: const [
+                  ProductsScreen(),
                   DashboardScreen(),
                   OrdersScreen(),
-                  ProductsScreen(),
                   CategoriesScreen(),
                   CustomersScreen(),
                   PersonalSettingsScreen(),
@@ -58,9 +58,9 @@ class AdminWeb extends ConsumerWidget {
             const SizedBox(
               height: 8,
             ),
+            W_PanelSideItem(ref, 2, AppIcons.products, "Products"),
             W_PanelSideItem(ref, 0, AppIcons.dashboard, "Dashboard"),
             W_PanelSideItem(ref, 1, AppIcons.orders, "Orders"),
-            W_PanelSideItem(ref, 2, AppIcons.products, "Products"),
             W_PanelSideItem(ref, 3, AppIcons.categories, "Categories"),
             W_PanelSideItem(ref, 4, AppIcons.customers, "Customers"),
             W_PanelSideItem(ref, 5, AppIcons.personal, "Personal settings"),
