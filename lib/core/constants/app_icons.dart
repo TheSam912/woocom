@@ -12,6 +12,14 @@ class AppIcons {
   static const String mail = "assets/icons/mail.png";
   static const String password = "assets/icons/password.png";
 
+  //admin
+  static const String dashboard = "assets/icons/dashboard.png";
+  static const String categories = "assets/icons/categories.png";
+  static const String orders = "assets/icons/orders.png";
+  static const String products = "assets/icons/products.png";
+  static const String personal = "assets/icons/personal.png";
+  static const String customers = "assets/icons/customers.png";
+
   //social icons
   static const String facebook = "assets/icons/fb.png";
   static const String instagram = "assets/icons/insta.png";
@@ -25,7 +33,6 @@ class AppIcons {
   static const String categoryWatches = "assets/icons/watches.png";
   static const String filter = "assets/icons/filter.png";
   static const String sort = "assets/icons/sort.png";
-
   static const String plus = "assets/icons/plus.png";
   static const String minus = "assets/icons/minus.png";
 }
