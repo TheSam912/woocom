@@ -1,5 +1,11 @@
 import 'package:ecommerce_woocom/core/constants/app_icons.dart';
 import 'package:ecommerce_woocom/core/constants/app_strings.dart';
+import 'package:ecommerce_woocom/presentation/pages/admin/pages/categories.dart';
+import 'package:ecommerce_woocom/presentation/pages/admin/pages/customrs.dart';
+import 'package:ecommerce_woocom/presentation/pages/admin/pages/dahsboard.dart';
+import 'package:ecommerce_woocom/presentation/pages/admin/pages/orders.dart';
+import 'package:ecommerce_woocom/presentation/pages/admin/pages/personal.dart';
+import 'package:ecommerce_woocom/presentation/pages/admin/pages/products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -86,8 +92,8 @@ class AdminWeb extends ConsumerWidget {
                   OrdersScreen(),
                   ProductsScreen(),
                   CategoriesScreen(),
-                  UsersScreen(),
-                  SettingsScreen(),
+                  CustomersScreen(),
+                  PersonalSettingsScreen(),
                 ],
               ),
             ),
@@ -132,61 +138,6 @@ class AdminWeb extends ConsumerWidget {
         ),
       ),
     );
-  }
-}
-
-class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text("Categories Screen");
-  }
-}
-
-class OrdersScreen extends StatelessWidget {
-  const OrdersScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text("Orders Screen");
-  }
-}
-
-// Example Screens
-class DashboardScreen extends StatelessWidget {
-  const DashboardScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text("Dashboard Screen");
-  }
-}
-
-class ProductsScreen extends StatelessWidget {
-  const ProductsScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text("Products Screen");
-  }
-}
-
-class UsersScreen extends StatelessWidget {
-  const UsersScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text("Users Screen");
-  }
-}
-
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text("Personal Settings Screen");
   }
 }
 

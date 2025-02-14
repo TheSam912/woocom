@@ -39,4 +39,7 @@ class AppAssets {
       "assets/images/grid/mobile/grid_mobile_small.png";
   static const String grid_mobile_small2 =
       "assets/images/grid/mobile/grid_mobile_small1.png";
+
+  static const String ordersChart = "assets/images/orderschart.png";
+  static const String last7days = "assets/images/last7days.png";
 }
