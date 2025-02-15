@@ -39,7 +39,7 @@ class _W_ProductAdminListTileState extends State<W_ProductAdminListTile> {
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 5),
+        padding: const EdgeInsets.symmetric(vertical: 4),
         color: _isHovered ? Colors.grey[200] : Colors.white,
         child: Column(
           children: [
@@ -60,8 +60,8 @@ class _W_ProductAdminListTileState extends State<W_ProductAdminListTile> {
                       Row(
                         children: [
                           SizedBox(
-                            width: 60,
-                            height: 60,
+                            width: 50,
+                            height: 50,
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8),
                                 child: Image.network(widget.imageUrl,
@@ -71,7 +71,7 @@ class _W_ProductAdminListTileState extends State<W_ProductAdminListTile> {
                           Text(
                             widget.title,
                             style: AppTextStyles.dynamicStyle(
-                                fontSize: 0.9.sp,
+                                fontSize: 0.8.sp,
                                 fontWeight: FontWeight.w700,
                                 color: Colors.black),
                           ),
