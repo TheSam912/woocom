@@ -14,7 +14,7 @@ Widget W_PanelSideItem(WidgetRef ref, int index, String icon, String title) {
       selectedIndex = index;
     },
     child: Container(
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       margin: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
           color: selectedIndex == index ? Colors.white : AppColors.primary,
@@ -23,7 +23,7 @@ Widget W_PanelSideItem(WidgetRef ref, int index, String icon, String title) {
         children: [
           Image.asset(
             icon,
-            width: 20,
+            width:23,
             color: selectedIndex == index ? AppColors.primary : Colors.white,
           ),
           const SizedBox(width: 8),

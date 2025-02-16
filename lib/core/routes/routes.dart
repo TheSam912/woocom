@@ -20,7 +20,7 @@ Widget myTransition(child, animation) {
 
 final GoRouter router = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: "/app",
+    initialLocation: "/admin",
     routes: <RouteBase>[
       GoRoute(
         path: '/app',

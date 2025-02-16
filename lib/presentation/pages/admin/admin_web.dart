@@ -1,4 +1,5 @@
 import 'package:ecommerce_woocom/core/constants/app_icons.dart';
+import 'package:ecommerce_woocom/presentation/pages/admin/pages/brands.dart';
 import 'package:ecommerce_woocom/presentation/pages/admin/pages/categories.dart';
 import 'package:ecommerce_woocom/presentation/pages/admin/pages/customrs.dart';
 import 'package:ecommerce_woocom/presentation/pages/admin/pages/dahsboard.dart';
@@ -38,6 +39,7 @@ class AdminWeb extends ConsumerWidget {
                   OrdersScreen(),
                   ProductsScreen(),
                   CategoriesScreen(),
+                  BrandsScreen(),
                   CustomersScreen(),
                   PersonalSettingsScreen(),
                 ],
@@ -62,8 +64,9 @@ class AdminWeb extends ConsumerWidget {
             W_PanelSideItem(ref, 1, AppIcons.orders, "Orders"),
             W_PanelSideItem(ref, 2, AppIcons.products, "Products"),
             W_PanelSideItem(ref, 3, AppIcons.categories, "Categories"),
-            W_PanelSideItem(ref, 4, AppIcons.customers, "Customers"),
-            W_PanelSideItem(ref, 5, AppIcons.personal, "Personal settings"),
+            W_PanelSideItem(ref, 4, AppIcons.brands, "Brands"),
+            W_PanelSideItem(ref, 5, AppIcons.customers, "Customers"),
+            W_PanelSideItem(ref, 6, AppIcons.personal, "Personal settings"),
           ],
         ),
       );

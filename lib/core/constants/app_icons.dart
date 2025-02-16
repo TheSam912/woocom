@@ -15,6 +15,7 @@ class AppIcons {
   //admin
   static const String dashboard = "assets/icons/dashboard.png";
   static const String categories = "assets/icons/categories.png";
+  static const String brands = "assets/icons/brands.png";
   static const String orders = "assets/icons/orders.png";
   static const String products = "assets/icons/products.png";
   static const String personal = "assets/icons/personal.png";
