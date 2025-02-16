@@ -255,7 +255,7 @@ wAppBarAdminPanel(WidgetRef ref) => PreferredSize(
               backgroundColor: Colors.white.withOpacity(0.2),
               child: IconButton(
                 onPressed: () {
-                  ref.read(selectedIndexProvider.notifier).state = 5;
+                  ref.read(selectedIndexProvider.notifier).state = 6;
                 },
                 icon: const Icon(
                   Icons.person,
