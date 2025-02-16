@@ -1,3 +1,4 @@
+import 'package:ecommerce_woocom/presentation/widgets/w_customer_admin_list_tile.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_order_admin_list_tile.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_product_admin_list_tile.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +38,8 @@ class _W_AdminPageListState extends State<W_AdminPageList> {
               return _buildFirstFixItemProduct();
             } else if (orderType == OrderType.order) {
               return _buildFirstFixItemOrder();
+            } else if (orderType == OrderType.customer) {
+              return _buildFirstFixItemCustomer();
             }
           } else {
             final item = widget.listItems[index - 1];
@@ -53,7 +56,7 @@ class _W_AdminPageListState extends State<W_AdminPageList> {
                 onChecked: (isChecked) =>
                     widget.onChecked(item.id.toString(), isChecked),
               );
-            } else {
+            } else if (orderType == OrderType.order) {
               return W_OrderAdminListTile(
                 id: item.id,
                 orderId: item.orderId,
@@ -62,6 +65,17 @@ class _W_AdminPageListState extends State<W_AdminPageList> {
                 payStatus: item.payStatus,
                 orderStatus: item.orderStatus,
                 total: item.total,
+                isSelected: widget.selectedItems
+                    .contains(widget.listItems[index - 1].id.toString()),
+                onChecked: (isChecked) =>
+                    widget.onChecked(item.id.toString(), isChecked),
+              );
+            } else if (orderType == OrderType.customer) {
+              return W_CustomerAdminListTile(
+                name: item.name,
+                location: item.location,
+                orders: item.order,
+                spent: item.spent,
                 isSelected: widget.selectedItems
                     .contains(widget.listItems[index - 1].id.toString()),
                 onChecked: (isChecked) =>
@@ -192,6 +206,46 @@ class _W_AdminPageListState extends State<W_AdminPageList> {
               _buildHeaderItem("Payment Status"),
               _buildHeaderItem("Order Status"),
               _buildHeaderItem("Total"),
+            ],
+          ),
+          Divider(
+            color: Colors.grey.shade400,
+            thickness: 1,
+            endIndent: 14,
+          ),
+        ],
+      );
+
+  Widget _buildFirstFixItemCustomer() => Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                flex: 4,
+                child: Row(
+                  children: [
+                    const Checkbox(
+                      value: false,
+                      onChanged: null,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 14),
+                      child: Text(
+                        "Name",
+                        style: AppTextStyles.dynamicStyle(
+                            fontSize: 1.sp,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.grey.shade600),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              _buildHeaderItem("Location"),
+              _buildHeaderItem("Orders"),
+              _buildHeaderItem("Spent"),
+              _hiddenItem()
             ],
           ),
           Divider(
