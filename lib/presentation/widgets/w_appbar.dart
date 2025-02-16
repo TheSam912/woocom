@@ -149,6 +149,14 @@ wAppBarWeb(context, isMain) {
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.only(top: 12),
                     child: TextButton(
+                        style: ButtonStyle(
+                            shape:
+                                WidgetStateProperty.all<RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            )),
+                            overlayColor:
+                                WidgetStatePropertyAll(Colors.grey[200])),
                         onPressed: () {},
                         child: Text(
                           AppLists.categories[index],
@@ -172,9 +180,12 @@ wAppBarWeb(context, isMain) {
                       color: AppColors.appbarGray),
                   child: Row(
                     children: [
-                      const wIconButton(
-                        iconPath: AppIcons.search,
+                      Image.asset(
+                        AppIcons.search,
+                        width: 22.r,
+                        height: 22.r,
                         color: Colors.grey,
+                        fit: BoxFit.contain,
                       ),
                       const SizedBox(
                         width: 5,
@@ -188,9 +199,6 @@ wAppBarWeb(context, isMain) {
                   ),
                 ),
                 const wIconButton(iconPath: AppIcons.wishlist),
-                const SizedBox(
-                  width: 12,
-                ),
                 wIconButton(
                   iconPath: AppIcons.profile,
                   onTap: () {
@@ -209,9 +217,6 @@ wAppBarWeb(context, isMain) {
                       ),
                     );
                   },
-                ),
-                const SizedBox(
-                  width: 12,
                 ),
                 wIconButton(
                   iconPath: AppIcons.bag,
