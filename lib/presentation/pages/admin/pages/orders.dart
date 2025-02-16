@@ -2,10 +2,6 @@ import 'package:ecommerce_woocom/core/repository/order_repository.dart';
 import 'package:ecommerce_woocom/data/enum/order_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/constants/app_text_styles.dart';
 import '../../../widgets/w_admin_page_appbar.dart';
 import '../../../widgets/w_admin_page_list.dart';
 import '../provider/on_check_proovider.dart';
@@ -26,7 +22,7 @@ class OrdersScreen extends ConsumerWidget {
           children: [
             W_AdminPageAppBar(
                 pageTitle: "Orders",
-                btnTitle: "+ Add New Order",
+                btnTitle: "+ Add Order",
                 selectedItems: selectedItems),
             W_AdminPageList(
               listItems: OrderRepository.orderList,

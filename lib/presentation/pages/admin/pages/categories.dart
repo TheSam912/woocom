@@ -1,31 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../widgets/w_admin_page_appbar.dart';
+import '../../../widgets/w_categories_admin_list_tile.dart';
 
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/constants/app_text_styles.dart';
-
-class CategoriesScreen extends StatelessWidget {
+class CategoriesScreen extends ConsumerWidget {
   const CategoriesScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       color: Colors.white,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 20),
-            child: Text(
-              "Categories",
-              style: AppTextStyles.dynamicStyle(
-                fontSize: 1.5.sp,
-                fontWeight: FontWeight.bold,
-                color: AppColors.primary,
-              ),
+      child: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            W_AdminPageAppBar(
+              pageTitle: "Categories",
+              btnTitle: "+ Add Category",
+              selectedItems: const [],
             ),
-          ),
-        ],
+            W_CateoriesAdminListTile()
+          ],
+        ),
       ),
     );
   }

@@ -1,4 +1,3 @@
-import 'package:ecommerce_woocom/core/constants/app_assets.dart';
 import 'package:ecommerce_woocom/core/constants/app_colors.dart';
 import 'package:ecommerce_woocom/core/constants/app_text_styles.dart';
 import 'package:flutter/material.dart';
