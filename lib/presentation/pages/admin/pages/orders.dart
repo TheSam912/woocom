@@ -1,31 +1,41 @@
+import 'package:ecommerce_woocom/core/repository/order_repository.dart';
+import 'package:ecommerce_woocom/data/enum/order_type.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_text_styles.dart';
+import '../../../widgets/w_admin_page_appbar.dart';
+import '../../../widgets/w_admin_page_list.dart';
+import '../provider/on_check_proovider.dart';
 
-class OrdersScreen extends StatelessWidget {
+class OrdersScreen extends ConsumerWidget {
   const OrdersScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedItems = ref.watch(selectionProvider);
+    final selectionNotifier = ref.read(selectionProvider.notifier);
     return Container(
       color: Colors.white,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 20),
-            child: Text(
-              "Orders",
-              style: AppTextStyles.dynamicStyle(
-                fontSize: 1.5.sp,
-                fontWeight: FontWeight.bold,
-                color: AppColors.primary,
-              ),
-            ),
-          ),
-        ],
+      child: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            W_AdminPageAppBar(
+                pageTitle: "Orders",
+                btnTitle: "+ Add New Order",
+                selectedItems: selectedItems),
+            W_AdminPageList(
+              listItems: OrderRepository.orderList,
+              orderType: OrderType.order,
+              selectedItems: selectedItems,
+              onChecked: selectionNotifier.toggleSelection,
+            )
+          ],
+        ),
       ),
     );
   }

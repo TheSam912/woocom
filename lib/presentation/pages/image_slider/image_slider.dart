@@ -2,9 +2,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class ImageSlider extends StatefulWidget {
-  ImageSlider({super.key, required this.images});
+  const ImageSlider({super.key, required this.images});
 
-  List<String> images;
+  final List<String> images;
 
   @override
   State<ImageSlider> createState() => _ImageSliderState();

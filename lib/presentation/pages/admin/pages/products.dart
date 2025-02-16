@@ -1,4 +1,5 @@
 import 'package:ecommerce_woocom/core/repository/product_respository.dart';
+import 'package:ecommerce_woocom/data/enum/order_type.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_admin_page_appbar.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_admin_page_list.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,7 @@ class ProductsScreen extends ConsumerWidget {
                 selectedItems: selectedItems),
             W_AdminPageList(
               listItems: ProductRepository.productList,
+              orderType: OrderType.product,
               selectedItems: selectedItems,
               onChecked: selectionNotifier.toggleSelection,
             )

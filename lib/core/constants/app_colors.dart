@@ -11,4 +11,11 @@ class AppColors {
   static const Color textLight = Colors.black;
   static const Color textDark = Colors.white;
   static const Color error = Colors.red;
+
+  //order item color
+  static const Color paid = Color(0xffC4F8E2);
+  static const Color pending = Color(0xffE6E9F4);
+  static const Color ready = Color(0xffF99600);
+  static const Color shipped = Color(0xff5A607F);
+  static const Color received = Color(0xff1E5EFF);
 }

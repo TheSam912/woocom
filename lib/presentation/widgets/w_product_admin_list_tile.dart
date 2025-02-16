@@ -80,7 +80,7 @@ class _W_ProductAdminListTileState extends State<W_ProductAdminListTile> {
                     ],
                   ),
                 ),
-                _buildTextItem("\$${widget.inventory}"),
+                _buildTextItem("${widget.inventory}"),
                 _buildTextItem("\$${widget.price}"),
                 _buildTextItem("\$${widget.discount}"),
                 _buildEditButtons()

@@ -10,9 +10,9 @@ import '../../../core/constants/app_text_styles.dart';
 import '../../widgets/w_textField.dart';
 
 class AuthenticationMobile extends ConsumerStatefulWidget {
-  AuthenticationMobile({super.key, required this.isTablet});
+  const AuthenticationMobile({super.key, required this.isTablet});
 
-  bool isTablet;
+  final bool isTablet;
 
   @override
   ConsumerState<AuthenticationMobile> createState() =>
