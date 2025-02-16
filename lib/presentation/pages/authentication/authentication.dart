@@ -28,9 +28,9 @@ class Authentication extends ConsumerWidget {
               if (ResponsiveHelper.isDesktop(context)) {
                 return const AuthenticationWeb();
               } else if (ResponsiveHelper.isTablet(context)) {
-                return AuthenticationMobile(isTablet: true);
+                return const AuthenticationMobile(isTablet: true);
               } else {
-                return AuthenticationMobile(isTablet: false);
+                return const AuthenticationMobile(isTablet: false);
               }
             } else {
               // Redirect based on role

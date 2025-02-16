@@ -46,7 +46,7 @@ class _AuthenticationMobileState extends ConsumerState<AuthenticationMobile>
         : _passwordController.text.trim();
 
     try {
-      await ref.read(authRepositoryProvider).signIn(email, password, context);
+      await ref.read(authRepositoryProvider).signIn(email, password);
     } catch (e) {
       _showSnackBar(e.toString());
     }

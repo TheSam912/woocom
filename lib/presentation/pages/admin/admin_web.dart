@@ -23,7 +23,8 @@ class AdminWeb extends ConsumerWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: wAppBarAdminPanel(ref),
+      appBar: const PreferredSize(
+          preferredSize: Size(0, 100), child: W_AppBarAdminPanel()),
       body: Row(
         children: [
           _sideBar(size, ref),
@@ -71,14 +72,3 @@ class AdminWeb extends ConsumerWidget {
         ),
       );
 }
-
-// IconButton(
-// icon: const Icon(
-// Icons.logout,
-// color: Colors.black,
-// ),
-// onPressed: () {
-// ref.read(authRepositoryProvider).signOut();
-// ref.invalidate(authStateProvider);
-// },
-// )

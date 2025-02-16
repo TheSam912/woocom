@@ -234,36 +234,83 @@ wAppBarWeb(context, isMain) {
       ));
 }
 
-wAppBarAdminPanel(WidgetRef ref) => PreferredSize(
-    preferredSize: const Size.fromHeight(75),
-    child: Container(
-      color: AppColors.primary,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              AppStrings.appName,
-              style: AppTextStyles.dynamicStyle(
-                fontSize: 2.sp,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-            CircleAvatar(
-              backgroundColor: Colors.white.withOpacity(0.2),
-              child: IconButton(
-                onPressed: () {
-                  ref.read(selectedIndexProvider.notifier).state = 6;
-                },
-                icon: const Icon(
-                  Icons.person,
-                  color: Colors.white,
+class W_AppBarAdminPanel extends ConsumerStatefulWidget {
+  const W_AppBarAdminPanel({super.key});
+
+  @override
+  ConsumerState<W_AppBarAdminPanel> createState() => _W_AppBarAdminPanelState();
+}
+
+class _W_AppBarAdminPanelState extends ConsumerState<W_AppBarAdminPanel> {
+  bool isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return PreferredSize(
+        preferredSize: const Size.fromHeight(75),
+        child: Container(
+          color: AppColors.primary,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  AppStrings.appName,
+                  style: AppTextStyles.dynamicStyle(
+                    fontSize: 2.sp,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
-              ),
+                Row(
+                  children: [
+                    MouseRegion(
+                      onEnter: (_) => setState(() => isHovered = true),
+                      onExit: (_) => setState(() => isHovered = false),
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: Tooltip(
+                          message: "Preview Website",
+                          textStyle: AppTextStyles.dynamicStyle(
+                              fontSize: 0.8.sp, color: Colors.white),
+                          child: GestureDetector(
+                            onTap: () => context.pushNamed("app"),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 5),
+                              decoration: BoxDecoration(
+                                  color: isHovered
+                                      ? Colors.white.withOpacity(0.2)
+                                      : Colors.transparent,
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Image.asset(
+                                AppIcons.open,
+                                width: 25,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Colors.white.withOpacity(0.2),
+                      child: IconButton(
+                        onPressed: () {
+                          ref.read(selectedIndexProvider.notifier).state = 6;
+                        },
+                        icon: const Icon(
+                          Icons.person,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-    ));
+          ),
+        ));
+  }
+}

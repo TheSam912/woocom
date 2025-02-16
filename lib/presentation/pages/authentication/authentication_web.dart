@@ -46,7 +46,7 @@ class _AuthenticationWebState extends ConsumerState<AuthenticationWeb>
         : _passwordController.text.trim();
 
     try {
-      await ref.read(authRepositoryProvider).signIn(email, password, context);
+      await ref.read(authRepositoryProvider).signIn(email, password);
 
       ref.invalidate(authStateProvider);
     } catch (e) {
