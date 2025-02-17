@@ -7,289 +7,220 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/constants/app_icons.dart';
 import '../../../core/utils/responsive_helper.dart';
+import '../../widgets/w_basket_product_item.dart';
 
-class BasketMobile extends StatelessWidget {
+class BasketMobile extends StatefulWidget {
   BasketMobile({super.key});
 
+  @override
+  State<BasketMobile> createState() => _BasketMobileState();
+}
+
+class _BasketMobileState extends State<BasketMobile> {
   late bool isTablet;
+
+  late bool myBag = true;
+  late bool orderSummary = false;
+  late bool payment = false;
 
   @override
   Widget build(BuildContext context) {
     isTablet = ResponsiveHelper.isTablet(context);
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: _basketAppBar(context),
-      body: AppLists.basketItems.isNotEmpty
-          ? Container(
-              margin: EdgeInsets.all(isTablet ? 60 : 0),
-              padding: EdgeInsets.all(isTablet ? 8 : 0),
-              child: ListView(
-                physics: const ClampingScrollPhysics(),
-                children: [
-                  Container(
-                    padding: const EdgeInsets.only(top: 12),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        image: const DecorationImage(
-                            image: AssetImage(AppAssets.bagBg),
-                            fit: BoxFit.fill)),
-                    child: Column(
-                      children: [
-                        ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: AppLists.basketItems.length,
-                          itemBuilder: (context, index) {
-                            return AppLists.basketItems.isNotEmpty
-                                ? _productItemWidget(
-                                    AppLists.basketItems[index])
-                                : Center();
-                          },
-                        ),
-                        SizedBox(
-                          height: isTablet ? 50 : 30,
-                        ),
-                      ],
-                    ),
-                  ),
-                  AppLists.basketItems.isNotEmpty
-                      ? Padding(
-                          padding: const EdgeInsets.only(
-                              left: 24, right: 24, top: 20, bottom: 100),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  _priceText("Subtotal", false),
-                                  _priceText("109.38 \$", false),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  _priceText("Tax", false),
-                                  _priceText("2 \$", false),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  _priceText("Total", true),
-                                  _priceText("111.38 \$", true),
-                                ],
-                              ),
-                            ],
+    if (myBag) {
+      return _myBagScreenDesign();
+    } else {
+      return Scaffold(
+          backgroundColor: Colors.white,
+          appBar: _basketAppBar(context, "Order Summary"),
+          body: ListView(
+            shrinkWrap: true,
+            physics: const ClampingScrollPhysics(),
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: isTablet ? 24 : 14),
+                child: Text(
+                  "Deliver To",
+                  style: AppTextStyles.dynamicStyle(
+                      fontSize: isTablet ? 4.sp : 12.sp,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.grey.shade700),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(
+                    horizontal: isTablet ? 24 : 14, vertical: 14),
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: AppColors.accent),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Ruby S Snively",
+                            style: AppTextStyles.dynamicStyle(
+                                fontSize: isTablet ? 3.5.sp : 12.sp,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black),
                           ),
-                        )
-                      : const Center(),
-                ],
-              ),
-            )
-          : Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    AppAssets.empty_basket,
-                    height: isTablet ? 300 : 250,
-                  ),
-                  const SizedBox(
-                    height: 18,
-                  ),
-                  Text(
-                    "Uh Oh....!",
-                    style: AppTextStyles.dynamicStyle(
-                        fontSize: isTablet ? 8.sp : 20.sp,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.primary),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / 1.5,
-                    child: Text(
-                      isTablet
-                          ? "You haven’t added any any items.\n Start shopping to make your bag bloom"
-                          : "You haven’t added any any items. Start shopping to make your bag bloom",
-                      textAlign: TextAlign.center,
-                      style: AppTextStyles.dynamicStyle(
-                          fontSize: isTablet ? 4.sp : 14.sp,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black),
-                    ),
-                  )
-                ],
-              ),
-            ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: AppLists.basketItems.isNotEmpty
-          ? _placeOrderButton()
-          : _continueShoppingButton(context),
-    );
-  }
-
-  Widget _productItemWidget(ProductModel index) => Container(
-        decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(12)),
-        margin: const EdgeInsets.only(bottom: 20, left: 14, right: 12),
-        padding: const EdgeInsets.only(top: 16),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Flexible(
-                  flex: isTablet ? 2 : 3,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 12),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(
-                        index.images[0],
-                        fit: BoxFit.contain,
-                        width: isTablet ? 150 : 100,
+                          Text(
+                            "1460  Jenric Lane, Ashmor Drive ",
+                            style: AppTextStyles.dynamicStyle(
+                                fontSize: isTablet ? 3.5.sp : 12.sp,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.grey.shade500),
+                          )
+                        ],
                       ),
                     ),
-                  ),
+                    Container(
+                      margin: const EdgeInsets.only(right: 20),
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: AppColors.primary),
+                      child: Icon(
+                        Icons.edit,
+                        color: Colors.white,
+                        size: isTablet ? 34 : 24,
+                      ),
+                    )
+                  ],
                 ),
-                Flexible(
-                  flex: 7,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 12.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            DefaultTextStyle(
-                              style: AppTextStyles.dynamicStyle(
-                                  fontSize: isTablet ? 5.sp : 14.sp,
-                                  fontWeight: FontWeight.w600),
-                              child: Text(
-                                index.headline,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 4.0),
-                              child: GestureDetector(
-                                  onTap: () {}, child: const Icon(Icons.close)),
-                            )
-                            // IconButton(
-                            //     onPressed: () {}, icon: const Icon(Icons.close))
-                          ],
-                        ),
-                        Container(
-                          width: isTablet ? double.infinity : 230,
-                          margin: EdgeInsets.only(right: isTablet ? 30 : 0),
-                          child: DefaultTextStyle(
-                            style: AppTextStyles.dynamicStyle(
-                              fontSize: isTablet ? 4.sp : 10.sp,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.grey.shade500,
-                            ),
-                            child: Text(
-                              index.subHeadline,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: isTablet ? 24 : 14),
+                child: Text(
+                  "Expected Delivery",
+                  style: AppTextStyles.dynamicStyle(
+                      fontSize: isTablet ? 4.sp : 12.sp,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.grey.shade700),
+                ),
+              ),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: AppLists.basketItems.length,
+                itemBuilder: (context, index) {
+                  return AppLists.basketItems.isNotEmpty
+                      ? W_ProductItemWidget(
+                          AppLists.basketItems[index], "order", isTablet)
+                      : const Center();
+                },
+              ),
+              _priceSection()
+            ],
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: Container(
+            height: 60,
+            alignment: Alignment.center,
+            margin:
+                const EdgeInsets.only(top: 25, bottom: 8, left: 40, right: 40),
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: AppColors.primary),
+            child: DefaultTextStyle(
+              style: AppTextStyles.dynamicStyle(
+                  fontSize: isTablet ? 4.sp : 16.sp,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white),
+              child: const Text(
+                "Proceed to Payments",
+              ),
+            ),
+          ));
+    }
+  }
+
+  _myBagScreenDesign() => Scaffold(
+        backgroundColor: Colors.white,
+        appBar: _basketAppBar(context, "My Bag"),
+        body: AppLists.basketItems.isNotEmpty
+            ? Container(
+                margin: EdgeInsets.all(isTablet ? 60 : 0),
+                padding: EdgeInsets.all(isTablet ? 8 : 0),
+                child: ListView(
+                  physics: const ClampingScrollPhysics(),
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(top: 12),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          image: const DecorationImage(
+                              image: AssetImage(AppAssets.bagBg),
+                              fit: BoxFit.fill)),
+                      child: Column(
+                        children: [
+                          ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: AppLists.basketItems.length,
+                            itemBuilder: (context, index) {
+                              return AppLists.basketItems.isNotEmpty
+                                  ? W_ProductItemWidget(
+                                      AppLists.basketItems[index],
+                                      "bag",
+                                      isTablet)
+                                  : const Center();
+                            },
                           ),
-                        ),
-                        SizedBox(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                margin: const EdgeInsets.only(top: 12),
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.black, width: 1),
-                                    borderRadius: BorderRadius.circular(5)),
-                                child: Row(
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {},
-                                      child: Image.asset(AppIcons.minus),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 12),
-                                      child: Text(
-                                        "1",
-                                        style: AppTextStyles.dynamicStyle(
-                                            fontSize: isTablet ? 4.sp : 14.sp),
-                                      ),
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {},
-                                      child: Image.asset(AppIcons.plus),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 12.0),
-                                child: DefaultTextStyle(
-                                  style: AppTextStyles.dynamicStyle(
-                                      fontSize: isTablet ? 4.sp : 12.sp,
-                                      fontWeight: FontWeight.w700),
-                                  child: Text(
-                                    "${index.price} \$",
-                                  ),
-                                ),
-                              ),
-                            ],
+                          SizedBox(
+                            height: isTablet ? 50 : 30,
                           ),
-                        )
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                )
-              ],
-            ),
-            Divider(
-              indent: 12,
-              endIndent: 12,
-              color: Colors.grey.shade200,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                        overlayColor: WidgetStatePropertyAll(
-                            AppColors.primary.withOpacity(0.5))),
-                    child: Text(
-                      "Move To Wishlist",
-                      textAlign: TextAlign.end,
-                      style: AppTextStyles.dynamicStyle(
-                          fontSize: isTablet ? 4.sp : 12.sp,
-                          fontWeight: FontWeight.w700),
-                    )),
-                Container(
-                  width: 1,
-                  height: 20,
-                  color: Colors.grey.shade200,
-                  margin: EdgeInsets.symmetric(horizontal: isTablet ? 80 : 30),
+                    _priceSection()
+                  ],
                 ),
-                TextButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                        overlayColor: WidgetStatePropertyAll(
-                            AppColors.primary.withOpacity(0.5))),
-                    child: Text(
-                      "Remove",
-                      textAlign: TextAlign.end,
+              )
+            : Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      AppAssets.empty_basket,
+                      height: isTablet ? 300 : 250,
+                    ),
+                    const SizedBox(
+                      height: 18,
+                    ),
+                    Text(
+                      "Uh Oh....!",
                       style: AppTextStyles.dynamicStyle(
-                          fontSize: isTablet ? 4.sp : 12.sp,
-                          fontWeight: FontWeight.w700),
-                    )),
-              ],
-            ),
-          ],
-        ),
+                          fontSize: isTablet ? 8.sp : 20.sp,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.primary),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 1.5,
+                      child: Text(
+                        isTablet
+                            ? "You haven’t added any any items.\n Start shopping to make your bag bloom"
+                            : "You haven’t added any any items. Start shopping to make your bag bloom",
+                        textAlign: TextAlign.center,
+                        style: AppTextStyles.dynamicStyle(
+                            fontSize: isTablet ? 4.sp : 14.sp,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: AppLists.basketItems.isNotEmpty
+            ? _placeOrderButton()
+            : _continueShoppingButton(context),
       );
 
   _priceText(text, isTotal) => Padding(
@@ -334,21 +265,28 @@ class BasketMobile extends StatelessWidget {
                 )),
             Flexible(
                 flex: 6,
-                child: Container(
-                  height: 60,
-                  alignment: Alignment.center,
-                  margin: const EdgeInsets.only(top: 25, bottom: 8),
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: AppColors.primary),
-                  child: DefaultTextStyle(
-                    style: AppTextStyles.dynamicStyle(
-                        fontSize: isTablet ? 4.sp : 16.sp,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white),
-                    child: const Text(
-                      "Place Order",
+                child: GestureDetector(
+                  onTap: () => setState(() {
+                    myBag = false;
+                    orderSummary = true;
+                    payment = false;
+                  }),
+                  child: Container(
+                    height: 60,
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.only(top: 25, bottom: 8),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: AppColors.primary),
+                    child: DefaultTextStyle(
+                      style: AppTextStyles.dynamicStyle(
+                          fontSize: isTablet ? 4.sp : 16.sp,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white),
+                      child: const Text(
+                        "Place Order",
+                      ),
                     ),
                   ),
                 )),
@@ -356,14 +294,10 @@ class BasketMobile extends StatelessWidget {
         ),
       );
 
-  _basketAppBar(context) => AppBar(
-        backgroundColor: AppLists.basketItems.isNotEmpty
-            ? isTablet
-                ? Colors.white
-                : Colors.grey.shade100
-            : Colors.white,
+  _basketAppBar(context, text) => AppBar(
+        backgroundColor: Colors.white,
         title: Text(
-          "My Bag",
+          text,
           style: AppTextStyles.dynamicStyle(
               fontWeight: FontWeight.w700,
               color: AppColors.primary,
@@ -405,4 +339,38 @@ class BasketMobile extends StatelessWidget {
           ),
         ),
       );
+
+  _priceSection() {
+    return AppLists.basketItems.isNotEmpty
+        ? Padding(
+            padding: const EdgeInsets.only(
+                left: 24, right: 24, top: 20, bottom: 100),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _priceText("Subtotal", false),
+                    _priceText("109.38 \$", false),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _priceText("Tax", false),
+                    _priceText("2 \$", false),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _priceText("Total", true),
+                    _priceText("111.38 \$", true),
+                  ],
+                ),
+              ],
+            ),
+          )
+        : const Center();
+  }
 }
