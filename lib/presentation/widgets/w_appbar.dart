@@ -46,12 +46,12 @@ class W_Appbar extends StatelessWidget {
                         ? AppTextStyles.dynamicStyle(
                             fontSize: 6.sp,
                             fontWeight: FontWeight.bold,
-                            color: AppColors.textLight,
+                            color: AppColors.primary,
                           )
                         : AppTextStyles.dynamicStyle(
                             fontSize: 16.sp,
                             fontWeight: FontWeight.bold,
-                            color: AppColors.textLight,
+                            color: AppColors.primary,
                           ),
                   )
                 ],
@@ -64,8 +64,8 @@ class W_Appbar extends StatelessWidget {
                     size: isTablet ? 18.r : 24.r,
                     onTap: () {},
                   ),
-                  const SizedBox(
-                    width: 20,
+                  SizedBox(
+                    width: isTablet ? 8 : 2,
                   ),
                   wIconButton(
                     iconPath: AppIcons.bag,
@@ -73,8 +73,8 @@ class W_Appbar extends StatelessWidget {
                     size: isTablet ? 18.r : 24.r,
                     onTap: () => context.pushNamed("basket_mobile"),
                   ),
-                  const SizedBox(
-                    width: 20,
+                  SizedBox(
+                    width: isTablet ? 8 : 2,
                   ),
                   wIconButton(
                     iconPath: AppIcons.notification,
@@ -82,8 +82,8 @@ class W_Appbar extends StatelessWidget {
                     size: isTablet ? 18.r : 24.r,
                     onTap: () {},
                   ),
-                  const SizedBox(
-                    width: 20,
+                  SizedBox(
+                    width: isTablet ? 8 : 2,
                   ),
                   wIconButton(
                     iconPath: AppIcons.profile,
