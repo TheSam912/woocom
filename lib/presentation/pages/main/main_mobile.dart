@@ -6,9 +6,10 @@ import 'package:ecommerce_woocom/presentation/widgets/w_collection_list.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_grid_tiles.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_mobile_footer.dart';
 import 'package:flutter/material.dart';
-import '../../core/constants/app_assets.dart';
-import '../../core/repository/product_respository.dart';
-import '../widgets/w_dynamic_list.dart';
+
+import '../../../core/constants/app_assets.dart';
+import '../../../core/repository/product_respository.dart';
+import '../../widgets/w_dynamic_list.dart';
 
 class MobileHomePage extends StatelessWidget {
   const MobileHomePage({super.key});

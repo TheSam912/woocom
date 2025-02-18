@@ -1,9 +1,9 @@
+import 'package:ecommerce_woocom/presentation/pages/main/main_mobile.dart';
+import 'package:ecommerce_woocom/presentation/pages/main/main_tablet.dart';
+import 'package:ecommerce_woocom/presentation/pages/main/main_web.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/utils/responsive_helper.dart';
-import 'presentation/responsive/main_mobile.dart';
-import 'presentation/responsive/main_tablet.dart';
-import 'presentation/responsive/main_web.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

@@ -9,7 +9,7 @@ import 'package:ecommerce_woocom/presentation/widgets/w_newsLetter.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_web_footer.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/repository/product_respository.dart';
+import '../../../core/repository/product_respository.dart';
 
 class WebHomePage extends StatelessWidget {
   const WebHomePage({super.key});
