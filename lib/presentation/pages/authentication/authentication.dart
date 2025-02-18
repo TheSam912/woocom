@@ -35,7 +35,6 @@ class Authentication extends ConsumerWidget {
             } else {
               // Redirect based on role
               String role = data["role"];
-
               if (role == "admin") {
                 return const AdminWeb();
               } else {

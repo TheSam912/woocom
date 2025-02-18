@@ -162,4 +162,22 @@ final GoRouter router = GoRouter(
           );
         },
       ),
+      GoRoute(
+        path: '/profile',
+        name: 'profile',
+        pageBuilder: (context, state) {
+          final extra = state.extra as List<String>?;
+          return CustomTransitionPage(
+            key: state.pageKey,
+            name: state.name,
+            child: ImageSlider(
+              images: extra as List<String>,
+            ),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return myTransition(child, animation);
+            },
+          );
+        },
+      ),
     ]);

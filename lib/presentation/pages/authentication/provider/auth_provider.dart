@@ -21,26 +21,23 @@ final authRepositoryProvider = Provider<AuthRepository>((ref) {
   );
 });
 
-final authStateProvider = FutureProvider<Map<String, dynamic>?>((ref) async {
-  final auth = ref.read(firebaseAuthProvider);
-  final firestore = ref.read(firestoreProvider);
+final authStateProvider = StreamProvider<Map<String, dynamic>?>((ref) {
+  final auth = ref.watch(firebaseAuthProvider);
+  final fireStore = ref.watch(firestoreProvider);
 
-  User? user = auth.currentUser;
-  if (user == null) return null;
+  return auth.authStateChanges().asyncMap((user) async {
+    if (user == null) return null;
 
-  DocumentSnapshot userDoc =
-      await firestore.collection("users").doc(user.uid).get();
+    DocumentSnapshot userDoc =
+        await fireStore.collection("users").doc(user.uid).get();
 
-  if (!userDoc.exists) {
-    return null;
-  }
+    if (!userDoc.exists) return null;
 
-  String role = userDoc["role"] ?? "user";
-
-  return {
-    "user": user,
-    "role": role,
-  };
+    return {
+      "user": user,
+      "role": userDoc["role"] ?? "user",
+    };
+  });
 });
 
 // Auth Repository
@@ -87,22 +84,35 @@ class AuthRepository {
         password: password,
       );
 
-      User? user = userCredential.user;
-      if (user == null) return null;
-
-      DocumentSnapshot userDoc =
-          await _firestore.collection("users").doc(user.uid).get();
-
-      if (!userDoc.exists) return null;
-
-      return {
-        "user": user,
-        "role": userDoc["role"] ?? "user",
-      };
+      return null; // No need to return data, UI updates via StreamProvider
     } catch (e) {
       throw Exception("Sign In Failed: ${e.toString()}");
     }
   }
+
+  // Future<Map<String, dynamic>?> signIn(String email, String password) async {
+  //   try {
+  //     UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+  //       email: email,
+  //       password: password,
+  //     );
+  //
+  //     User? user = userCredential.user;
+  //     if (user == null) return null;
+  //
+  //     DocumentSnapshot userDoc =
+  //         await _firestore.collection("users").doc(user.uid).get();
+  //
+  //     if (!userDoc.exists) return null;
+  //
+  //     return {
+  //       "user": user,
+  //       "role": userDoc["role"] ?? "user",
+  //     };
+  //   } catch (e) {
+  //     throw Exception("Sign In Failed: ${e.toString()}");
+  //   }
+  // }
 
   Future<void> resetPassword(String email) async {
     try {
