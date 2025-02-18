@@ -20,9 +20,9 @@ class App extends StatelessWidget {
             if (ResponsiveHelper.isDesktop(context)) {
               return const WebHomePage();
             } else if (ResponsiveHelper.isTablet(context)) {
-              return const TabletHomePage();
+              return TabletHomePage();
             } else {
-              return const MobileHomePage();
+              return MobileHomePage();
             }
           },
         );

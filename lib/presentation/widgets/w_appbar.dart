@@ -15,8 +15,9 @@ import '../pages/basket/basket_web.dart';
 
 class W_Appbar extends StatelessWidget {
   bool isTablet;
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
-  W_Appbar({super.key, required this.isTablet});
+  W_Appbar({super.key, required this.isTablet, required this.scaffoldKey});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class W_Appbar extends StatelessWidget {
                     iconPath: AppIcons.menu,
                     color: AppColors.primary,
                     size: isTablet ? 18.r : 24.r,
-                    onTap: () {},
+                    onTap: () => scaffoldKey.currentState?.openDrawer(),
                   ),
                   const SizedBox(
                     width: 12,
