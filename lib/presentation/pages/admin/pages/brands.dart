@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../widgets/w_admin_page_appbar.dart';
 import '../../../widgets/w_brands_admin_list_tile.dart';
-import '../../../widgets/w_categories_admin_list_tile.dart';
 
 class BrandsScreen extends ConsumerWidget {
   const BrandsScreen({super.key});
