@@ -74,76 +74,79 @@ class CategoryMobile extends StatelessWidget {
     );
   }
 
-  _floatingButtons(context) => Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Flexible(
-              flex: 1,
-              child: GestureDetector(
-                onTap: () => showModalBottomSheet(
+  _floatingButtons(context) => Padding(
+        padding: const EdgeInsets.only(top: 14),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Flexible(
+                flex: 1,
+                child: GestureDetector(
+                  onTap: () => showModalBottomSheet(
+                      context: context,
+                      builder: (context) => _sortProductBottomSheet()),
+                  child: Container(
+                    color: Colors.white,
+                    width: double.infinity,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          AppIcons.sort,
+                          width: 28,
+                          height: 28,
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        Text(
+                          "SORT",
+                          style: isTablet
+                              ? AppTextStyles.dynamicStyle(
+                                  fontSize: 3.sp, fontWeight: FontWeight.w700)
+                              : AppTextStyles.dynamicStyle(
+                                  fontSize: 11.sp, fontWeight: FontWeight.w700),
+                        ),
+                      ],
+                    ),
+                  ),
+                )),
+            Flexible(
+                flex: 1,
+                child: GestureDetector(
+                  onTap: () => showModalBottomSheet(
                     context: context,
-                    builder: (context) => _sortProductBottomSheet()),
-                child: Container(
-                  color: Colors.white,
-                  width: double.infinity,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        AppIcons.sort,
-                        width: 28,
-                        height: 28,
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      Text(
-                        "SORT",
-                        style: isTablet
-                            ? AppTextStyles.dynamicStyle(
-                                fontSize: 3.sp, fontWeight: FontWeight.w700)
-                            : AppTextStyles.dynamicStyle(
-                                fontSize: 11.sp, fontWeight: FontWeight.w700),
-                      ),
-                    ],
+                    backgroundColor: Colors.white,
+                    builder: (context) => _filterProductBottomSheet(),
                   ),
-                ),
-              )),
-          Flexible(
-              flex: 1,
-              child: GestureDetector(
-                onTap: () => showModalBottomSheet(
-                  context: context,
-                  backgroundColor: Colors.white,
-                  builder: (context) => _filterProductBottomSheet(),
-                ),
-                child: Container(
-                  color: Colors.white,
-                  width: double.infinity,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        AppIcons.filter,
-                        width: 28,
-                        height: 28,
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      Text(
-                        "FILTER",
-                        style: isTablet
-                            ? AppTextStyles.dynamicStyle(
-                                fontSize: 3.sp, fontWeight: FontWeight.w700)
-                            : AppTextStyles.dynamicStyle(
-                                fontSize: 11.sp, fontWeight: FontWeight.w700),
-                      ),
-                    ],
+                  child: Container(
+                    color: Colors.white,
+                    width: double.infinity,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          AppIcons.filter,
+                          width: 28,
+                          height: 28,
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        Text(
+                          "FILTER",
+                          style: isTablet
+                              ? AppTextStyles.dynamicStyle(
+                                  fontSize: 3.sp, fontWeight: FontWeight.w700)
+                              : AppTextStyles.dynamicStyle(
+                                  fontSize: 11.sp, fontWeight: FontWeight.w700),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ))
-        ],
+                ))
+          ],
+        ),
       );
 
   _filterProductBottomSheet() => Consumer(
@@ -220,7 +223,9 @@ class CategoryMobile extends StatelessWidget {
                 )),
             Text(
               "HandBags",
-              style: AppTextStyles.dynamicStyle(fontWeight: FontWeight.bold),
+              style: AppTextStyles.dynamicStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: isTablet ? 5.sp : 16.sp),
             ),
             IconButton(
                 onPressed: null,
