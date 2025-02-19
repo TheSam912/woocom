@@ -82,15 +82,6 @@ class W_Appbar extends StatelessWidget {
                     size: isTablet ? 18.r : 24.r,
                     onTap: () {},
                   ),
-                  SizedBox(
-                    width: isTablet ? 8 : 2,
-                  ),
-                  wIconButton(
-                    iconPath: AppIcons.profile,
-                    color: AppColors.primary,
-                    size: isTablet ? 18.r : 24.r,
-                    onTap: () => context.pushNamed("authentication"),
-                  ),
                 ],
               )
             ],

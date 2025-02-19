@@ -1,5 +1,6 @@
 import 'package:ecommerce_woocom/presentation/widgets/w_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_assets.dart';
 import '../../../core/repository/product_respository.dart';
 import '../../widgets/w_bannerSlider.dart';
@@ -10,17 +11,17 @@ import '../../widgets/w_dynamic_list.dart';
 import '../../widgets/w_grid_tiles.dart';
 import '../../widgets/w_mobile_footer.dart';
 
-class TabletHomePage extends StatelessWidget {
+class TabletHomePage extends ConsumerWidget {
   TabletHomePage({super.key});
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Colors.white,
-      drawer: W_DrawerWidgetTablet(context, true, _scaffoldKey),
+      drawer: W_DrawerWidgetTablet(context,ref, true, _scaffoldKey),
       body: ListView(
         shrinkWrap: true,
         physics: const ClampingScrollPhysics(),

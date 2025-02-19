@@ -7,22 +7,23 @@ import 'package:ecommerce_woocom/presentation/widgets/w_drawer.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_grid_tiles.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_mobile_footer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/constants/app_assets.dart';
 import '../../../core/repository/product_respository.dart';
 import '../../widgets/w_dynamic_list.dart';
 
-class MobileHomePage extends StatelessWidget {
+class MobileHomePage extends ConsumerWidget {
   MobileHomePage({super.key});
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Colors.white,
-      drawer: W_DrawerWidgetTablet(context,false,_scaffoldKey),
+      drawer: W_DrawerWidgetTablet(context, ref, false, _scaffoldKey),
       body: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
         child: Column(

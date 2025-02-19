@@ -1,7 +1,9 @@
+import 'package:ecommerce_woocom/core/routes/routes.dart';
 import 'package:ecommerce_woocom/core/utils/responsive_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_text_styles.dart';
 import '../authentication/provider/auth_provider.dart';
@@ -34,7 +36,7 @@ class ProfileMobile extends ConsumerWidget {
           ]),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: _logoutButton(ref, size, isTablet));
+        floatingActionButton: _logoutButton(context, ref, size, isTablet));
   }
 
   Widget profileSection(BuildContext context, WidgetRef ref, isTablet) =>
@@ -101,8 +103,12 @@ class ProfileMobile extends ConsumerWidget {
         ),
       );
 
-  _logoutButton(WidgetRef ref, size, isTablet) => GestureDetector(
-        onTap: () => ref.read(authRepositoryProvider).signOut(),
+  _logoutButton(BuildContext context, WidgetRef ref, size, isTablet) =>
+      GestureDetector(
+        onTap: () {
+          ref.read(authRepositoryProvider).signOut();
+          context.pop(context);
+        },
         child: Container(
           height: 50,
           width: size.width / 2,

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
+import '../pages/authentication/provider/auth_provider.dart';
 
-W_DrawerWidgetTablet(BuildContext context, bool isTablet,
+W_DrawerWidgetTablet(BuildContext context, WidgetRef ref, bool isTablet,
         GlobalKey<ScaffoldState> scaffoldKey) =>
     Drawer(
       width: isTablet ? 300 : 250,
@@ -26,7 +28,7 @@ W_DrawerWidgetTablet(BuildContext context, bool isTablet,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _profileSection(context, isTablet),
+                _authHandler(context, ref, isTablet),
                 const SizedBox(
                   height: 20,
                 ),
@@ -94,7 +96,25 @@ W_DrawerWidgetTablet(BuildContext context, bool isTablet,
       ),
     );
 
-_profileSection(BuildContext context, isTablet) => GestureDetector(
+_authHandler(BuildContext context, WidgetRef ref, isTablet) {
+  final authState = ref.watch(authStateProvider);
+  return authState.when(
+    data: (data) {
+      if (data == null) {
+        return _authenticationSection(context, isTablet);
+      } else {
+        return _profileSection(context, ref, isTablet);
+      }
+    },
+    error: (error, stackTrace) =>
+        Scaffold(body: Center(child: Text("Error: $error"))),
+    loading: () =>
+        const Scaffold(body: Center(child: CircularProgressIndicator())),
+  );
+}
+
+_profileSection(BuildContext context, WidgetRef ref, isTablet) =>
+    GestureDetector(
       onTap: () {
         Navigator.of(context).pop();
         context.pushNamed("profile");
@@ -125,6 +145,49 @@ _profileSection(BuildContext context, isTablet) => GestureDetector(
                 ),
                 Text(
                   "Sophia Rose",
+                  style: AppTextStyles.dynamicStyle(
+                    fontSize: isTablet ? 3.sp : 12.sp,
+                    color: AppColors.primary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              ],
+            ),
+            const Icon(
+              Icons.keyboard_arrow_right_outlined,
+              color: AppColors.primary,
+            )
+          ],
+        ),
+      ),
+    );
+
+_authenticationSection(BuildContext context, isTablet) => GestureDetector(
+      onTap: () {
+        Navigator.of(context).pop();
+        context.pushNamed("authentication");
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8), color: AppColors.accent),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                CircleAvatar(
+                    radius: isTablet ? 25 : 20,
+                    backgroundColor: AppColors.primary,
+                    child: const Icon(
+                      Icons.person,
+                      color: Colors.white,
+                    )),
+                const SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  "Login",
                   style: AppTextStyles.dynamicStyle(
                     fontSize: isTablet ? 3.sp : 12.sp,
                     color: AppColors.primary,
