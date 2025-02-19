@@ -1,4 +1,3 @@
-import 'package:ecommerce_woocom/core/routes/routes.dart';
 import 'package:ecommerce_woocom/core/utils/responsive_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,6 +19,9 @@ class ProfileMobile extends ConsumerWidget {
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: const Text("Profile"),
+          leading: IconButton(
+              onPressed: () => context.pushNamed("app"),
+              icon: const Icon(Icons.keyboard_arrow_left)),
         ),
         body: SingleChildScrollView(
           physics: const ClampingScrollPhysics(),

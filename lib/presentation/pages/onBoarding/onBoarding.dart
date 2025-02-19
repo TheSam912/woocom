@@ -47,7 +47,10 @@ class Onboarding extends StatelessWidget {
                   color: Colors.black),
             ),
             GestureDetector(
-              onTap: () => context.pushNamed('app'),
+              onTap: () {
+                context.pushNamed('app');
+                context.pop(context);
+              },
               child: Container(
                 height: 50,
                 alignment: Alignment.center,
@@ -64,13 +67,19 @@ class Onboarding extends StatelessWidget {
                 ),
               ),
             ),
-            Center(
-              child: Text(
-                "I already have an account",
-                style: AppTextStyles.dynamicStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black),
+            GestureDetector(
+              onTap: () {
+                context.pushNamed("authentication");
+                context.pop(context);
+              },
+              child: Center(
+                child: Text(
+                  "I already have an account",
+                  style: AppTextStyles.dynamicStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black),
+                ),
               ),
             ),
             const SizedBox(

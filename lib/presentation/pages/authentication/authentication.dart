@@ -1,3 +1,4 @@
+import 'package:ecommerce_woocom/core/constants/app_colors.dart';
 import 'package:ecommerce_woocom/presentation/pages/admin/admin_web.dart';
 import 'package:ecommerce_woocom/presentation/pages/authentication/provider/auth_provider.dart';
 import 'package:ecommerce_woocom/presentation/pages/profile/profile_mobile.dart';
@@ -48,8 +49,11 @@ class Authentication extends ConsumerWidget {
           },
           error: (error, stackTrace) =>
               Scaffold(body: Center(child: Text("Error: $error"))),
-          loading: () =>
-              const Scaffold(body: Center(child: CircularProgressIndicator())),
+          loading: () => const Scaffold(
+              body: Center(
+                  child: CircularProgressIndicator(
+            color: AppColors.primary,
+          ))),
         );
       },
     );
