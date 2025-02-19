@@ -26,7 +26,7 @@ W_DrawerWidgetTablet(BuildContext context, bool isTablet,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _profileSection(isTablet),
+                _profileSection(context, isTablet),
                 const SizedBox(
                   height: 20,
                 ),
@@ -37,31 +37,31 @@ W_DrawerWidgetTablet(BuildContext context, bool isTablet,
                       fontWeight: FontWeight.w700,
                       color: AppColors.primary),
                 ),
-                _listTile(context, "Skincare", () {
+                w_listTile(context, "Skincare", () {
                   scaffoldKey.currentState?.closeDrawer();
                   context.pushNamed("category");
                 }, isTablet),
-                _listTile(context, "Apparels", () {
+                w_listTile(context, "Apparels", () {
                   scaffoldKey.currentState?.closeDrawer();
                   context.pushNamed("category");
                 }, isTablet),
-                _listTile(context, "Jewellery", () {
+                w_listTile(context, "Jewellery", () {
                   scaffoldKey.currentState?.closeDrawer();
                   context.pushNamed("category");
                 }, isTablet),
-                _listTile(context, "Handbags", () {
+                w_listTile(context, "Handbags", () {
                   scaffoldKey.currentState?.closeDrawer();
                   context.pushNamed("category");
                 }, isTablet),
-                _listTile(context, "Eyewear", () {
+                w_listTile(context, "Eyewear", () {
                   scaffoldKey.currentState?.closeDrawer();
                   context.pushNamed("category");
                 }, isTablet),
-                _listTile(context, "Fragrance", () {
+                w_listTile(context, "Fragrance", () {
                   scaffoldKey.currentState?.closeDrawer();
                   context.pushNamed("category");
                 }, isTablet),
-                _listTile(context, "Watches", () {
+                w_listTile(context, "Watches", () {
                   scaffoldKey.currentState?.closeDrawer();
                   context.pushNamed("category");
                 }, isTablet),
@@ -75,16 +75,16 @@ W_DrawerWidgetTablet(BuildContext context, bool isTablet,
                       fontWeight: FontWeight.w700,
                       color: AppColors.primary),
                 ),
-                _listTile(context, "About Us", () {
+                w_listTile(context, "About Us", () {
                   scaffoldKey.currentState?.closeDrawer();
                 }, isTablet),
-                _listTile(context, "Contact Us", () {
+                w_listTile(context, "Contact Us", () {
                   scaffoldKey.currentState?.closeDrawer();
                 }, isTablet),
-                _listTile(context, "Help & Support", () {
+                w_listTile(context, "Help & Support", () {
                   scaffoldKey.currentState?.closeDrawer();
                 }, isTablet),
-                _listTile(context, "Suggestions", () {
+                w_listTile(context, "Suggestions", () {
                   scaffoldKey.currentState?.closeDrawer();
                 }, isTablet),
               ],
@@ -94,49 +94,55 @@ W_DrawerWidgetTablet(BuildContext context, bool isTablet,
       ),
     );
 
-_profileSection(isTablet) => Container(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8), color: AppColors.accent),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              CircleAvatar(
-                radius: isTablet ? 25 : 20,
-                backgroundColor: AppColors.primary,
-                child: Text(
-                  "S",
-                  style: AppTextStyles.dynamicStyle(
-                    fontSize: isTablet ? 6.sp : 12.sp,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+_profileSection(BuildContext context, isTablet) => GestureDetector(
+      onTap: () {
+        Navigator.of(context).pop();
+        context.pushNamed("profile");
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8), color: AppColors.accent),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: isTablet ? 25 : 20,
+                  backgroundColor: AppColors.primary,
+                  child: Text(
+                    "S",
+                    style: AppTextStyles.dynamicStyle(
+                      fontSize: isTablet ? 6.sp : 12.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                width: 8,
-              ),
-              Text(
-                "Sophia Rose",
-                style: AppTextStyles.dynamicStyle(
-                  fontSize: isTablet ? 3.sp : 12.sp,
-                  color: AppColors.primary,
-                  fontWeight: FontWeight.bold,
+                const SizedBox(
+                  width: 8,
                 ),
-              )
-            ],
-          ),
-          const Icon(
-            Icons.keyboard_arrow_right_outlined,
-            color: AppColors.primary,
-          )
-        ],
+                Text(
+                  "Sophia Rose",
+                  style: AppTextStyles.dynamicStyle(
+                    fontSize: isTablet ? 3.sp : 12.sp,
+                    color: AppColors.primary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              ],
+            ),
+            const Icon(
+              Icons.keyboard_arrow_right_outlined,
+              color: AppColors.primary,
+            )
+          ],
+        ),
       ),
     );
 
-_listTile(context, String title, VoidCallback onTap, isTablet) => ListTile(
+w_listTile(context, String title, VoidCallback onTap, isTablet) => ListTile(
       onTap: onTap,
       title: Text(
         title,
