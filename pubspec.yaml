@@ -27,9 +27,11 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/icons/
+    - assets/assets/images/onboarding/onboarding.png
+    - assets/assets/images/onboarding/effect.png
     - assets/images/brands/
     - assets/images/collection/
     - assets/images/product/
     - assets/images/grid/web/
     - assets/images/grid/mobile/
-    - assets/icons/

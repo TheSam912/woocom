@@ -1,7 +1,7 @@
 class AppAssets {
   static const String logo = "assets/images/logo.png";
-  static const String onBoardingEffect = "assets/images/onBoarding_effect.png";
-  static const String onBoardingImage = "assets/images/onboarding_image.png";
+  static const String onBoardingEffect = "assets/assets/images/onboarding/effect.png";
+  static const String onBoardingImage = "assets/assets/images/onboarding/onboarding.png";
   static const String banner_mobile = "assets/images/banner_mobile.png";
   static const String banner_web = "assets/images/banner_web.png";
   static const String banner1_web = "assets/images/banner1_web.png";
