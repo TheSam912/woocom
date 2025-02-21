@@ -20,9 +20,13 @@ class Onboarding extends StatelessWidget {
             if (ResponsiveHelper.isDesktop(context)) {
               return const WebHomePage();
             } else if (ResponsiveHelper.isTablet(context)) {
-              return const Onboarding_Mobile();
+              return Onboarding_Mobile(
+                isTablet: true,
+              );
             } else {
-              return const Onboarding_Mobile();
+              return Onboarding_Mobile(
+                isTablet: false,
+              );
             }
           },
         );

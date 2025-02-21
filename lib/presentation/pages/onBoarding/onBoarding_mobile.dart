@@ -6,7 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class Onboarding_Mobile extends StatelessWidget {
-  const Onboarding_Mobile({super.key});
+  Onboarding_Mobile({super.key, required this.isTablet});
+
+  final bool isTablet;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class Onboarding_Mobile extends StatelessWidget {
             width: double.infinity,
             child: Image.asset(
               AppAssets.onBoardingImage,
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
             ),
           ),
           Positioned(
@@ -37,7 +39,7 @@ class Onboarding_Mobile extends StatelessWidget {
   }
 
   _startButton(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: isTablet ? 50 : 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,17 +47,20 @@ class Onboarding_Mobile extends StatelessWidget {
             Text(
               "The shopping\ndestination you need",
               style: AppTextStyles.dynamicStyle(
-                  fontSize: 22.sp,
+                  fontSize: isTablet ? 9.sp : 22.sp,
                   fontWeight: FontWeight.w700,
                   color: Colors.black),
             ),
+            SizedBox(
+              height: isTablet ? 25 : 0,
+            ),
             GestureDetector(
               onTap: () {
-                context.pushNamed('app');
-                context.pop(context);
+                // context.pushNamed('app');
+                context.goNamed('app');
               },
               child: Container(
-                height: 50,
+                height: isTablet ? 60 : 50,
                 alignment: Alignment.center,
                 margin: const EdgeInsets.symmetric(vertical: 12),
                 decoration: BoxDecoration(
@@ -64,11 +69,14 @@ class Onboarding_Mobile extends StatelessWidget {
                 child: Text(
                   "Get Started",
                   style: AppTextStyles.dynamicStyle(
-                      fontSize: 14.sp,
+                      fontSize: isTablet ? 10 : 14.sp,
                       fontWeight: FontWeight.w600,
                       color: Colors.white),
                 ),
               ),
+            ),
+            SizedBox(
+              height: isTablet ? 25 : 0,
             ),
             GestureDetector(
               onTap: () {
@@ -79,14 +87,14 @@ class Onboarding_Mobile extends StatelessWidget {
                 child: Text(
                   "I already have an account",
                   style: AppTextStyles.dynamicStyle(
-                      fontSize: 14.sp,
+                      fontSize: isTablet ? 4.sp : 14.sp,
                       fontWeight: FontWeight.w600,
                       color: Colors.black),
                 ),
               ),
             ),
-            const SizedBox(
-              height: 5,
+            SizedBox(
+              height: isTablet ? 25 : 5,
             )
           ],
         ),
