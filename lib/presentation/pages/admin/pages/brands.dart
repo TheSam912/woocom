@@ -15,10 +15,10 @@ class BrandsScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            W_AdminPageAppBar(
+            const W_AdminPageAppBar(
               pageTitle: "Brands",
               btnTitle: "+ Add Brand",
-              selectedItems: const [],
+              selectedItems: [],
             ),
             W_BrandsAdminListTile()
           ],

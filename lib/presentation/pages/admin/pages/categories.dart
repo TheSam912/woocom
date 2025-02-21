@@ -15,10 +15,10 @@ class CategoriesScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            W_AdminPageAppBar(
+            const W_AdminPageAppBar(
               pageTitle: "Categories",
               btnTitle: "+ Add Category",
-              selectedItems: const [],
+              selectedItems: [],
             ),
             W_CateoriesAdminListTile()
           ],

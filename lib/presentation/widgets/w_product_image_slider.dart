@@ -6,16 +6,16 @@ import 'package:go_router/go_router.dart';
 import '../../data/models/product_model.dart';
 
 class W_ProductImageSlider extends StatefulWidget {
-  W_ProductImageSlider({
+  const W_ProductImageSlider({
     super.key,
     required this.product,
     required this.isWeb,
     required this.isTablet,
   });
 
-  ProductModel product;
-  bool isWeb;
-  bool isTablet;
+  final ProductModel product;
+  final bool isWeb;
+  final bool isTablet;
 
   @override
   State<W_ProductImageSlider> createState() => _W_ProductImageSliderState();
@@ -41,8 +41,13 @@ class _W_ProductImageSliderState extends State<W_ProductImageSlider> {
                       AppIcons.fullScreen,
                       width: 50,
                     )),
-                widget.isWeb?Positioned(
-                    bottom: 10, left: 0, right: 0, child: _indicationWidget()):const Center()
+                widget.isWeb
+                    ? Positioned(
+                        bottom: 10,
+                        left: 0,
+                        right: 0,
+                        child: _indicationWidget())
+                    : const Center()
               ]),
             ))
         .toList();

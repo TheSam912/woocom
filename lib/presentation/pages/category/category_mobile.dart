@@ -11,9 +11,9 @@ import '../../widgets/w_product.dart';
 import '../../widgets/w_product_filter_tile.dart';
 
 class CategoryMobile extends StatelessWidget {
-  CategoryMobile({super.key, required this.isTablet});
+  const CategoryMobile({super.key, required this.isTablet});
 
-  bool isTablet;
+  final bool isTablet;
 
   void _sortItems(SortOption selectedOption) {
     print('Sorting items by: ${_getSortLabel(selectedOption)}');

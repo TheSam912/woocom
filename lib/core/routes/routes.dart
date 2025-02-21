@@ -183,7 +183,6 @@ final GoRouter router = GoRouter(
         path: '/profile',
         name: 'profile',
         pageBuilder: (context, state) {
-          final extra = state.extra as List<String>?;
           return CustomTransitionPage(
             key: state.pageKey,
             name: state.name,

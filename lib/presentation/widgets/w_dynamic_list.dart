@@ -9,12 +9,12 @@ import '../../core/constants/app_icons.dart';
 import '../../core/constants/app_text_styles.dart';
 
 class w_DynamicList extends StatefulWidget {
-  String listTitle;
-  List<ProductModel> productList;
-  bool isWeb;
-  bool isTablet;
+  final String listTitle;
+  final List<ProductModel> productList;
+  final bool isWeb;
+  final bool isTablet;
 
-  w_DynamicList(
+  const w_DynamicList(
       {super.key,
       required this.listTitle,
       required this.productList,

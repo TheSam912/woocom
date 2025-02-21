@@ -5,15 +5,15 @@ import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
 
 class W_AdminPageAppBar extends StatelessWidget {
-  W_AdminPageAppBar(
+  const W_AdminPageAppBar(
       {super.key,
       required this.pageTitle,
       required this.btnTitle,
       required this.selectedItems});
 
-  String pageTitle;
-  String btnTitle;
-  List selectedItems;
+  final String pageTitle;
+  final String btnTitle;
+  final List selectedItems;
 
   @override
   Widget build(BuildContext context) {

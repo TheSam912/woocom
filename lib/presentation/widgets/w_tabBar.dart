@@ -6,15 +6,15 @@ import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
 
 class W_TabBarWidget extends StatelessWidget {
-  W_TabBarWidget(
+  const W_TabBarWidget(
       {super.key,
       required this.controller,
       required this.isWeb,
       required this.isTablet});
 
-  TabController controller;
-  bool isWeb;
-  bool isTablet;
+  final  TabController controller;
+  final  bool isWeb;
+  final  bool isTablet;
 
   @override
   Widget build(BuildContext context) {

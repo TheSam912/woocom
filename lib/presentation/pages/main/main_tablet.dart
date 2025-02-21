@@ -36,8 +36,8 @@ class TabletHomePage extends ConsumerWidget {
               productList: ProductRepository.productList,
               isWeb: false,
               isTablet: true),
-          W_CollectionList(isWeb: false, isTablet: true),
-          W_BrandList(isWeb: false, isTablet: true),
+          const W_CollectionList(isWeb: false, isTablet: true),
+          const W_BrandList(isWeb: false, isTablet: true),
           w_gridTileTablet(),
           W_FooterMobileTablet(isTablet: true)
         ],

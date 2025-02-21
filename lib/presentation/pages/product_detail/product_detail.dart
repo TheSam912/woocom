@@ -7,9 +7,9 @@ import '../../../core/utils/responsive_helper.dart';
 import '../../../data/models/product_model.dart';
 
 class ProductDetail extends StatelessWidget {
-  ProductModel product;
+  final ProductModel product;
 
-  ProductDetail({
+  const ProductDetail({
     super.key,
     required this.product,
   });
@@ -24,11 +24,14 @@ class ProductDetail extends StatelessWidget {
         return LayoutBuilder(
           builder: (context, constraints) {
             if (ResponsiveHelper.isDesktop(context)) {
-              return ProductDetailWeb(product: product, isWeb: true, isTablet: false);
+              return ProductDetailWeb(
+                  product: product, isWeb: true, isTablet: false);
             } else if (ResponsiveHelper.isTablet(context)) {
-              return ProductDetailMobile(product: product, isWeb: false, isTablet: true);
+              return ProductDetailMobile(
+                  product: product, isWeb: false, isTablet: true);
             } else {
-              return ProductDetailMobile(product: product, isWeb: false, isTablet: false);
+              return ProductDetailMobile(
+                  product: product, isWeb: false, isTablet: false);
             }
           },
         );

@@ -7,10 +7,10 @@ import '../../core/constants/app_lists.dart';
 import '../../core/constants/app_text_styles.dart';
 
 class W_BrandList extends StatelessWidget {
-  bool isWeb;
-  bool isTablet;
+  const W_BrandList({super.key, required this.isWeb, required this.isTablet});
 
-  W_BrandList({super.key, required this.isWeb, required this.isTablet});
+  final bool isWeb;
+  final bool isTablet;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,9 @@ class W_BrandList extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: isWeb ? 20 : 0),
       child: ListView(
         shrinkWrap: true,
-        physics: isWeb ? const BouncingScrollPhysics() : const NeverScrollableScrollPhysics(),
+        physics: isWeb
+            ? const BouncingScrollPhysics()
+            : const NeverScrollableScrollPhysics(),
         children: [
           Padding(
             padding: EdgeInsets.only(
@@ -38,7 +40,9 @@ class W_BrandList extends StatelessWidget {
                       ? AppTextStyles.webListHeading
                       : isTablet
                           ? AppTextStyles.dynamicStyle(
-                              fontSize: 5.sp, fontWeight: FontWeight.bold, color: AppColors.primary)
+                              fontSize: 5.sp,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.primary)
                           : AppTextStyles.dynamicStyle(
                               fontSize: 14.sp,
                               fontWeight: FontWeight.bold,
@@ -116,7 +120,8 @@ class W_BrandList extends StatelessWidget {
         height: 265,
         margin: const EdgeInsets.symmetric(horizontal: 9),
         child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3),
           shrinkWrap: true,
           itemCount: AppLists.brandList.length,
           physics: const NeverScrollableScrollPhysics(),

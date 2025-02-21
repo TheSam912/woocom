@@ -9,15 +9,15 @@ import '../../core/constants/app_text_styles.dart';
 import '../../data/enum/order_type.dart';
 
 class W_AdminPageList extends StatefulWidget {
-  W_AdminPageList(
+  const W_AdminPageList(
       {super.key,
       required this.listItems,
       required this.orderType,
       required this.selectedItems,
       required this.onChecked});
 
-  List listItems;
-  OrderType orderType;
+  final  List listItems;
+  final  OrderType orderType;
   final List selectedItems;
   final Function(String, bool?) onChecked;
 

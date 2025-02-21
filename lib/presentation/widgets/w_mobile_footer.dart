@@ -6,9 +6,9 @@ import '../../core/constants/app_strings.dart';
 import '../../core/constants/app_text_styles.dart';
 
 class W_FooterMobileTablet extends StatelessWidget {
-  bool isTablet;
+  const W_FooterMobileTablet({super.key, required this.isTablet});
 
-  W_FooterMobileTablet({super.key, required this.isTablet});
+  final bool isTablet;
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +35,20 @@ class W_FooterMobileTablet extends StatelessWidget {
             "More About Woocom",
             style: isTablet
                 ? AppTextStyles.dynamicStyle(
-                    fontSize: 5.sp, fontWeight: FontWeight.bold, color: AppColors.primary)
+                    fontSize: 5.sp,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.primary)
                 : AppTextStyles.dynamicStyle(
-                    fontSize: 14.sp, fontWeight: FontWeight.bold, color: AppColors.primary),
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.primary),
           ),
         ),
         Container(
           width: double.infinity,
           color: AppColors.primary,
-          padding: EdgeInsets.only(left: isTablet ? 16 : 30, right: 40, top: 30, bottom: 30),
+          padding: EdgeInsets.only(
+              left: isTablet ? 16 : 30, right: 40, top: 30, bottom: 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -51,9 +56,13 @@ class W_FooterMobileTablet extends StatelessWidget {
                 "Shop by Category",
                 style: isTablet
                     ? AppTextStyles.dynamicStyle(
-                        fontSize: 4.sp, fontWeight: FontWeight.w700, color: Colors.white)
+                        fontSize: 4.sp,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white)
                     : AppTextStyles.dynamicStyle(
-                        fontSize: 14.sp, fontWeight: FontWeight.w700, color: Colors.white),
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white),
               ),
               categoryListItem("Skincare", false, isTablet),
               categoryListItem("Personal Care", false, isTablet),
@@ -191,7 +200,9 @@ class W_FooterMobileTablet extends StatelessWidget {
               return Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  GestureDetector(onTap: () {}, child: categoryListItem(item, false, isTablet)),
+                  GestureDetector(
+                      onTap: () {},
+                      child: categoryListItem(item, false, isTablet)),
                   if (index != list.length - 1)
                     Container(
                       width: 2,

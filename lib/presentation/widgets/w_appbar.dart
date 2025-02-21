@@ -14,10 +14,10 @@ import '../pages/admin/admin_web.dart';
 import '../pages/basket/basket_web.dart';
 
 class W_Appbar extends StatelessWidget {
-  bool isTablet;
+  final bool isTablet;
   final GlobalKey<ScaffoldState> scaffoldKey;
 
-  W_Appbar({super.key, required this.isTablet, required this.scaffoldKey});
+  const W_Appbar({super.key, required this.isTablet, required this.scaffoldKey});
 
   @override
   Widget build(BuildContext context) {

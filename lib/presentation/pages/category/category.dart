@@ -20,11 +20,11 @@ class Category extends StatelessWidget {
             if (ResponsiveHelper.isDesktop(context)) {
               return CategoryWeb();
             } else if (ResponsiveHelper.isTablet(context)) {
-              return CategoryMobile(
+              return const CategoryMobile(
                 isTablet: true,
               );
             } else {
-              return CategoryMobile(
+              return const CategoryMobile(
                 isTablet: false,
               );
             }

@@ -40,10 +40,10 @@ class MobileHomePage extends ConsumerWidget {
                 productList: ProductRepository.productList,
                 isWeb: false,
                 isTablet: false),
-            W_CollectionList(isWeb: false, isTablet: false),
-            W_BrandList(isWeb: false, isTablet: false),
+            const W_CollectionList(isWeb: false, isTablet: false),
+            const W_BrandList(isWeb: false, isTablet: false),
             w_gridTileMobile(),
-            W_FooterMobileTablet(isTablet: false)
+            const W_FooterMobileTablet(isTablet: false)
           ],
         ),
       ),

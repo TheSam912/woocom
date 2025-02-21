@@ -13,11 +13,11 @@ import '../../widgets/w_appbar.dart';
 import '../../widgets/w_web_footer.dart';
 
 class ProductDetailWeb extends StatefulWidget {
-  ProductModel product;
-  bool isWeb;
-  bool isTablet;
+  final ProductModel product;
+  final  bool isWeb;
+  final bool isTablet;
 
-  ProductDetailWeb({
+  const ProductDetailWeb({
     super.key,
     required this.product,
     required this.isWeb,

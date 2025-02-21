@@ -8,11 +8,11 @@ import '../../../core/constants/app_text_styles.dart';
 import '../../../data/models/product_model.dart';
 
 class ProductDetailMobile extends StatefulWidget {
-  ProductModel product;
-  bool isWeb;
-  bool isTablet;
+  final ProductModel product;
+  final bool isWeb;
+  final bool isTablet;
 
-  ProductDetailMobile({
+  const ProductDetailMobile({
     super.key,
     required this.product,
     required this.isWeb,

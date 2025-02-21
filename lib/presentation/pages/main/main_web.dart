@@ -30,8 +30,8 @@ class WebHomePage extends StatelessWidget {
               productList: ProductRepository.productList,
               isWeb: true,
               isTablet: false),
-          W_CollectionList(isWeb: true, isTablet: false),
-          W_BrandList(isWeb: true, isTablet: false),
+          const W_CollectionList(isWeb: true, isTablet: false),
+          const W_BrandList(isWeb: true, isTablet: false),
           w_GridTiles(),
           w_WebFooter()
         ],

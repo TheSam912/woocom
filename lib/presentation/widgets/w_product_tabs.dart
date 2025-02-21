@@ -9,9 +9,9 @@ import '../../core/constants/app_icons.dart';
 import '../../core/repository/product_respository.dart';
 
 class W_ProductTabs extends StatefulWidget {
-  W_ProductTabs({super.key, required this.product});
+  const W_ProductTabs({super.key, required this.product});
 
-  ProductModel product;
+  final   ProductModel product;
 
   @override
   State<W_ProductTabs> createState() => _ProductTabsState();

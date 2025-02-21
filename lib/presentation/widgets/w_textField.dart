@@ -5,7 +5,7 @@ import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
 
 class W_TextFieldWidget extends StatelessWidget {
-  W_TextFieldWidget(
+  const W_TextFieldWidget(
       {super.key,
       required this.title,
       required this.hint,
@@ -15,13 +15,13 @@ class W_TextFieldWidget extends StatelessWidget {
       required this.isWeb,
       required this.isTablet});
 
-  String title;
-  String hint;
-  String icon;
-  TextInputType inputType;
-  TextEditingController controller;
-  bool isWeb;
-  bool isTablet;
+  final String title;
+  final String hint;
+  final String icon;
+  final TextInputType inputType;
+  final TextEditingController controller;
+  final bool isWeb;
+  final bool isTablet;
 
   @override
   Widget build(BuildContext context) {

@@ -6,10 +6,10 @@ import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
 
 class W_CollectionList extends StatelessWidget {
-  bool isWeb;
-  bool isTablet;
+  const W_CollectionList({super.key, required this.isWeb, required this.isTablet});
 
-  W_CollectionList({super.key, required this.isWeb, required this.isTablet});
+  final bool isWeb;
+  final bool isTablet;
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +24,24 @@ class W_CollectionList extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(left: isWeb ? 25 : 14, top: 12, bottom: 12),
+            padding:
+                EdgeInsets.only(left: isWeb ? 25 : 14, top: 12, bottom: 12),
             child: Text(
               "Handpicked Collections",
               style: isWeb
                   ? AppTextStyles.dynamicStyle(
-                      fontSize: 1.7.sp, fontWeight: FontWeight.w600, color: Colors.white)
+                      fontSize: 1.7.sp,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white)
                   : isTablet
                       ? AppTextStyles.dynamicStyle(
-                          fontSize: 5.sp, fontWeight: FontWeight.w600, color: Colors.white)
+                          fontSize: 5.sp,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white)
                       : AppTextStyles.dynamicStyle(
-                          fontSize: 14.sp, fontWeight: FontWeight.w600, color: Colors.white),
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white),
             ),
           ),
           isWeb
@@ -66,36 +73,13 @@ class W_CollectionList extends StatelessWidget {
               width: 250,
               height: 250,
               margin: index == 0
-                  ? EdgeInsets.only(left: isTablet ? 14 : 25, right: isTablet ? 6 : 8)
+                  ? EdgeInsets.only(
+                      left: isTablet ? 14 : 25, right: isTablet ? 6 : 8)
                   : EdgeInsets.symmetric(horizontal: isTablet ? 6 : 8),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  image: DecorationImage(image: AssetImage(images[index]), fit: BoxFit.contain)),
-            );
-          },
-        ),
-      );
-
-  _itemListViewMobileGridView() => Container(
-        height: 480,
-        color: Colors.amber,
-        margin: const EdgeInsets.symmetric(horizontal: 9),
-        child: GridView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-          itemCount: 4,
-          itemBuilder: (context, index) {
-            List images = [
-              AppAssets.collectionImage1,
-              AppAssets.collectionImage2,
-              AppAssets.collectionImage3,
-              AppAssets.collectionImage4,
-            ];
-            return Container(
-              margin: const EdgeInsets.symmetric(horizontal: 5),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  image: DecorationImage(image: AssetImage(images[index]), fit: BoxFit.contain)),
+                  image: DecorationImage(
+                      image: AssetImage(images[index]), fit: BoxFit.contain)),
             );
           },
         ),
@@ -107,11 +91,13 @@ class W_CollectionList extends StatelessWidget {
           children: [
             Row(
               children: [
-                Flexible(flex: 5, child: Image.asset(AppAssets.collectionImage1)),
+                Flexible(
+                    flex: 5, child: Image.asset(AppAssets.collectionImage1)),
                 const SizedBox(
                   width: 12,
                 ),
-                Flexible(flex: 5, child: Image.asset(AppAssets.collectionImage2))
+                Flexible(
+                    flex: 5, child: Image.asset(AppAssets.collectionImage2))
               ],
             ),
             const SizedBox(
@@ -119,11 +105,13 @@ class W_CollectionList extends StatelessWidget {
             ),
             Row(
               children: [
-                Flexible(flex: 5, child: Image.asset(AppAssets.collectionImage3)),
+                Flexible(
+                    flex: 5, child: Image.asset(AppAssets.collectionImage3)),
                 const SizedBox(
                   width: 12,
                 ),
-                Flexible(flex: 5, child: Image.asset(AppAssets.collectionImage4))
+                Flexible(
+                    flex: 5, child: Image.asset(AppAssets.collectionImage4))
               ],
             )
           ],

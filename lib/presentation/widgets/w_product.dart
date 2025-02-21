@@ -12,9 +12,9 @@ class W_ProductWidget extends StatelessWidget {
       required this.isTablet,
       required this.isWeb});
 
-  ProductModel item;
-  bool isWeb;
-  bool isTablet;
+  final  ProductModel item;
+  final  bool isWeb;
+  final bool isTablet;
 
   @override
   Widget build(BuildContext context) {
