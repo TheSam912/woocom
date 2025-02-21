@@ -4,11 +4,11 @@ import 'package:ecommerce_woocom/presentation/pages/admin/admin_web.dart';
 import 'package:ecommerce_woocom/presentation/pages/basket/basket_mobile.dart';
 import 'package:ecommerce_woocom/presentation/pages/category/category.dart';
 import 'package:ecommerce_woocom/presentation/pages/image_slider/image_slider.dart';
-import 'package:ecommerce_woocom/presentation/pages/onBoarding/onBoarding.dart';
 import 'package:ecommerce_woocom/presentation/pages/profile/profile_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../presentation/pages/authentication/authentication.dart';
+import '../../presentation/pages/onBoarding/onBoarding.dart';
 import '../../presentation/pages/product_detail/product_detail.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
