@@ -1,3 +1,4 @@
+import 'package:ecommerce_woocom/app.dart';
 import 'package:ecommerce_woocom/presentation/pages/onBoarding/onBoarding_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,7 +19,7 @@ class Onboarding extends StatelessWidget {
         return LayoutBuilder(
           builder: (context, constraints) {
             if (ResponsiveHelper.isDesktop(context)) {
-              return const WebHomePage();
+              return const App();
             } else if (ResponsiveHelper.isTablet(context)) {
               return Onboarding_Mobile(
                 isTablet: true,
