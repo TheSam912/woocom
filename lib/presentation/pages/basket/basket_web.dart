@@ -32,7 +32,9 @@ class W_BasketWeb extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 40,),
+            const SizedBox(
+              height: 40,
+            ),
             w_WebFooter()
           ],
         ),
@@ -47,7 +49,7 @@ class W_BasketWeb extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(
-            height: 40,
+            height: 50,
           ),
           _buildListAppBar(),
           Divider(
@@ -55,7 +57,7 @@ class W_BasketWeb extends StatelessWidget {
             thickness: 1,
           ),
           SizedBox(
-            height: 400,
+            height: 300,
             child: ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -201,9 +203,6 @@ class W_BasketWeb extends StatelessWidget {
                 );
               },
             ),
-          ),
-          const SizedBox(
-            height: 60,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

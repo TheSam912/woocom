@@ -4,7 +4,6 @@ import 'package:ecommerce_woocom/core/constants/app_icons.dart';
 import 'package:ecommerce_woocom/presentation/pages/authentication/provider/auth_provider.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_tabBar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/constants/app_text_styles.dart';
@@ -165,7 +164,7 @@ class _AuthenticationWebState extends ConsumerState<AuthenticationWeb>
                     const SizedBox(height: 30),
                     _buildAuthButton(),
                     _buildOrLine(),
-                    _isLogin ? _buildSignupOption() : _buildSignupOption()
+                    if (_tabController.index == 0) _buildSignupOption()
                   ],
                 )),
     );
