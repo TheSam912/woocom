@@ -8,7 +8,9 @@ import '../../../core/utils/responsive_helper.dart';
 import '../../widgets/w_basket_product_item.dart';
 
 class BasketMobile extends StatefulWidget {
-  BasketMobile({super.key});
+  const BasketMobile({super.key, required this.isTablet});
+
+  final bool isTablet;
 
   @override
   State<BasketMobile> createState() => _BasketMobileState();
@@ -23,119 +25,11 @@ class _BasketMobileState extends State<BasketMobile> {
 
   @override
   Widget build(BuildContext context) {
-    isTablet = ResponsiveHelper.isTablet(context);
+    isTablet = widget.isTablet;
     if (myBag) {
       return _myBagScreenDesign();
     } else {
-      return Scaffold(
-          backgroundColor: Colors.white,
-          appBar: _basketAppBar(context, "Order Summary"),
-          body: ListView(
-            shrinkWrap: true,
-            physics: const ClampingScrollPhysics(),
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: isTablet ? 24 : 14),
-                child: Text(
-                  "Deliver To",
-                  style: AppTextStyles.dynamicStyle(
-                      fontSize: isTablet ? 4.sp : 12.sp,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.grey.shade700),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(
-                    horizontal: isTablet ? 24 : 14, vertical: 14),
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: AppColors.accent),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 12),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Ruby S Snively",
-                            style: AppTextStyles.dynamicStyle(
-                                fontSize: isTablet ? 3.5.sp : 12.sp,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black),
-                          ),
-                          Text(
-                            "1460  Jenric Lane, Ashmor Drive ",
-                            style: AppTextStyles.dynamicStyle(
-                                fontSize: isTablet ? 3.5.sp : 12.sp,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.grey.shade500),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(right: 20),
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: AppColors.primary),
-                      child: Icon(
-                        Icons.edit,
-                        color: Colors.white,
-                        size: isTablet ? 34 : 24,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: isTablet ? 24 : 14),
-                child: Text(
-                  "Expected Delivery",
-                  style: AppTextStyles.dynamicStyle(
-                      fontSize: isTablet ? 4.sp : 12.sp,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.grey.shade700),
-                ),
-              ),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: AppLists.basketItems.length,
-                itemBuilder: (context, index) {
-                  return AppLists.basketItems.isNotEmpty
-                      ? W_ProductItemWidget(
-                          AppLists.basketItems[index], "order", isTablet)
-                      : const Center();
-                },
-              ),
-              _priceSection()
-            ],
-          ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: Container(
-            height: 60,
-            alignment: Alignment.center,
-            margin:
-                const EdgeInsets.only(top: 25, bottom: 8, left: 40, right: 40),
-            padding: const EdgeInsets.symmetric(vertical: 12),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: AppColors.primary),
-            child: DefaultTextStyle(
-              style: AppTextStyles.dynamicStyle(
-                  fontSize: isTablet ? 4.sp : 16.sp,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white),
-              child: const Text(
-                "Proceed to Payments",
-              ),
-            ),
-          ));
+      return _orderSummaryDesign();
     }
   }
 
@@ -371,4 +265,111 @@ class _BasketMobileState extends State<BasketMobile> {
           )
         : const Center();
   }
+
+  Widget _orderSummaryDesign() => Scaffold(
+      backgroundColor: Colors.white,
+      appBar: _basketAppBar(context, "Order Summary"),
+      body: ListView(
+        shrinkWrap: true,
+        physics: const ClampingScrollPhysics(),
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: isTablet ? 24 : 14),
+            child: Text(
+              "Deliver To",
+              style: AppTextStyles.dynamicStyle(
+                  fontSize: isTablet ? 4.sp : 12.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.grey.shade700),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(
+                horizontal: isTablet ? 24 : 14, vertical: 14),
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: AppColors.accent),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Ruby S Snively",
+                        style: AppTextStyles.dynamicStyle(
+                            fontSize: isTablet ? 3.5.sp : 12.sp,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black),
+                      ),
+                      Text(
+                        "1460  Jenric Lane, Ashmor Drive ",
+                        style: AppTextStyles.dynamicStyle(
+                            fontSize: isTablet ? 3.5.sp : 12.sp,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.grey.shade500),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(right: 20),
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: AppColors.primary),
+                  child: Icon(
+                    Icons.edit,
+                    color: Colors.white,
+                    size: isTablet ? 34 : 24,
+                  ),
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: isTablet ? 24 : 14),
+            child: Text(
+              "Expected Delivery",
+              style: AppTextStyles.dynamicStyle(
+                  fontSize: isTablet ? 4.sp : 12.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.grey.shade700),
+            ),
+          ),
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: AppLists.basketItems.length,
+            itemBuilder: (context, index) {
+              return AppLists.basketItems.isNotEmpty
+                  ? W_ProductItemWidget(
+                      AppLists.basketItems[index], "order", isTablet)
+                  : const Center();
+            },
+          ),
+          _priceSection()
+        ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Container(
+        height: 60,
+        alignment: Alignment.center,
+        margin: const EdgeInsets.only(top: 25, bottom: 8, left: 40, right: 40),
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12), color: AppColors.primary),
+        child: DefaultTextStyle(
+          style: AppTextStyles.dynamicStyle(
+              fontSize: isTablet ? 4.sp : 16.sp,
+              fontWeight: FontWeight.w700,
+              color: Colors.white),
+          child: const Text(
+            "Proceed to Payments",
+          ),
+        ),
+      ));
 }

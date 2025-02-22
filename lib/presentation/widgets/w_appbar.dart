@@ -1,6 +1,7 @@
 import 'package:ecommerce_woocom/app.dart';
 import 'package:ecommerce_woocom/core/constants/app_colors.dart';
 import 'package:ecommerce_woocom/presentation/pages/authentication/authentication.dart';
+import 'package:ecommerce_woocom/presentation/widgets/w_basket_web_dialog.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_iconButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,13 +12,13 @@ import '../../core/constants/app_lists.dart';
 import '../../core/constants/app_strings.dart';
 import '../../core/constants/app_text_styles.dart';
 import '../pages/admin/admin_web.dart';
-import '../pages/basket/basket_web.dart';
 
 class W_Appbar extends StatelessWidget {
   final bool isTablet;
   final GlobalKey<ScaffoldState> scaffoldKey;
 
-  const W_Appbar({super.key, required this.isTablet, required this.scaffoldKey});
+  const W_Appbar(
+      {super.key, required this.isTablet, required this.scaffoldKey});
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +72,7 @@ class W_Appbar extends StatelessWidget {
                     iconPath: AppIcons.bag,
                     color: AppColors.primary,
                     size: isTablet ? 18.r : 24.r,
-                    onTap: () => context.pushNamed("basket_mobile"),
+                    onTap: () => context.pushNamed("basket"),
                   ),
                   SizedBox(
                     width: isTablet ? 8 : 2,
@@ -215,7 +216,7 @@ wAppBarWeb(context, isMain) {
                   onTap: () => showDialog(
                     context: context,
                     builder: (context) {
-                      return w_BasketDialog(context);
+                      return const W_BasketDialog();
                     },
                   ),
                 )

@@ -67,7 +67,7 @@ class AdminWeb extends ConsumerWidget {
             W_PanelSideItem(ref, 3, AppIcons.categories, "Categories"),
             W_PanelSideItem(ref, 4, AppIcons.brands, "Brands"),
             W_PanelSideItem(ref, 5, AppIcons.customers, "Customers"),
-            W_PanelSideItem(ref, 6, AppIcons.personal, "Personal settings"),
+            W_PanelSideItem(ref, 6, AppIcons.personal, "Settings"),
           ],
         ),
       );
