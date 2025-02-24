@@ -2,26 +2,30 @@ import 'package:ecommerce_woocom/core/constants/app_assets.dart';
 import 'package:ecommerce_woocom/core/constants/app_colors.dart';
 import 'package:ecommerce_woocom/core/constants/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../data/providers/w_product_provider.dart';
 
-class W_ProductAdminListTile extends StatefulWidget {
+class W_ProductAdminListTile extends ConsumerStatefulWidget {
+  final int productId;
   final String title;
+  final String imageUrl;
+  final int inventory;
   final double price;
   final double discount;
-  final int inventory;
-  final String imageUrl;
-  final Color color;
   final bool isSelected;
+  final Color color;
   final Function(bool?) onChecked;
 
   const W_ProductAdminListTile({
     Key? key,
+    required this.productId, // Add this
     required this.title,
-    required this.price,
-    required this.discount,
-    required this.inventory,
     required this.imageUrl,
     required this.color,
+    required this.inventory,
+    required this.price,
+    required this.discount,
     required this.isSelected,
     required this.onChecked,
   }) : super(key: key);
@@ -30,7 +34,8 @@ class W_ProductAdminListTile extends StatefulWidget {
   _W_ProductAdminListTileState createState() => _W_ProductAdminListTileState();
 }
 
-class _W_ProductAdminListTileState extends State<W_ProductAdminListTile> {
+class _W_ProductAdminListTileState
+    extends ConsumerState<W_ProductAdminListTile> {
   bool _isHovered = false;
 
   @override
@@ -63,9 +68,10 @@ class _W_ProductAdminListTileState extends State<W_ProductAdminListTile> {
                             width: 50,
                             height: 50,
                             child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.network(widget.imageUrl,
-                                    fit: BoxFit.contain)),
+                              borderRadius: BorderRadius.circular(8),
+                              child: Image.network(widget.imageUrl,
+                                  fit: BoxFit.contain),
+                            ),
                           ),
                           const SizedBox(width: 12),
                           Text(
@@ -81,9 +87,9 @@ class _W_ProductAdminListTileState extends State<W_ProductAdminListTile> {
                   ),
                 ),
                 _buildTextItem("${widget.inventory}"),
-                _buildTextItem("\$${widget.price}"),
-                _buildTextItem("\$${widget.discount}"),
-                _buildEditButtons()
+                _buildTextItem("\$${widget.price.toStringAsFixed(2)}"),
+                _buildTextItem("\$${widget.discount.toStringAsFixed(2)}"),
+                _buildEditButtons(),
               ],
             ),
             Divider(
@@ -96,7 +102,7 @@ class _W_ProductAdminListTileState extends State<W_ProductAdminListTile> {
     );
   }
 
-  _buildTextItem(title) => Flexible(
+  Widget _buildTextItem(String title) => Flexible(
         flex: 4,
         child: Container(
           alignment: Alignment.center,
@@ -110,37 +116,75 @@ class _W_ProductAdminListTileState extends State<W_ProductAdminListTile> {
         ),
       );
 
-  _buildEditButtons() => Flexible(
-      flex: 4,
-      child: Padding(
-        padding: const EdgeInsets.only(right: 12.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Container(
+  Widget _buildEditButtons() => Flexible(
+        flex: 4,
+        child: Padding(
+          padding: const EdgeInsets.only(right: 12.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: AppColors.primary),
+                  borderRadius: BorderRadius.circular(5),
+                  color: AppColors.primary,
+                ),
                 width: 30,
                 height: 30,
                 child: Image.asset(
                   AppAssets.btnEdit,
                   fit: BoxFit.contain,
-                )),
-            const SizedBox(
-              width: 8,
-            ),
-            Container(
-                width: 30,
-                height: 30,
-                decoration: BoxDecoration(
+                ),
+              ),
+              const SizedBox(width: 8),
+              GestureDetector(
+                onTap: () async {
+                  bool confirmDelete =
+                      await _showDeleteConfirmationDialog(context);
+                  if (confirmDelete) {
+                    await ref.read(productServiceProvider).deleteProduct(
+                        widget.productId); // ✅ Use productId here
+                    ref.invalidate(productProvider); // Refresh product list
+                  }
+                },
+                child: Container(
+                  width: 30,
+                  height: 30,
+                  decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    color: AppColors.primary),
-                child: Image.asset(
-                  AppAssets.btnDelete,
-                  fit: BoxFit.contain,
-                ))
-          ],
+                    color: AppColors.primary,
+                  ),
+                  child: Image.asset(
+                    AppAssets.btnDelete,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
-      ));
+      );
+
+  Future<bool> _showDeleteConfirmationDialog(BuildContext context) async {
+    return await showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text("Confirm Deletion"),
+            content:
+                const Text("Are you sure you want to delete this product?"),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context, false),
+                child:
+                    const Text("Cancel", style: TextStyle(color: Colors.grey)),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context, true),
+                child:
+                    const Text("Delete", style: TextStyle(color: Colors.red)),
+              ),
+            ],
+          ),
+        ) ??
+        false;
+  }
 }

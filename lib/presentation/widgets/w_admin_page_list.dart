@@ -46,15 +46,16 @@ class _W_AdminPageListState extends State<W_AdminPageList> {
             final item = widget.listItems[index - 1];
             if (orderType == OrderType.product) {
               return W_ProductAdminListTile(
+                productId: item.id,
                 title: item.headline,
                 price: item.price,
                 discount: item.priceSale,
                 inventory: item.quantity,
                 imageUrl: item.images[0],
-                color: AppColors.primary,
                 isSelected: widget.selectedItems.contains(item.id.toString()),
                 onChecked: (isChecked) =>
                     widget.onChecked(item.id.toString(), isChecked),
+                color: AppColors.primary,
               );
             } else if (orderType == OrderType.order) {
               return W_OrderAdminListTile(

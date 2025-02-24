@@ -31,7 +31,9 @@ class ProductNotifier extends StateNotifier<List<ProductModel>> {
   // ✅ Delete Product
   Future<void> deleteProduct(int productId) async {
     await _productService.deleteProduct(productId);
-    state = state.where((p) => p.id != productId).toList();
+    state = state
+        .where((p) => p.id != productId)
+        .toList(); // Remove from local state
   }
 }
 
