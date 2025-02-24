@@ -1,3 +1,4 @@
+import 'package:ecommerce_woocom/data/models/product_model.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_customer_admin_list_tile.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_order_admin_list_tile.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_product_admin_list_tile.dart';
@@ -16,8 +17,8 @@ class W_AdminPageList extends StatefulWidget {
       required this.selectedItems,
       required this.onChecked});
 
-  final  List listItems;
-  final  OrderType orderType;
+  final List listItems;
+  final OrderType orderType;
   final List selectedItems;
   final Function(String, bool?) onChecked;
 
@@ -30,7 +31,7 @@ class _W_AdminPageListState extends State<W_AdminPageList> {
   Widget build(BuildContext context) {
     final orderType = widget.orderType;
     return ListView.builder(
-        itemCount: widget.listItems.length + 1,
+        itemCount: widget.listItems.isEmpty ? 1 : widget.listItems.length + 1,
         shrinkWrap: true,
         itemBuilder: (context, index) {
           if (index == 0) {
@@ -51,8 +52,7 @@ class _W_AdminPageListState extends State<W_AdminPageList> {
                 inventory: item.quantity,
                 imageUrl: item.images[0],
                 color: AppColors.primary,
-                isSelected: widget.selectedItems
-                    .contains(widget.listItems[index - 1].id.toString()),
+                isSelected: widget.selectedItems.contains(item.id.toString()),
                 onChecked: (isChecked) =>
                     widget.onChecked(item.id.toString(), isChecked),
               );

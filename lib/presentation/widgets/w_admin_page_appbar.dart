@@ -1,10 +1,17 @@
+import 'package:ecommerce_woocom/presentation/widgets/w_add_product_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../core/constants/app_assets.dart';
 import '../../core/constants/app_colors.dart';
+import '../../core/constants/app_strings.dart';
 import '../../core/constants/app_text_styles.dart';
+import '../../data/models/product_model.dart';
+import '../../data/models/product_review_model.dart';
+import '../../data/providers/w_product_provider.dart';
 
-class W_AdminPageAppBar extends StatelessWidget {
+class W_AdminPageAppBar extends ConsumerWidget {
   const W_AdminPageAppBar(
       {super.key,
       required this.pageTitle,
@@ -16,7 +23,8 @@ class W_AdminPageAppBar extends StatelessWidget {
   final List selectedItems;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final products = ref.watch(productProvider);
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: Row(
@@ -56,7 +64,7 @@ class W_AdminPageAppBar extends StatelessWidget {
                       const EdgeInsets.symmetric(vertical: 7, horizontal: 14),
                   decoration: BoxDecoration(
                       color: Colors.white,
-                      border: Border.all(color: AppColors.primary,width: 1),
+                      border: Border.all(color: AppColors.primary, width: 1),
                       borderRadius: BorderRadius.circular(5)),
                   child: Text(
                     "Export",
@@ -66,21 +74,85 @@ class W_AdminPageAppBar extends StatelessWidget {
                         color: AppColors.primary),
                   ),
                 ),
-                Container(
-                  alignment: Alignment.center,
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                  decoration: BoxDecoration(
+                GestureDetector(
+                  onTap: () => showAddProductDialog(context, ref),
+                  child: Container(
+                    alignment: Alignment.center,
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                    decoration: BoxDecoration(
                       color: AppColors.primary,
-                      borderRadius: BorderRadius.circular(5)),
-                  child: Text(
-                    btnTitle,
-                    style: AppTextStyles.dynamicStyle(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Text(
+                      btnTitle,
+                      style: AppTextStyles.dynamicStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 1.sp,
-                        color: Colors.white),
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
+                // GestureDetector(
+                //   onTap: () async {
+                //     final newProduct = ProductModel(
+                //         3,
+                //         "Boujee",
+                //         AppStrings.product4SubHeadline,
+                //         AppStrings.product4Description,
+                //         5,
+                //         45.50,
+                //         0.0,
+                //         20, [
+                //       AppAssets.productImage4,
+                //       AppAssets.productImage4,
+                //       AppAssets.productImage4,
+                //       AppAssets.productImage4,
+                //     ], [
+                //       ProductReviewModel(
+                //           0,
+                //           "John Smith",
+                //           "It has a perfect quality and the price is very good",
+                //           5),
+                //       ProductReviewModel(
+                //           0,
+                //           "Julia Piacere",
+                //           "It has a perfect quality and the price is very good",
+                //           3),
+                //       ProductReviewModel(
+                //           0,
+                //           "Max Amoreni",
+                //           "It has a perfect quality and the price is very good",
+                //           2),
+                //       ProductReviewModel(
+                //           0,
+                //           "Jesica lorz",
+                //           "It has a perfect quality and the price is very good",
+                //           5),
+                //     ]);
+                //     await ref
+                //         .read(productServiceProvider)
+                //         .addProduct(newProduct);
+                //     ref.invalidate(
+                //         productProvider); // Refresh product list after adding
+                //   },
+                //   child: Container(
+                //     alignment: Alignment.center,
+                //     padding:
+                //         const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                //     decoration: BoxDecoration(
+                //         color: AppColors.primary,
+                //         borderRadius: BorderRadius.circular(5)),
+                //     child: Text(
+                //       btnTitle,
+                //       style: AppTextStyles.dynamicStyle(
+                //           fontWeight: FontWeight.w700,
+                //           fontSize: 1.sp,
+                //           color: Colors.white),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           )
