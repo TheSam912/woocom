@@ -48,6 +48,8 @@ class _W_AdminPageListState extends State<W_AdminPageList> {
               return W_ProductAdminListTile(
                 productId: item.id,
                 title: item.headline,
+                subHeadline: item.subHeadline,
+                description: item.description,
                 price: item.price,
                 discount: item.priceSale,
                 inventory: item.quantity,

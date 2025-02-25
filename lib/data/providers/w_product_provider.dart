@@ -20,9 +20,46 @@ class ProductNotifier extends StateNotifier<List<ProductModel>> {
     state = [...state, product];
   }
 
-  // ✅ Update Product
+  // ✅ Update Product Efficiently
   Future<void> updateProduct(ProductModel updatedProduct) async {
-    await _productService.updateProduct(updatedProduct);
+    Map<String, dynamic> updatedFields = {};
+
+    final existingProduct = state.firstWhere((p) => p.id == updatedProduct.id,
+        orElse: () => updatedProduct);
+
+    if (updatedProduct.headline != existingProduct.headline) {
+      updatedFields['headline'] = updatedProduct.headline;
+    }
+    if (updatedProduct.subHeadline != existingProduct.subHeadline) {
+      updatedFields['subHeadline'] = updatedProduct.subHeadline;
+    }
+    if (updatedProduct.description != existingProduct.description) {
+      updatedFields['description'] = updatedProduct.description;
+    }
+    if (updatedProduct.rate != existingProduct.rate) {
+      updatedFields['rate'] = updatedProduct.rate;
+    }
+    if (updatedProduct.price != existingProduct.price) {
+      updatedFields['price'] = updatedProduct.price;
+    }
+    if (updatedProduct.priceSale != existingProduct.priceSale) {
+      updatedFields['priceSale'] = updatedProduct.priceSale;
+    }
+    if (updatedProduct.quantity != existingProduct.quantity) {
+      updatedFields['quantity'] = updatedProduct.quantity;
+    }
+    if (updatedProduct.images != existingProduct.images) {
+      updatedFields['images'] = updatedProduct.images;
+    }
+    if (updatedProduct.reviews != existingProduct.reviews) {
+      updatedFields['reviews'] =
+          updatedProduct.reviews.map((r) => r.toMap()).toList();
+    }
+
+    if (updatedFields.isNotEmpty) {
+      await _productService.updateProduct(updatedProduct.id, updatedFields);
+    }
+
     state = state
         .map((p) => p.id == updatedProduct.id ? updatedProduct : p)
         .toList();

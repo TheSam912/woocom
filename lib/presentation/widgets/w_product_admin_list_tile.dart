@@ -1,6 +1,9 @@
 import 'package:ecommerce_woocom/core/constants/app_assets.dart';
 import 'package:ecommerce_woocom/core/constants/app_colors.dart';
 import 'package:ecommerce_woocom/core/constants/app_text_styles.dart';
+import 'package:ecommerce_woocom/data/models/product_model.dart';
+import 'package:ecommerce_woocom/data/models/product_review_model.dart';
+import 'package:ecommerce_woocom/presentation/widgets/w_edit_product_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,6 +12,8 @@ import '../../data/providers/w_product_provider.dart';
 class W_ProductAdminListTile extends ConsumerStatefulWidget {
   final int productId;
   final String title;
+  final String subHeadline;
+  final String description;
   final String imageUrl;
   final int inventory;
   final double price;
@@ -21,6 +26,8 @@ class W_ProductAdminListTile extends ConsumerStatefulWidget {
     Key? key,
     required this.productId, // Add this
     required this.title,
+    required this.subHeadline,
+    required this.description,
     required this.imageUrl,
     required this.color,
     required this.inventory,
@@ -123,16 +130,32 @@ class _W_ProductAdminListTileState
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: AppColors.primary,
-                ),
-                width: 30,
-                height: 30,
-                child: Image.asset(
-                  AppAssets.btnEdit,
-                  fit: BoxFit.contain,
+              GestureDetector(
+                onTap: () {
+                  ProductModel tempProduct = ProductModel(
+                      widget.productId,
+                      widget.title,
+                      widget.subHeadline,
+                      widget.description,
+                      1,
+                      widget.price,
+                      widget.discount,
+                      widget.inventory,
+                      [widget.imageUrl],
+                      [ProductReviewModel(0, "", "", 1)]);
+                  return showEditProductDialog(context, ref, tempProduct);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: AppColors.primary,
+                  ),
+                  width: 30,
+                  height: 30,
+                  child: Image.asset(
+                    AppAssets.btnEdit,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
               const SizedBox(width: 8),
