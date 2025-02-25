@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_woocom/data/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,8 +13,8 @@ class W_ProductWidget extends StatelessWidget {
       required this.isTablet,
       required this.isWeb});
 
-  final  ProductModel item;
-  final  bool isWeb;
+  final ProductModel item;
+  final bool isWeb;
   final bool isTablet;
 
   @override
@@ -35,7 +36,8 @@ class W_ProductWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset(item.images[0]),
+            // Image.asset(item.images[0]),
+            CachedNetworkImage(imageUrl: item.images[0]),
             Text(
               item.headline,
               maxLines: 1,
