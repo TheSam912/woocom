@@ -12,6 +12,7 @@ class AppIcons {
   static const String fullScreen = "assets/icons/fullscreen.png";
   static const String mail = "assets/icons/mail.png";
   static const String password = "assets/icons/password.png";
+  static const String upload = "assets/icons/upload.png";
 
   //admin
   static const String dashboard = "assets/icons/dashboard.png";

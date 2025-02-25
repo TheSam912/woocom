@@ -1,4 +1,5 @@
 import 'package:ecommerce_woocom/core/constants/app_colors.dart';
+import 'package:ecommerce_woocom/core/constants/app_icons.dart';
 import 'package:ecommerce_woocom/core/constants/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,9 +19,6 @@ void showAddProductDialog(BuildContext context, WidgetRef ref) {
   final quantityController = TextEditingController();
   final rateController = TextEditingController();
   final imageController = TextEditingController();
-  final reviewUserController = TextEditingController();
-  final reviewTextController = TextEditingController();
-  final reviewRateController = TextEditingController();
 
   List<String> images = [];
   List<ProductReviewModel> reviews = [];
@@ -41,87 +39,107 @@ void showAddProductDialog(BuildContext context, WidgetRef ref) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Center(
-                    child: Text("+ Add New Product",
+                    child: Text("Add New Product",
                         style: AppTextStyles.dynamicStyle(
                             fontSize: 2.sp,
                             fontWeight: FontWeight.w700,
                             color: AppColors.primary)),
                   ),
                   const SizedBox(height: 16),
-
-                  // Product Fields
-                  _buildTextField(headlineController, "Headline", Icons.title),
-                  _buildTextField(
-                      subHeadlineController, "Sub Headline", Icons.subtitles),
+                  _buildUploadImage(),
+                  Row(
+                    children: [
+                      Flexible(
+                        flex: 5,
+                        child: _buildTextField(
+                            headlineController, "Headline", Icons.title),
+                      ),
+                      Flexible(
+                        flex: 5,
+                        child: _buildTextField(subHeadlineController,
+                            "Sub Headline", Icons.subtitles),
+                      )
+                    ],
+                  ),
                   _buildTextField(
                       descriptionController, "Description", Icons.description),
-                  _buildNumberField(
-                      priceController, "Price", Icons.attach_money,
-                      allowDecimals: true),
-                  _buildNumberField(
-                      priceSaleController, "Sale Price", Icons.money_off,
-                      allowDecimals: true),
-                  _buildNumberField(
-                      quantityController, "Quantity", Icons.storage,
-                      allowDecimals: false),
-                  _buildRateField(rateController, "Rate (1-5)", Icons.star),
-
-                  // Product Images
-                  const SizedBox(height: 10),
-                  _buildSectionTitle("Product Images"),
-                  _buildImageInput(imageController, images),
-
-                  // Product Reviews
-                  const SizedBox(height: 10),
-                  _buildSectionTitle("Product Reviews"),
-                  _buildReviewRow(reviewUserController, reviewTextController,
-                      reviewRateController, reviews),
-                  if (reviews.isNotEmpty) _buildReviewList(reviews),
-
-                  const SizedBox(height: 20),
+                  Row(
+                    children: [
+                      Flexible(
+                        flex: 5,
+                        child: _buildNumberField(
+                            priceController, "Price", Icons.attach_money,
+                            allowDecimals: true),
+                      ),
+                      Flexible(
+                        flex: 5,
+                        child: _buildNumberField(
+                            priceSaleController, "Sale Price", Icons.money_off,
+                            allowDecimals: true),
+                      ),
+                      Flexible(
+                        flex: 5,
+                        child: _buildNumberField(
+                            quantityController, "Quantity", Icons.storage,
+                            allowDecimals: false),
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 50),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(context),
-                        child: const Text("Cancel",
-                            style: TextStyle(color: Colors.red)),
-                      ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.primary),
-                        onPressed: () async {
-                          if (formKey.currentState!.validate()) {
-                            final newProduct = ProductModel(
-                              DateTime.now().millisecondsSinceEpoch,
-                              // Unique ID
-                              headlineController.text,
-                              subHeadlineController.text,
-                              descriptionController.text,
-                              int.parse(rateController.text),
-                              double.parse(priceController.text),
-                              double.parse(priceSaleController.text),
-                              int.parse(quantityController.text),
-                              images,
-                              reviews,
-                            );
-
-                            await ref
-                                .read(productServiceProvider)
-                                .addProduct(newProduct);
-                            ref.invalidate(
-                                productProvider); // Refresh product list
-                            Navigator.pop(context);
-                          }
-                        },
-                        child: Text(
-                          "Add Product",
-                          style: AppTextStyles.dynamicStyle(
-                              fontSize: 1.sp,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white),
+                      Flexible(
+                        flex: 2,
+                        child: TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: const Text("Cancel",
+                              style: TextStyle(color: Colors.red)),
                         ),
                       ),
+                      Flexible(
+                        flex: 8,
+                        child: GestureDetector(
+                            onTap: () async {
+                              if (formKey.currentState!.validate()) {
+                                final newProduct = ProductModel(
+                                  DateTime.now().millisecondsSinceEpoch,
+                                  // Unique ID
+                                  headlineController.text,
+                                  subHeadlineController.text,
+                                  descriptionController.text,
+                                  int.parse(rateController.text),
+                                  double.parse(priceController.text),
+                                  double.parse(priceSaleController.text),
+                                  int.parse(quantityController.text),
+                                  images,
+                                  reviews,
+                                );
+
+                                await ref
+                                    .read(productServiceProvider)
+                                    .addProduct(newProduct);
+                                ref.invalidate(
+                                    productProvider); // Refresh product list
+                                Navigator.pop(context);
+                              }
+                            },
+                            child: Container(
+                              height: 50,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  color: AppColors.primary),
+                              child: Center(
+                                child: Text(
+                                  "SUBMIT",
+                                  style: AppTextStyles.dynamicStyle(
+                                      fontSize: 1.sp,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white),
+                                ),
+                              ),
+                            )),
+                      )
                     ],
                   ),
                 ],
@@ -134,30 +152,36 @@ void showAddProductDialog(BuildContext context, WidgetRef ref) {
   );
 }
 
-// 🔹 Review List (Displays Added Reviews)
-Widget _buildReviewList(List<ProductReviewModel> reviews) {
-  return Column(
-    children: reviews
-        .map((review) => ListTile(
-              title: Text(review.username,
-                  style: const TextStyle(fontWeight: FontWeight.bold)),
-              subtitle: Text(review.review),
-              trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text("${review.rate} ⭐"),
-                  IconButton(
-                    icon: const Icon(Icons.delete, color: Colors.red),
-                    onPressed: () {
-                      reviews.remove(review);
-                    },
-                  ),
-                ],
-              ),
-            ))
-        .toList(),
-  );
-}
+_buildUploadImage() => SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          _buildBoxUploadImage(),
+          _buildBoxUploadImage(),
+          _buildBoxUploadImage(),
+          _buildBoxUploadImage(),
+          _buildBoxUploadImage(),
+          _buildBoxUploadImage(),
+          _buildBoxUploadImage(),
+        ],
+      ),
+    );
+
+_buildBoxUploadImage() => Container(
+      width: 250,
+      height: 250,
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8), color: AppColors.accent),
+      child: Center(
+        child: Image.asset(
+          AppIcons.upload,
+          color: AppColors.primary,
+          width: 35,
+          height: 35,
+        ),
+      ),
+    );
 
 // 🔹 Build a standard text field
 Widget _buildTextField(
@@ -192,25 +216,6 @@ Widget _buildNumberField(
   );
 }
 
-// 🔹 Rate Input Field (Validates Range 1-5)
-Widget _buildRateField(
-    TextEditingController controller, String label, IconData icon) {
-  return _styledField(
-    controller,
-    label,
-    icon,
-    keyboardType: TextInputType.number,
-    validator: (value) {
-      if (value!.isEmpty) return "$label is required";
-      final numValue = int.tryParse(value);
-      if (numValue == null || numValue < 1 || numValue > 5) {
-        return "Enter a value between 1 and 5";
-      }
-      return null;
-    },
-  );
-}
-
 // 🔹 Shared Input Style
 Widget _styledField(
     TextEditingController controller, String label, IconData icon,
@@ -229,7 +234,10 @@ Widget _styledField(
       cursorColor: AppColors.primary,
       decoration: InputDecoration(
         labelText: label,
-        prefixIcon: Icon(icon),
+        prefixIcon: Icon(
+          icon,
+          color: AppColors.primary,
+        ),
         border: InputBorder.none,
       ),
       validator: validator,
@@ -254,7 +262,7 @@ Widget _buildImageInput(TextEditingController controller, List<String> images) {
           Expanded(
               child: _buildTextField(controller, "Image URL", Icons.image)),
           IconButton(
-            icon: const Icon(Icons.add_circle, color: Colors.green),
+            icon: const Icon(Icons.add_circle, color: AppColors.primary),
             onPressed: () {
               if (controller.text.isNotEmpty) {
                 images.add(controller.text);
@@ -263,32 +271,6 @@ Widget _buildImageInput(TextEditingController controller, List<String> images) {
             },
           ),
         ],
-      ),
-    ],
-  );
-}
-
-// 🔹 Review Input Row
-Widget _buildReviewRow(TextEditingController name, TextEditingController review,
-    TextEditingController rate, List<ProductReviewModel> reviews) {
-  return Row(
-    children: [
-      Expanded(child: _buildTextField(name, "Reviewer Name", Icons.person)),
-      Expanded(child: _buildTextField(review, "Review", Icons.comment)),
-      Expanded(child: _buildRateField(rate, "Rating (1-5)", Icons.star)),
-      IconButton(
-        icon: const Icon(Icons.add_circle, color: Colors.blue),
-        onPressed: () {
-          if (name.text.isNotEmpty &&
-              review.text.isNotEmpty &&
-              rate.text.isNotEmpty) {
-            reviews.add(ProductReviewModel(
-                reviews.length, name.text, review.text, int.parse(rate.text)));
-            name.clear();
-            review.clear();
-            rate.clear();
-          }
-        },
       ),
     ],
   );

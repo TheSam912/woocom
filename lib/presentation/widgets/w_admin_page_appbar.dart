@@ -2,7 +2,6 @@ import 'package:ecommerce_woocom/presentation/widgets/w_add_product_dialog.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../core/constants/app_assets.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_strings.dart';
@@ -96,41 +95,22 @@ class W_AdminPageAppBar extends ConsumerWidget {
                 ),
                 // GestureDetector(
                 //   onTap: () async {
-                //     final newProduct = ProductModel(
-                //         3,
-                //         "Boujee",
-                //         AppStrings.product4SubHeadline,
-                //         AppStrings.product4Description,
-                //         5,
-                //         45.50,
-                //         0.0,
-                //         20, [
-                //       AppAssets.productImage4,
-                //       AppAssets.productImage4,
-                //       AppAssets.productImage4,
-                //       AppAssets.productImage4,
-                //     ], [
-                //       ProductReviewModel(
-                //           0,
-                //           "John Smith",
-                //           "It has a perfect quality and the price is very good",
-                //           5),
-                //       ProductReviewModel(
-                //           0,
-                //           "Julia Piacere",
-                //           "It has a perfect quality and the price is very good",
-                //           3),
-                //       ProductReviewModel(
-                //           0,
-                //           "Max Amoreni",
-                //           "It has a perfect quality and the price is very good",
-                //           2),
-                //       ProductReviewModel(
-                //           0,
-                //           "Jesica lorz",
-                //           "It has a perfect quality and the price is very good",
-                //           5),
-                //     ]);
+                //     final newProduct = ProductModel(5, "Grande", AppStrings.product2SubHeadline,
+                //         AppStrings.product2Description, 5, 99.0, 24.99, 20, [
+                //           "https://raw.githubusercontent.com/TheSam912/woocom/refs/heads/main/assets/assets/images/product/product2.png",
+                //           "https://raw.githubusercontent.com/TheSam912/woocom/refs/heads/main/assets/assets/images/product/product2.png",
+                //           "https://raw.githubusercontent.com/TheSam912/woocom/refs/heads/main/assets/assets/images/product/product2.png",
+                //           "https://raw.githubusercontent.com/TheSam912/woocom/refs/heads/main/assets/assets/images/product/product2.png"
+                //         ], [
+                //           ProductReviewModel(0, "John Smith",
+                //               "It has a perfect quality and the price is very good", 5),
+                //           ProductReviewModel(0, "Julia Piacere",
+                //               "It has a perfect quality and the price is very good", 3),
+                //           ProductReviewModel(0, "Max Amoreni",
+                //               "It has a perfect quality and the price is very good", 2),
+                //           ProductReviewModel(0, "Jesica lorz",
+                //               "It has a perfect quality and the price is very good", 5),
+                //         ]);
                 //     await ref
                 //         .read(productServiceProvider)
                 //         .addProduct(newProduct);
