@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_woocom/data/models/product_model.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_iconButton.dart';
 import 'package:flutter/material.dart';
@@ -99,7 +100,6 @@ class _w_DynamicListState extends State<w_DynamicList> {
                 itemCount: widget.productList.length,
                 itemBuilder: (context, index) {
                   var item = widget.productList[index];
-                  print(item.images[0]);
                   return GestureDetector(
                     onTap: () {
                       context.pushNamed("product_detail", pathParameters: {
@@ -121,18 +121,18 @@ class _w_DynamicListState extends State<w_DynamicList> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Image.network(
-                                item.images[0],
-                                loadingBuilder:
-                                    (context, child, loadingProgress) {
-                                  if (loadingProgress == null) return child;
-                                  return const Center(
-                                      child: CircularProgressIndicator());
-                                },
-                                errorBuilder: (context, error, stackTrace) {
-                                  return const Icon(Icons.person,
-                                      size: 50, color: Colors.red);
-                                },
+                              CachedNetworkImage(
+                                imageUrl: item.images[0],
+                                placeholder: (context, url) => const Center(
+                                  child: SizedBox(
+                                      width: 40,
+                                      height: 40,
+                                      child: CircularProgressIndicator(
+                                        color: AppColors.primary,
+                                      )),
+                                ),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
                                 height: isWeb
                                     ? 250
                                     : isTablet

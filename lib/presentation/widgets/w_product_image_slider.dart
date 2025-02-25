@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce_woocom/core/constants/app_icons.dart';
+import 'package:ecommerce_woocom/presentation/widgets/w_cache_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -32,20 +34,8 @@ class _W_ProductImageSliderState extends State<W_ProductImageSlider> {
               margin: const EdgeInsets.all(5.0),
               child: Stack(children: [
                 ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                  child: Image.network(
-                    item,
-                    fit: BoxFit.contain,
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return const Center(child: CircularProgressIndicator());
-                    },
-                    errorBuilder: (context, error, stackTrace) {
-                      return const Icon(Icons.broken_image,
-                          size: 50, color: Colors.red);
-                    },
-                  ),
-                ),
+                    borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+                    child: W_CacheNetworkImage(item)),
                 Positioned(
                     bottom: 14,
                     right: 14,
