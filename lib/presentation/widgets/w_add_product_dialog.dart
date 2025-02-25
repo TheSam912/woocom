@@ -1,6 +1,7 @@
 import 'package:ecommerce_woocom/core/constants/app_colors.dart';
 import 'package:ecommerce_woocom/core/constants/app_icons.dart';
 import 'package:ecommerce_woocom/core/constants/app_text_styles.dart';
+import 'package:ecommerce_woocom/presentation/widgets/w_image_uploader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -46,7 +47,7 @@ void showAddProductDialog(BuildContext context, WidgetRef ref) {
                             color: AppColors.primary)),
                   ),
                   const SizedBox(height: 16),
-                  _buildUploadImage(),
+                  _buildUploadImage(context),
                   Row(
                     children: [
                       Flexible(
@@ -152,33 +153,35 @@ void showAddProductDialog(BuildContext context, WidgetRef ref) {
   );
 }
 
-_buildUploadImage() => SingleChildScrollView(
+_buildUploadImage(context) => SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          _buildBoxUploadImage(),
-          _buildBoxUploadImage(),
-          _buildBoxUploadImage(),
-          _buildBoxUploadImage(),
-          _buildBoxUploadImage(),
-          _buildBoxUploadImage(),
-          _buildBoxUploadImage(),
+          _buildBoxUploadImage(context),
         ],
       ),
     );
 
-_buildBoxUploadImage() => Container(
-      width: 250,
-      height: 250,
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8), color: AppColors.accent),
-      child: Center(
-        child: Image.asset(
-          AppIcons.upload,
-          color: AppColors.primary,
-          width: 35,
-          height: 35,
+_buildBoxUploadImage(context) => GestureDetector(
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (context) => ProductImagePickerDialog(),
+        );
+      },
+      child: Container(
+        width: 250,
+        height: 250,
+        margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8), color: AppColors.accent),
+        child: Center(
+          child: Image.asset(
+            AppIcons.upload,
+            color: AppColors.primary,
+            width: 35,
+            height: 35,
+          ),
         ),
       ),
     );
@@ -242,36 +245,5 @@ Widget _styledField(
       ),
       validator: validator,
     ),
-  );
-}
-
-// 🔹 Section Title
-Widget _buildSectionTitle(String title) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-    child: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-  );
-}
-
-// 🔹 Image Input with Preview
-Widget _buildImageInput(TextEditingController controller, List<String> images) {
-  return Column(
-    children: [
-      Row(
-        children: [
-          Expanded(
-              child: _buildTextField(controller, "Image URL", Icons.image)),
-          IconButton(
-            icon: const Icon(Icons.add_circle, color: AppColors.primary),
-            onPressed: () {
-              if (controller.text.isNotEmpty) {
-                images.add(controller.text);
-                controller.clear();
-              }
-            },
-          ),
-        ],
-      ),
-    ],
   );
 }

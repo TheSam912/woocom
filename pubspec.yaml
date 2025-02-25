@@ -10,6 +10,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.8
   cached_network_image:
+  file_picker:
   google_fonts:
   go_router:
   carousel_slider:
