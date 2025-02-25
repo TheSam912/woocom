@@ -166,7 +166,7 @@ final GoRouter router = GoRouter(
         path: '/image_slider',
         name: 'image_slider',
         pageBuilder: (context, state) {
-          final extra = state.extra as List<String>?;
+          final extra = (state.extra as List<dynamic>?)?.cast<String>();
           return CustomTransitionPage(
             key: state.pageKey,
             name: state.name,
