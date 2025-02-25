@@ -32,8 +32,20 @@ class _W_ProductImageSliderState extends State<W_ProductImageSlider> {
               margin: const EdgeInsets.all(5.0),
               child: Stack(children: [
                 ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                    child: Image.asset(item, fit: BoxFit.contain)),
+                  borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+                  child: Image.network(
+                    item,
+                    fit: BoxFit.contain,
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return const Center(child: CircularProgressIndicator());
+                    },
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Icon(Icons.broken_image,
+                          size: 50, color: Colors.red);
+                    },
+                  ),
+                ),
                 Positioned(
                     bottom: 14,
                     right: 14,

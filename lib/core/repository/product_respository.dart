@@ -7,10 +7,10 @@ class ProductRepository {
   static List<ProductModel> productList = [
     ProductModel(0, "Coach", AppStrings.product1SubHeadline,
         AppStrings.product1Description, 4, 50.0, 35.99, 10, [
-      AppAssets.productImage1,
-      AppAssets.productImage1,
-      AppAssets.productImage1,
-      AppAssets.productImage1,
+      "https://raw.githubusercontent.com/TheSam912/woocom/main/assets/assets/images/product/product1.png",
+      "https://raw.githubusercontent.com/TheSam912/woocom/main/assets/assets/images/product/product1.png",
+      "https://raw.githubusercontent.com/TheSam912/woocom/main/assets/assets/images/product/product1.png",
+      "https://raw.githubusercontent.com/TheSam912/woocom/main/assets/assets/images/product/product1.png"
     ], [
       ProductReviewModel(0, "John Smith",
           "It has a perfect quality and the price is very good", 5),
@@ -24,10 +24,10 @@ class ProductRepository {
     //--------------------------------------------------------------------------------------------------------------
     ProductModel(1, "Grande", AppStrings.product2SubHeadline,
         AppStrings.product2Description, 5, 99.0, 24.99, 20, [
-      AppAssets.productImage2,
-      AppAssets.productImage2,
-      AppAssets.productImage2,
-      AppAssets.productImage2,
+      "https://raw.githubusercontent.com/TheSam912/woocom/main/assets/assets/images/product/product2.png",
+      "https://raw.githubusercontent.com/TheSam912/woocom/main/assets/assets/images/product/product2.png",
+      "https://raw.githubusercontent.com/TheSam912/woocom/main/assets/assets/images/product/product2.png",
+      "https://raw.githubusercontent.com/TheSam912/woocom/main/assets/assets/images/product/product2.png",
     ], [
       ProductReviewModel(0, "John Smith",
           "It has a perfect quality and the price is very good", 5),
@@ -41,10 +41,10 @@ class ProductRepository {
     //--------------------------------------------------------------------------------------------------------------
     ProductModel(2, "Remus", AppStrings.product3SubHeadline,
         AppStrings.product3Description, 5, 89.99, 0.0, 20, [
-      AppAssets.productImage3,
-      AppAssets.productImage3,
-      AppAssets.productImage3,
-      AppAssets.productImage3,
+      "https://raw.githubusercontent.com/TheSam912/woocom/main/assets/assets/images/product/product3.png",
+      "https://raw.githubusercontent.com/TheSam912/woocom/main/assets/assets/images/product/product3.png",
+      "https://raw.githubusercontent.com/TheSam912/woocom/main/assets/assets/images/product/product3.png",
+      "https://raw.githubusercontent.com/TheSam912/woocom/main/assets/assets/images/product/product3.png",
     ], [
       ProductReviewModel(0, "John Smith",
           "It has a perfect quality and the price is very good", 5),
@@ -58,10 +58,10 @@ class ProductRepository {
     //--------------------------------------------------------------------------------------------------------------
     ProductModel(3, "Boujee", AppStrings.product4SubHeadline,
         AppStrings.product4Description, 5, 45.50, 0.0, 20, [
-      AppAssets.productImage4,
-      AppAssets.productImage4,
-      AppAssets.productImage4,
-      AppAssets.productImage4,
+      "https://raw.githubusercontent.com/TheSam912/woocom/main/assets/assets/images/product/product4.png",
+      "https://raw.githubusercontent.com/TheSam912/woocom/main/assets/assets/images/product/product4.png",
+      "https://raw.githubusercontent.com/TheSam912/woocom/main/assets/assets/images/product/product4.png",
+      "https://raw.githubusercontent.com/TheSam912/woocom/main/assets/assets/images/product/product4.png",
     ], [
       ProductReviewModel(0, "John Smith",
           "It has a perfect quality and the price is very good", 5),

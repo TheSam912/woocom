@@ -20,8 +20,20 @@ class _ImageSliderState extends State<ImageSlider> {
         .map((item) => Container(
               margin: const EdgeInsets.all(5.0),
               child: ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                  child: Image.asset(item, fit: BoxFit.contain)),
+                borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+                child: Image.network(
+                  item,
+                  fit: BoxFit.contain,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return const Center(child: CircularProgressIndicator());
+                  },
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Icon(Icons.broken_image,
+                        size: 50, color: Colors.red);
+                  },
+                ),
+              ),
             ))
         .toList();
     return Container(
