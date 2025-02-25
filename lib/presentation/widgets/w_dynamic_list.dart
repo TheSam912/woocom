@@ -99,7 +99,7 @@ class _w_DynamicListState extends State<w_DynamicList> {
                 itemCount: widget.productList.length,
                 itemBuilder: (context, index) {
                   var item = widget.productList[index];
-
+                  print(item.images[0]);
                   return GestureDetector(
                     onTap: () {
                       context.pushNamed("product_detail", pathParameters: {
@@ -130,7 +130,7 @@ class _w_DynamicListState extends State<w_DynamicList> {
                                       child: CircularProgressIndicator());
                                 },
                                 errorBuilder: (context, error, stackTrace) {
-                                  return const Icon(Icons.broken_image,
+                                  return const Icon(Icons.person,
                                       size: 50, color: Colors.red);
                                 },
                                 height: isWeb
@@ -144,19 +144,6 @@ class _w_DynamicListState extends State<w_DynamicList> {
                                         ? 200
                                         : 150,
                               ),
-                              // Image.network(
-                              //   item.images[0],
-                              //   width: isWeb
-                              //       ? 250
-                              //       : isTablet
-                              //           ? 200
-                              //           : 150,
-                              //   height: isWeb
-                              //       ? 250
-                              //       : isTablet
-                              //           ? 200
-                              //           : 150,
-                              // ),
                               Text(
                                 item.headline,
                                 maxLines: 1,
