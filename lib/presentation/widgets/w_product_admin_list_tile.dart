@@ -3,6 +3,7 @@ import 'package:ecommerce_woocom/core/constants/app_colors.dart';
 import 'package:ecommerce_woocom/core/constants/app_text_styles.dart';
 import 'package:ecommerce_woocom/data/models/product_model.dart';
 import 'package:ecommerce_woocom/data/models/product_review_model.dart';
+import 'package:ecommerce_woocom/presentation/widgets/w_delete_product_dialog.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_edit_product_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -162,7 +163,7 @@ class _W_ProductAdminListTileState
               GestureDetector(
                 onTap: () async {
                   bool confirmDelete =
-                      await _showDeleteConfirmationDialog(context);
+                      await showDeleteConfirmationDialog(context);
                   if (confirmDelete) {
                     await ref.read(productServiceProvider).deleteProduct(
                         widget.productId); // ✅ Use productId here
@@ -186,28 +187,4 @@ class _W_ProductAdminListTileState
           ),
         ),
       );
-
-  Future<bool> _showDeleteConfirmationDialog(BuildContext context) async {
-    return await showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: const Text("Confirm Deletion"),
-            content:
-                const Text("Are you sure you want to delete this product?"),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context, false),
-                child:
-                    const Text("Cancel", style: TextStyle(color: Colors.grey)),
-              ),
-              TextButton(
-                onPressed: () => Navigator.pop(context, true),
-                child:
-                    const Text("Delete", style: TextStyle(color: Colors.red)),
-              ),
-            ],
-          ),
-        ) ??
-        false;
-  }
 }

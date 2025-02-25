@@ -52,21 +52,41 @@ void showEditProductDialog(
                   const SizedBox(height: 16),
 
                   // Product Fields
-                  _buildTextField(headlineController, "Headline", Icons.title),
-                  _buildTextField(
-                      subHeadlineController, "Sub Headline", Icons.subtitles),
+                  Row(
+                    children: [
+                      Flexible(
+                        flex: 5,
+                        child: _buildTextField(
+                            headlineController, "Headline", Icons.title),
+                      ),
+                      Flexible(
+                        flex: 5,
+                        child: _buildTextField(subHeadlineController,
+                            "Sub Headline", Icons.subtitles),
+                      )
+                    ],
+                  ),
                   _buildTextField(
                       descriptionController, "Description", Icons.description),
-                  _buildNumberField(
-                      priceController, "Price", Icons.attach_money,
-                      allowDecimals: true),
-                  _buildNumberField(
-                      priceSaleController, "Sale Price", Icons.money_off,
-                      allowDecimals: true),
+                  Row(
+                    children: [
+                      Flexible(
+                        flex: 5,
+                        child: _buildNumberField(
+                            priceController, "Price", Icons.attach_money,
+                            allowDecimals: true),
+                      ),
+                      Flexible(
+                        flex: 5,
+                        child: _buildNumberField(
+                            priceSaleController, "Sale Price", Icons.money_off,
+                            allowDecimals: true),
+                      )
+                    ],
+                  ),
                   _buildNumberField(
                       quantityController, "Quantity", Icons.storage,
                       allowDecimals: false),
-                  _buildRateField(rateController, "Rate (1-5)", Icons.star),
 
                   // Product Images
                   const SizedBox(height: 10),
@@ -211,25 +231,6 @@ Widget _buildNumberField(
       final numRegex =
           allowDecimals ? RegExp(r'^\d+(\.\d{1,2})?$') : RegExp(r'^\d+$');
       if (!numRegex.hasMatch(value)) return "Enter a valid number";
-      return null;
-    },
-  );
-}
-
-// 🔹 Rate Input Field (Validates Range 1-5)
-Widget _buildRateField(
-    TextEditingController controller, String label, IconData icon) {
-  return _styledField(
-    controller,
-    label,
-    icon,
-    keyboardType: TextInputType.number,
-    validator: (value) {
-      if (value!.isEmpty) return "$label is required";
-      final numValue = int.tryParse(value);
-      if (numValue == null || numValue < 1 || numValue > 5) {
-        return "Enter a value between 1 and 5";
-      }
       return null;
     },
   );
