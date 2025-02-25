@@ -27,6 +27,7 @@ class AdminWeb extends ConsumerWidget {
     final size = MediaQuery.of(context).size;
     final selectedIndex = ref.watch(selectedIndexProvider);
     final isWeb = ResponsiveHelper.isDesktop(context);
+    final isTablet = ResponsiveHelper.isTablet(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const PreferredSize(
@@ -63,7 +64,8 @@ class AdminWeb extends ConsumerWidget {
                   Text(
                     "Please Login With Desktop",
                     style: AppTextStyles.dynamicStyle(
-                        fontSize: 12.sp, color: AppColors.primary),
+                        fontSize: isTablet ? 3.sp : 12.sp,
+                        color: AppColors.primary),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 30),
@@ -80,7 +82,7 @@ class AdminWeb extends ConsumerWidget {
                         "Back To Login",
                         style: AppTextStyles.dynamicStyle(
                             fontWeight: FontWeight.w700,
-                            fontSize: 12.sp,
+                            fontSize: isTablet ? 3.sp : 12.sp,
                             color: AppColors.accent),
                       ),
                     ),
