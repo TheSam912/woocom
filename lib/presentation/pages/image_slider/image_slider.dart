@@ -1,9 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_cache_network_image.dart';
 import 'package:flutter/material.dart';
-
-import '../../../core/constants/app_colors.dart';
 
 class ImageSlider extends StatefulWidget {
   const ImageSlider({super.key, required this.images});

@@ -1,6 +1,5 @@
 import '../../data/models/product_model.dart';
 import '../../data/models/product_review_model.dart';
-import '../constants/app_assets.dart';
 import '../constants/app_strings.dart';
 
 class ProductRepository {

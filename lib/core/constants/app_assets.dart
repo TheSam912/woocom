@@ -1,13 +1,16 @@
 class AppAssets {
   static const String logo = "assets/images/logo.png";
-  static const String onBoardingEffect = "assets/assets/images/onboarding/effect.png";
-  static const String onBoardingImage = "assets/assets/images/onboarding/onboarding.png";
+  static const String onBoardingEffect =
+      "assets/assets/images/onboarding/effect.png";
+  static const String onBoardingImage =
+      "assets/assets/images/onboarding/onboarding.png";
   static const String banner_mobile = "assets/images/banner_mobile.png";
   static const String banner_web = "assets/images/banner_web.png";
   static const String banner1_web = "assets/images/banner1_web.png";
   static const String banner_blac_web = "assets/images/banner_black.png";
   static const String userPlaceholder = "assets/images/user_placeholder.png";
   static const String bagBg = "assets/images/bag_bg.png";
+  static const String back_to_main = "assets/images/backtologin.png";
   static const String empty_basket = "assets/images/empty_basket.png";
   static const String signIn_image = "assets/images/singin_image.png";
 

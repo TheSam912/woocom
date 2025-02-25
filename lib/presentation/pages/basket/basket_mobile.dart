@@ -4,7 +4,6 @@ import 'package:ecommerce_woocom/core/constants/app_lists.dart';
 import 'package:ecommerce_woocom/core/constants/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../core/utils/responsive_helper.dart';
 import '../../widgets/w_basket_product_item.dart';
 
 class BasketMobile extends StatefulWidget {

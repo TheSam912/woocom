@@ -1,3 +1,4 @@
+import 'package:ecommerce_woocom/core/constants/app_assets.dart';
 import 'package:ecommerce_woocom/core/constants/app_colors.dart';
 import 'package:ecommerce_woocom/core/constants/app_icons.dart';
 import 'package:ecommerce_woocom/core/constants/app_text_styles.dart';
@@ -30,8 +31,16 @@ class AdminWeb extends ConsumerWidget {
     final isTablet = ResponsiveHelper.isTablet(context);
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const PreferredSize(
-          preferredSize: Size(0, 100), child: W_AppBarAdminPanel()),
+      appBar: isWeb
+          ? const PreferredSize(
+              preferredSize: Size(0, 100), child: W_AppBarAdminPanel())
+          : AppBar(
+              backgroundColor: Colors.white,
+              leading: const Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
+            ),
       body: isWeb
           ? Row(
               children: [
@@ -61,35 +70,59 @@ class AdminWeb extends ConsumerWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Image.asset(
+                    AppAssets.back_to_main,
+                    width: size.width / 2,
+                    height: 200,
+                    fit: BoxFit.contain,
+                  ),
                   Text(
-                    "Please Login With Desktop",
+                    "Whoops!",
                     style: AppTextStyles.dynamicStyle(
-                        fontSize: isTablet ? 3.sp : 12.sp,
+                        fontSize: isTablet ? 5.sp : 22.sp,
+                        fontWeight: FontWeight.w700,
                         color: AppColors.primary),
                   ),
+                  const SizedBox(
+                    height: 8,
+                  ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 30),
-                    child: TextButton(
-                      onPressed: () {
-                        ref.read(authRepositoryProvider).signOut();
-                        ref.invalidate(authStateProvider);
-                        context.goNamed('app');
-                      },
-                      style: const ButtonStyle(
-                          backgroundColor:
-                              WidgetStatePropertyAll(AppColors.primary)),
-                      child: Text(
-                        "Back To Login",
-                        style: AppTextStyles.dynamicStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: isTablet ? 3.sp : 12.sp,
-                            color: AppColors.accent),
-                      ),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: isTablet ? 14.0 : 24),
+                    child: Text(
+                      "You Couldn't Login As Admin With Your Phone Or Tablet. Please Login Via Laptop",
+                      textAlign: TextAlign.center,
+                      style: AppTextStyles.dynamicStyle(
+                          fontSize: isTablet ? 3.sp : 14.sp,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.primary),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: GestureDetector(
+        onTap: () {
+          ref.read(authRepositoryProvider).signOut();
+          ref.invalidate(authStateProvider);
+          context.goNamed('app');
+        },
+        child: Container(
+          height: 50,
+          alignment: Alignment.center,
+          margin: EdgeInsets.symmetric(horizontal: isTablet ? 14 : 24),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8), color: AppColors.primary),
+          child: Text(
+            "Back To Home",
+            style: AppTextStyles.dynamicStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: isTablet ? 3.sp : 12.sp,
+                color: AppColors.accent),
+          ),
+        ),
+      ),
     );
   }
 

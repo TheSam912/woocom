@@ -1,4 +1,3 @@
-import 'package:ecommerce_woocom/data/models/product_model.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_customer_admin_list_tile.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_order_admin_list_tile.dart';
 import 'package:ecommerce_woocom/presentation/widgets/w_product_admin_list_tile.dart';
