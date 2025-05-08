@@ -1,0 +1,2 @@
+/Users/sobhan/Desktop/development/ecommerce_woocom/android/app/.cxx/Debug/5y1a2z4s/x86_64/CMakeFiles/edit_cache.dir
+/Users/sobhan/Desktop/development/ecommerce_woocom/android/app/.cxx/Debug/5y1a2z4s/x86_64/CMakeFiles/rebuild_cache.dir

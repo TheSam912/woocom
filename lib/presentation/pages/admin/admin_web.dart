@@ -14,9 +14,7 @@ import 'package:ecommerce_woocom/presentation/widgets/w_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import '../../widgets/w_panel_side_item.dart';
-import '../authentication/provider/auth_provider.dart';
 
 final selectedIndexProvider = StateProvider<int>((ref) => 0);
 
@@ -101,28 +99,28 @@ class AdminWeb extends ConsumerWidget {
                 ],
               ),
             ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: GestureDetector(
-        onTap: () {
-          ref.read(authRepositoryProvider).signOut();
-          ref.invalidate(authStateProvider);
-          context.goNamed('app');
-        },
-        child: Container(
-          height: 50,
-          alignment: Alignment.center,
-          margin: EdgeInsets.symmetric(horizontal: isTablet ? 14 : 24),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8), color: AppColors.primary),
-          child: Text(
-            "Back To Home",
-            style: AppTextStyles.dynamicStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: isTablet ? 3.sp : 12.sp,
-                color: AppColors.accent),
-          ),
-        ),
-      ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: GestureDetector(
+      //   onTap: () {
+      //     ref.read(authRepositoryProvider).signOut();
+      //     ref.invalidate(authStateProvider);
+      //     context.goNamed('app');
+      //   },
+      //   child: Container(
+      //     height: 50,
+      //     alignment: Alignment.center,
+      //     margin: EdgeInsets.symmetric(horizontal: isTablet ? 14 : 24),
+      //     decoration: BoxDecoration(
+      //         borderRadius: BorderRadius.circular(8), color: AppColors.primary),
+      //     child: Text(
+      //       "Back To Home",
+      //       style: AppTextStyles.dynamicStyle(
+      //           fontWeight: FontWeight.w700,
+      //           fontSize: isTablet ? 3.sp : 12.sp,
+      //           color: Colors.white),
+      //     ),
+      //   ),
+      // ),
     );
   }
 

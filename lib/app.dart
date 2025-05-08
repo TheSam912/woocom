@@ -1,3 +1,4 @@
+import 'package:ecommerce_woocom/presentation/pages/admin/admin_web.dart';
 import 'package:ecommerce_woocom/presentation/pages/main/main_mobile.dart';
 import 'package:ecommerce_woocom/presentation/pages/main/main_tablet.dart';
 import 'package:ecommerce_woocom/presentation/pages/main/main_web.dart';
@@ -18,6 +19,7 @@ class App extends StatelessWidget {
         return LayoutBuilder(
           builder: (context, constraints) {
             if (ResponsiveHelper.isDesktop(context)) {
+              // return const AdminWeb();
               return const WebHomePage();
             } else if (ResponsiveHelper.isTablet(context)) {
               return TabletHomePage();
